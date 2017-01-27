@@ -2,9 +2,9 @@
 
 t_tet		*newtet(char type, int order, int x, int y)
 {
-	t_tet	new;
+	t_tet	*new;
 
-	new = malloc(sizeof(t_tet));
+	new = (t_tet*)malloc(sizeof(t_tet));
 	if (new)
 	{
 		new->type = type;
