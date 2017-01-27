@@ -12,5 +12,6 @@ typedef struct	s_tet
 	int			y;
 }				t_tet;
 
-t_tet			*newtet(char type, int order, int x, int y);
+t_tet			*new_tet(char type, int order, int x, int y);
+void			set_tet(t_tet **node, int x, int y);
 #endif
