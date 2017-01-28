@@ -4,7 +4,7 @@
 **  checks whether input is a '.' or '#'
 */
 
-int	check_table(char **table)
+int	check_table(void **table)
 {
 	TABLE_VARS;
 
@@ -30,7 +30,7 @@ int	check_table(char **table)
 **  (ensures it's a valid tetromino)
 */
 
-int	check_table2(char **table)
+int	check_table2(void **table)
 {
 	TABLE_VARS;
 	int count;
