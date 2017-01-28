@@ -12,12 +12,35 @@ void write_error(void)
 	}
 }
 
+void tet_shapes(void)
+{
+	char *o = "##..##";
+	char *t = "###..#";
+	char *t2 = "#...##..#";
+	char *t3 = "#..##...#";
+	char *t4 = "#..###";
+	char *i = "#...#...#...#";
+	char *i2 = "####";
+	char *l = "#...#...##";
+	char *l2 = "##..#...#";
+	char *l3 = "###.#";
+	char *l4 = "#...###";
+	char *l5 = "#...#..##";
+	char *l6 = "##...#...#";
+	char *l7 = "#.###";
+	char *l8 = "###...#";
+	char *z = "##...##";
+	char *z2 = "#..##..#";
+	char *z3 = "#...##...#";
+	char *z4 = "##.##";
+}
+
 int read_in(int fd)
 {
 	void **buf;
 
 	if (!(*buf = (char *)malloc(sizeof(char) * sizeoftetromino)))
-		return (-1);
+		return (0);
 	while (read(fd, *buf, sizeoftetromino) > 0)
 	{
 		if (((check_table(*buf)) != 1) && ((check_table2(*buf)) != 1))
