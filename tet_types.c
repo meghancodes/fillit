@@ -26,7 +26,6 @@ char il_tet_types(char *type_string)
 	char *i2 = "####";
 	char *l = "#...#...##";
 	char *l2 = "##..#...#";
-	
 
 	if (ft_strcmp(type_string, i) == 0)
 		return ('i');
