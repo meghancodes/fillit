@@ -12,34 +12,19 @@ void write_error(void)
 	}
 }
 
-void tet_shapes(void)
-{
-	char *o = "##..##";
-	char *t = "###..#";
-	char *t2 = "#...##..#";
-	char *t3 = "#..##...#";
-	char *t4 = "#..###";
-	char *i = "#...#...#...#";
-	char *i2 = "####";
-	char *l = "#...#...##";
-	char *l2 = "##..#...#";
-	char *l3 = "###.#";
-	char *l4 = "#...###";
-	char *l5 = "#...#..##";
-	char *l6 = "##...#...#";
-	char *l7 = "#.###";
-	char *l8 = "###...#";
-	char *z = "##...##";
-	char *z2 = "#..##..#";
-	char *z3 = "#...##...#";
-	char *z4 = "##.##";
-}
-
 int read_in(int fd)
 {
 	void **buf;
+	char type;
+	char *type_string;
+	int count;
+	int hash_count;
 
+	count = 0;
+	hash_count = 4;
 	if (!(*buf = (char *)malloc(sizeof(char) * sizeoftetromino)))
+		return (0);
+	if (!(type_string = (char *)malloc(sizeof(char) * sizeoftetromino)))
 		return (0);
 	while (read(fd, *buf, sizeoftetromino) > 0)
 	{
@@ -51,7 +36,23 @@ int read_in(int fd)
 		}
 		else
 		{
-			
+			while (*buf != '\0')
+			{
+				if (*buf == '#')
+				{	
+					while (hash_count >= 1)
+					{
+						if (*buf == '#')
+							hash_count--;
+						type_string = *buf;
+						buf++;
+						type_string++
+					}
+				}
+				*buf++
+			}
+			if (function != 0)
+				type =  
 		}
 		ft_bzero(buf, sizeoftetromino);
 	}
