@@ -1,12 +1,12 @@
-#define TABLE_VARS int row; int column; int check
+#define TET_VARS int row; int column; int check
 
 /*
 **  checks whether input is a '.' or '#'
 */
 
-int	check_table(char **table)
+int	check_tet(void **tet)
 {
-	TABLE_VARS;
+	TET_VARS;
 
 	row = 0;
 	while (row < 4)
@@ -14,7 +14,7 @@ int	check_table(char **table)
 		column = 0;
 		while (column < 4)
 		{
-			check = table[row][column];
+			check = tet[row][column];
 			if (check != '.' || check != '#')
 				return (0);
 			column++;
@@ -25,14 +25,14 @@ int	check_table(char **table)
 }
 
 /*
-**  checks whether there are 4 '#' in the table
+**  checks whether there are 4 '#' in the tet
 **  and whether every '#' touches one other '#'
 **  (ensures it's a valid tetromino)
 */
 
-int	check_table2(char **table)
+int	check_tet2(void **tet)
 {
-	TABLE_VARS;
+	TET_VARS;
 	int count;
 	int next_rowpos;
 	int next_colpos;
@@ -44,9 +44,9 @@ int	check_table2(char **table)
 		column = 0;
 		while (column < 4)
 		{
-			check = table[row][column];
-			next_rowpos = table[row + 1][column];
-			next_colpos = table[row][column + 1];
+			check = tet[row][column];
+			next_rowpos = tet[row + 1][column];
+			next_colpos = tet[row][column + 1];
 			if (check == '#' && (next_rowpos == '#' || next_colpos == '#'))
 				count++;
 			column++;
