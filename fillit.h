@@ -16,8 +16,9 @@ typedef struct	s_map
 {
 	int			size;
 	t_tet		**tets;
-}				t_map
+	int			**arr;
+}				t_map;
 
 t_tet			*new_tet(char *type, char order, int x, int y);
-void			set_tet(t_tet **node, int x, int y);
+void			set_tet(t_tet *node, t_map *map, int x, int y);
 #endif

@@ -1,3 +1,5 @@
+#include "fillit.h"
+
 char ot_tet_types(char *type_string)
 {
 	char *o = "##..##";

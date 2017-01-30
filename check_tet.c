@@ -1,14 +1,15 @@
-#define TET_VARS int row; int column; int check
+#define TET_VARS int row; int column; int check; char **tet
 
 /*
 **  checks whether input is a '.' or '#'
 */
 
-int	check_tet(void **tet)
+int	check_tet(void **v_tet)
 {
 	TET_VARS;
 
 	row = 0;
+	tet = (char **)v_tet;
 	while (row < 4)
 	{
 		column = 0;
@@ -30,7 +31,7 @@ int	check_tet(void **tet)
 **  (ensures it's a valid tetromino)
 */
 
-int	check_tet2(void **tet)
+int	check_tet2(void **v_tet)
 {
 	TET_VARS;
 	int count;
@@ -39,6 +40,7 @@ int	check_tet2(void **tet)
 
 	row = 0;
 	count = 0;
+	tet = (char **)v_tet;
 	while (row < 4)
 	{
 		column = 0;

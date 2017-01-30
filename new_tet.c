@@ -7,7 +7,7 @@ t_tet		*newtet(char *type, char order, int x, int y)
 	new = (t_tet*)malloc(sizeof(t_tet));
 	if (new)
 	{
-		new->*type = *type;
+		new->type = type;
 		new->order = order;
 		new->x = x;
 		new->y = y;
