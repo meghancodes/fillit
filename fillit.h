@@ -6,12 +6,12 @@
 
 typedef struct	s_tet
 {
-	char		type;
-	int			order;
+	char		*type;
+	char		order;
 	int			x;
 	int			y;
 }				t_tet;
 
-t_tet			*new_tet(char type, int order, int x, int y);
+t_tet			*new_tet(char *type, char order, int x, int y);
 void			set_tet(t_tet **node, int x, int y);
 #endif

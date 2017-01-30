@@ -15,12 +15,12 @@ void write_error(void)
 int read_in(int fd)
 {
 	void **buf;
-	char type;
+	char *type;
 	char *type_string;
-	int count;
+	int order;
 	int hash_count;
 
-	count = 0;
+	order = 65;
 	hash_count = 4;
 	if (!(*buf = (char *)malloc(sizeof(char) * sizeoftetromino)))
 		return (0);
@@ -28,31 +28,39 @@ int read_in(int fd)
 		return (0);
 	while (read(fd, *buf, sizeoftetromino) > 0)
 	{
-		if (((check_table(*buf)) != 1) && ((check_table2(*buf)) != 1))
-		{
+		if (((check_tet(*buf)) != 1) && ((check_tet2(*buf)) != 1))			//ensures that the tetrimino is valid, if not
+		{																	//function ends
 			write_error();
-			exit (fd)
+			exit (fd);
 			return (0);
 		}
-		else
+		else																//tetrimino is valid from here down
 		{
 			while (*buf != '\0')
 			{
 				if (*buf == '#')
 				{	
-					while (hash_count >= 1)
+					while (hash_count >= 1)									//determines the tet shape as a string
 					{
 						if (*buf == '#')
 							hash_count--;
 						type_string = *buf;
 						buf++;
-						type_string++
+						type_string++;
 					}
 				}
-				*buf++
+				*buf++;
 			}
-			if (function != 0)
-				type =  
+			if (ot_tet_types(type_string) != 0)								//type is determined here
+				type = ot_tet_types(type_string);
+			else if (il_tet_types(type_string) != 0)
+				type = il_tet_types(type_string);
+			else if (l_tet_types(type_string) != 0)
+				type = l_tet_types(type_string);
+			else if (z_tet_types(type_string) != 0)
+				type = z_tet_types(type_string);
+			order = order;													//order is determined here
+			order++;
 		}
 		ft_bzero(buf, sizeoftetromino);
 	}
