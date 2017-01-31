@@ -9,19 +9,20 @@ char *ot_tet_types(char *type_string)
 	char *t4 = "#..###";
 
 	if (ft_strcmp(type_string, o) == 0)
-		return (o);
+		return ("o");
 	if (ft_strcmp(type_string, t) == 0)
-		return (t);
+		return ("t1");
 	if (ft_strcmp(type_string, t2) == 0)
-		return (t2);
+		return ("t2");
 	if (ft_strcmp(type_string, t3) == 0)
-		return (t3);
+		return ("t3");
 	if (ft_strcmp(type_string, t4) == 0)
-		return (t4);
+		return ("t4");
 	else
 		return (0);
 }
 
+// Separate into L and J
 char *il_tet_types(char *type_string)
 {
 	char *i = "#...#...#...#";
@@ -30,13 +31,13 @@ char *il_tet_types(char *type_string)
 	char *l2 = "##..#...#";
 
 	if (ft_strcmp(type_string, i) == 0)
-		return (i);
+		return ("i1");
 	if (ft_strcmp(type_string, i2) == 0)
-		return (i2);
+		return ("i2");
 	if (ft_strcmp(type_string, l) == 0)
-		return (l);
+		return ("l1");
 	if (ft_strcmp(type_string, l2) == 0)
-		return (l2);
+		return ("l2");
 	else
 		return (0);
 }
@@ -51,17 +52,17 @@ char *l_tet_types(char *type_string)
 	char *l8 = "###...#";
 
 	if (ft_strcmp(type_string, l3) == 0)
-		return (l3);
+		return ("l3");
 	if (ft_strcmp(type_string, l4) == 0)
-		return (l4);
+		return ("l4");
 	if (ft_strcmp(type_string, l5) == 0)
-		return (l5);
+		return ("l5");
 	if (ft_strcmp(type_string, l6) == 0)
-		return (l6);
+		return ("l6");
 	if (ft_strcmp(type_string, l7) == 0)
-		return (l7);
+		return ("l7");
 	if (ft_strcmp(type_string, l8) == 0)
-		return (l8);
+		return ("l8");
 	else
 		return (0);
 }
@@ -74,13 +75,13 @@ char *z_tet_types(char *type_string)
 	char *z4 = "##.##";
 
 	if (ft_strcmp(type_string, z) == 0)
-		return (z);
+		return ("z1");
 	if (ft_strcmp(type_string, z2) == 0)
-		return (z2);
+		return ("z2");
 	if (ft_strcmp(type_string, z3) == 0)
-		return (z3);
+		return ("z3");
 	if (ft_strcmp(type_string, z4) == 0)
-		return (z4);
+		return ("z4");
 	else
 		return (0);
 }
