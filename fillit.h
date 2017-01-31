@@ -10,6 +10,7 @@ typedef struct	s_tet
 	char		order;
 	int			x;
 	int			y;
+	s_tet		*next;
 }				t_tet;
 
 typedef struct	s_map
