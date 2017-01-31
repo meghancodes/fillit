@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-char ot_tet_types(char *type_string)
+char *ot_tet_types(char *type_string)
 {
 	char *o = "##..##";
 	char *t = "###..#";
@@ -9,11 +9,11 @@ char ot_tet_types(char *type_string)
 	char *t4 = "#..###";
 
 	if (ft_strcmp(type_string, o) == 0)
-		return ('o');
+		return (o);
 	if (ft_strcmp(type_string, t) == 0)
-		return ('t');
+		return (t);
 	if (ft_strcmp(type_string, t2) == 0)
-		return (t2); //wrong return type
+		return (t2);
 	if (ft_strcmp(type_string, t3) == 0)
 		return (t3);
 	if (ft_strcmp(type_string, t4) == 0)
@@ -22,7 +22,7 @@ char ot_tet_types(char *type_string)
 		return (0);
 }
 
-char il_tet_types(char *type_string)
+char *il_tet_types(char *type_string)
 {
 	char *i = "#...#...#...#";
 	char *i2 = "####";
@@ -30,18 +30,18 @@ char il_tet_types(char *type_string)
 	char *l2 = "##..#...#";
 
 	if (ft_strcmp(type_string, i) == 0)
-		return ('i');
+		return (i);
 	if (ft_strcmp(type_string, i2) == 0)
 		return (i2);
 	if (ft_strcmp(type_string, l) == 0)
-		return ('l');
+		return (l);
 	if (ft_strcmp(type_string, l2) == 0)
 		return (l2);
 	else
 		return (0);
 }
 
-char l_tet_types(char *type_string)
+char *l_tet_types(char *type_string)
 {
 	char *l3 = "###.#";
 	char *l4 = "#...###";
@@ -66,7 +66,7 @@ char l_tet_types(char *type_string)
 		return (0);
 }
 
-char z_tet_types(char *type_string)
+char *z_tet_types(char *type_string)
 {
 	char *z = "##...##";
 	char *z2 = "#..##..#";
@@ -74,7 +74,7 @@ char z_tet_types(char *type_string)
 	char *z4 = "##.##";
 
 	if (ft_strcmp(type_string, z) == 0)
-		return ('z');
+		return (z);
 	if (ft_strcmp(type_string, z2) == 0)
 		return (z2);
 	if (ft_strcmp(type_string, z3) == 0)
