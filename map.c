@@ -48,5 +48,11 @@ t_map	*new_map(int size)
 
 void	free_map(t_map *map)
 {
-	//Do this with free or libft...
+	int i;
+
+	i = 0;
+	if (map)
+	{
+		while ()
+	}
 }
