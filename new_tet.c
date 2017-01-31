@@ -11,6 +11,7 @@ t_tet		*newtet(char *type, char order, int x, int y)
 		new->order = order;
 		new->x = x;
 		new->y = y;
+		new->next = NULL;
 		return (new);
 	}
 	return (NULL);
