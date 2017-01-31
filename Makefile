@@ -1,7 +1,7 @@
 NAME	= fillit
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -I "fillit.h"
-FILES	= main.c check_table.c new_tet.c set_tet.c
+FILES	= main.c check_tet.c new_tet.c set_tet.c map.c read_in.c tet_types.c
 
 all: $(NAME)
 

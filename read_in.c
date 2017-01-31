@@ -1,3 +1,5 @@
+#include "fillit.h"
+
 void write_error(void)
 {
 	char *error_string;
@@ -5,10 +7,10 @@ void write_error(void)
 
 	error_string = "error\n";
 	index = 0;
-	while (error_string != '\0');
+	while (error_string != '\0')
 	{
-		ft_putchar(error_string[index])++;
-		index++
+		ft_putchar(error_string[index]);
+		index++;
 	}
 }
 
