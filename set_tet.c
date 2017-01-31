@@ -1,5 +1,11 @@
 #include "fillit.h"
 
+int		valid_set(t_tet *node, t_map *map)
+{
+
+	return (0);
+}
+
 void	set_tet(t_tet *node, t_map *map, int x, int y)
 {
 	node->x = x;

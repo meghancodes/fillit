@@ -1,5 +1,16 @@
 #include "fillit.h"
 
+//Use to find the smallest map possible to start with
+int		ceil_sqrt(int tet_num)
+{
+	int	size;
+
+	size = 2;
+	while ((size * size) < tet_num)
+		size++;
+	return (size);
+}
+
 void	zero_map(t_map *map)
 {
 	int i;
