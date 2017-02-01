@@ -1,4 +1,5 @@
 #include "fillit.h"
+#define TET_SIZE 21 
 
 void write_error(void)
 {
@@ -16,7 +17,7 @@ void write_error(void)
 
 int read_in(int fd)
 {
-	void **buf;
+	char **buf;
 	char *type;
 	char *type_string;
 	int order;
@@ -24,34 +25,34 @@ int read_in(int fd)
 
 	order = 65;
 	hash_count = 4;
-	if (!(*buf = (char *)malloc(sizeof(char) * sizeoftetromino)))
+	if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
-	if (!(type_string = (char *)malloc(sizeof(char) * sizeoftetromino)))
-		return (0);
-	while (read(fd, *buf, sizeoftetromino) > 0)
+	// if (!(type_string = (char *)malloc(sizeof(char) * TET_SIZE)))
+	// 	return (0);
+	while (read(fd, *buf, TET_SIZE) > 0)
 	{
 		if (((check_tet(*buf)) != 1) && ((check_tet2(*buf)) != 1))			//ensures that the tetrimino is valid, if not
 		{																	//function ends
 			write_error();
-			exit (fd);
+			exit (fd); 
 			return (0);
 		}
 		else																//tetrimino is valid from here down
 		{
 			while (*buf != '\0')
 			{
-				if (*buf == '#')
+				if (**buf == '#') //rewrite so that it looks at the whole line with hashes in it
 				{	
 					while (hash_count >= 1)									//determines the tet shape as a string
 					{
-						if (*buf == '#')
+						if (**buf == '#')
 							hash_count--;
 						type_string = *buf;
 						buf++;
 						type_string++;
 					}
 				}
-				*buf++;
+				buf++;
 			}
 			if (ot_tet_types(type_string) != 0)								//type is determined here
 				type = ot_tet_types(type_string);
@@ -64,6 +65,6 @@ int read_in(int fd)
 			order = order;													//order is determined here
 			order++;
 		}
-		ft_bzero(buf, sizeoftetromino);
+		ft_bzero(buf, TET_SIZE);
 	}
 }
