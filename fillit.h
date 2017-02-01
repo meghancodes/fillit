@@ -16,7 +16,6 @@ typedef struct	s_tet
 typedef struct	s_map
 {
 	int			size;
-	t_tet		**tets;
 	int			**arr;
 }				t_map;
 

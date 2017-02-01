@@ -35,7 +35,6 @@ t_map	*new_map(int size)
 	if (new)
 	{
 		new->size = size;
-		new->tets = NULL;
 		new->arr = (int**)malloc(sizeof(int*) * size);
 		if (new->arr)
 		{
@@ -53,6 +52,8 @@ void	free_map(t_map *map)
 	i = 0;
 	if (map)
 	{
-		while ()
+		while (i < map->size)
+			free(map->arr[i++]);
+		free(map);
 	}
 }
