@@ -19,10 +19,9 @@ char *ot_tet_types(char *type_string)
 	if (ft_strcmp(type_string, t4) == 0)
 		return ("t4");
 	else
-		return (0);
+		return (NULL);
 }
 
-// Separate into L and J
 char *ij_tet_types(char *type_string)
 {
 	char *i = "#...#...#...#";
@@ -45,10 +44,8 @@ char *ij_tet_types(char *type_string)
 	if (ft_strcmp(type_string, j4) == 0)
 		return ("j4");
 	else
-		return (0);
+		return (NULL);
 }
-
-
 
 char *l_tet_types(char *type_string)
 {
@@ -66,7 +63,7 @@ char *l_tet_types(char *type_string)
 	if (ft_strcmp(type_string, l6) == 0)
 		return ("l4");
 	else
-		return (0);
+		return (NULL);
 }
 
 char *z_tet_types(char *type_string)
@@ -85,5 +82,5 @@ char *z_tet_types(char *type_string)
 	if (ft_strcmp(type_string, z4) == 0)
 		return ("z4");
 	else
-		return (0);
+		return (NULL);
 }
