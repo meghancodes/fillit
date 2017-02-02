@@ -26,10 +26,10 @@ char *ij_tet_types(char *type_string)
 {
 	char *i = "#...#...#...#";
 	char *i2 = "####";
-	char *j = "#...#..##"; //J --real J -- need at least two dots in front to form the shape --> ..#...#..##
-	char *j2 = "##..#...#"; //J
-	char *j3 = "#...###"; //J
-	char *j4 = "###...#"; //J
+	char *j = "#...#..##"; //need at least two dots in front to form the shape --> ..#...#..##
+	char *j2 = "##..#...#";
+	char *j3 = "#...###";
+	char *j4 = "###...#";
 
 	if (ft_strcmp(type_string, i) == 0)
 		return ("i");
@@ -49,10 +49,10 @@ char *ij_tet_types(char *type_string)
 
 char *l_tet_types(char *type_string)
 {
-	char *l = "#...#...##"; //L --real L
-	char *l2 = "###.#"; //L
-	char *l3 = "##...#...#"; //L
-	char *l4 = "#.###"; //L -- need at least two dots in front to form the shape --> ..#.###
+	char *l = "#...#...##";
+	char *l2 = "###.#";
+	char *l3 = "##...#...#";
+	char *l4 = "#.###"; //need at least two dots in front to form the shape --> ..#.###
 
 	if (ft_strcmp(type_string, l3) == 0)
 		return ("l");
