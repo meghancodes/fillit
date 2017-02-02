@@ -30,7 +30,7 @@ int read_in(int fd)
 	// 	return (0);
 	while (read(fd, *buf, TET_SIZE) > 0)
 	{
-		if (((check_tet(*buf)) != 1) && ((check_tet2(*buf)) != 1))			//ensures that the tetrimino is valid, if not
+		if (((check_tet(buf)) != 1) && ((check_tet2(buf)) != 1))			//ensures that the tetrimino is valid, if not
 		{																	//function ends
 			write_error();
 			exit (fd); 
@@ -66,4 +66,5 @@ int read_in(int fd)
 		}
 		ft_bzero(buf, TET_SIZE);
 	}
+	return (0);
 }
