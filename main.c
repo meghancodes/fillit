@@ -1,24 +1,22 @@
-// int		main(int c, char **args)
-// {
-// 	if (c == 2)
-// 		args[1] = "c";
-// 	return (0);
-// }
+#include "fillit.h"
 
 int main (int argc, char *argv[])
 {
-	
-	if (argc !=  )
+	int	result;
+
+	if (argc != 2)
 	{
-		//error here
+		ft_putstr("usage: fillit_file\n");
+		return (-1);
 	}
 
-	fd = open();
-
-	if (fd == -1)
+	if ((result = (read_in(open(argv[1], O_RDONLY)))) == 0)
 	{
-		//error here
+		ft_putstr("error\n");
+		return (-1);
 	}
 
-	
+	// close (argv[1]);
+
+	return (0);
 }
