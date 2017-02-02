@@ -1,7 +1,6 @@
 #include "fillit.h"
-#define TET_SIZE 21 
 
-void write_error(void)
+void write_error(void) //change to usage statement
 {
 	char *error_string;
 	int index;
@@ -41,7 +40,7 @@ int read_in(int fd)
 		{
 			while (*buf != '\0')
 			{
-				if (**buf == '#') //rewrite so that it looks at the whole line with hashes in it
+				if (**buf == '#')
 				{	
 					while (hash_count >= 1)									//determines the tet shape as a string
 					{
@@ -56,8 +55,8 @@ int read_in(int fd)
 			}
 			if (ot_tet_types(type_string) != 0)								//type is determined here
 				type = ot_tet_types(type_string);
-			else if (il_tet_types(type_string) != 0)
-				type = il_tet_types(type_string);
+			else if (ij_tet_types(type_string) != 0)
+				type = ij_tet_types(type_string);
 			else if (l_tet_types(type_string) != 0)
 				type = l_tet_types(type_string);
 			else if (z_tet_types(type_string) != 0)

@@ -3,7 +3,7 @@
 char *ot_tet_types(char *type_string)
 {
 	char *o = "##..##";
-	char *t = "###..#";
+	char *t = "###..#"; 
 	char *t2 = "#...##..#";
 	char *t3 = "#..##...#";
 	char *t4 = "#..###";
@@ -23,46 +23,48 @@ char *ot_tet_types(char *type_string)
 }
 
 // Separate into L and J
-char *il_tet_types(char *type_string)
+char *ij_tet_types(char *type_string)
 {
 	char *i = "#...#...#...#";
 	char *i2 = "####";
-	char *l = "#...#...##";
-	char *l2 = "##..#...#";
+	char *j = "#...#..##"; //J --real J -- need at least two dots in front to form the shape --> ..#...#..##
+	char *j2 = "##..#...#"; //J
+	char *j3 = "#...###"; //J
+	char *j4 = "###...#"; //J
 
 	if (ft_strcmp(type_string, i) == 0)
-		return ("i1");
+		return ("i");
 	if (ft_strcmp(type_string, i2) == 0)
 		return ("i2");
-	if (ft_strcmp(type_string, l) == 0)
-		return ("l1");
-	if (ft_strcmp(type_string, l2) == 0)
-		return ("l2");
+	if (ft_strcmp(type_string, j) == 0)
+		return ("j");
+	if (ft_strcmp(type_string, j2) == 0)
+		return ("j2");
+	if (ft_strcmp(type_string, j3) == 0)
+		return ("j3");
+	if (ft_strcmp(type_string, j4) == 0)
+		return ("j4");
 	else
 		return (0);
 }
 
+
+
 char *l_tet_types(char *type_string)
 {
-	char *l3 = "###.#";
-	char *l4 = "#...###";
-	char *l5 = "#...#..##";
-	char *l6 = "##...#...#";
-	char *l7 = "#.###";
-	char *l8 = "###...#";
+	char *l = "#...#...##"; //L --real L
+	char *l2 = "###.#"; //L
+	char *l3 = "##...#...#"; //L
+	char *l4 = "#.###"; //L -- need at least two dots in front to form the shape --> ..#.###
 
 	if (ft_strcmp(type_string, l3) == 0)
-		return ("l3");
+		return ("l");
 	if (ft_strcmp(type_string, l4) == 0)
-		return ("l4");
+		return ("l2");
 	if (ft_strcmp(type_string, l5) == 0)
-		return ("l5");
+		return ("l3");
 	if (ft_strcmp(type_string, l6) == 0)
-		return ("l6");
-	if (ft_strcmp(type_string, l7) == 0)
-		return ("l7");
-	if (ft_strcmp(type_string, l8) == 0)
-		return ("l8");
+		return ("l4");
 	else
 		return (0);
 }
