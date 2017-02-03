@@ -24,15 +24,17 @@ typedef struct	s_map
 
 typedef struct	s_types
 {
-	int		**o;
-	int		**t;
-	int		**i;
-	int		**l;
-	int		**j;
-	int		**z;
-}						t_types;
+	int		o[4][2];
+	int		t[4][2];
+	int		i[4][2];
+	int		l[4][2];
+	int		j[4][2];
+	int		z[4][2];
+	int		s[4][2];
+}				t_types;
 
-// Need to define xy positions to start rotation static const t_types types = {}; 
+static const t_types types = {{{0,0}, {0,1}, {1,0}, {1,1}}, {{0,0}, {0,1}, {0,2}, {1,1}}, {{0,0}, {1,0}, {2,0}, {3,0}}, {{0,0}, {1,0}, {2,0}, {2,1}}, {{0,1}, {1,1}, {2,0}, {2,1}}, {{0,0}, {0,1}, {1,1}, {1,2}}, {{0,1}, {0,2}, {1,0},{1,1}};
+
 t_tet			*new_tet(char *type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
 int				read_in(int fd);
