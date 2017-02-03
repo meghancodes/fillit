@@ -25,7 +25,8 @@ int read_in(int fd)
 		{
 			type_string = tet_string(buf, type_string);
 			type = find_tet_type(type_string);
-			order = order;													
+			order = order;
+			////////////////////transfer info///////////////////////////											
 			order++;
 		}
 		ft_bzero(buf, TET_SIZE);
