@@ -77,7 +77,7 @@ char *find_tet_type(*type_string)
 		type = ij_tet_types(type_string);
 	else if (l_tet_types(type_string) != 0)
 		type = l_tet_types(type_string);
-	else if (z_tet_types(type_string) != 0)
-		type = z_tet_types(type_string);
+	else if (zs_tet_types(type_string) != 0)
+		type = zs_tet_types(type_string);
 	return (type);
 }

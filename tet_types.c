@@ -70,21 +70,22 @@ char *l_tet_types(char *type_string)
 		return (NULL);
 }
 
-char *z_tet_types(char *type_string)
+char *zs_tet_types(char *type_string)
 {
 	char *z = "##...##";
 	char *z2 = "#..##..#";
-	char *z3 = "#...##...#";
-	char *z4 = "##.##";
+	char *s = "##.##";
+	char *s2 = "#...##...#";
+	
 
 	if (ft_strcmp(type_string, z) == 0)
-		return ("z1");
+		return ("z");
 	else if (ft_strcmp(type_string, z2) == 0)
 		return ("z2");
 	else if (ft_strcmp(type_string, z3) == 0)
-		return ("z3");
+		return ("s");
 	else if (ft_strcmp(type_string, z4) == 0)
-		return ("z4");
+		return ("s2");
 	else
 		return (NULL);
 }

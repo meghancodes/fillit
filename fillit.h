@@ -41,7 +41,7 @@ int				check_tet2(char **v_tet);
 char			*ot_tet_types(char *type_string);
 char			*ij_tet_types(char *type_string);
 char			*l_tet_types(char *type_string);
-char			*z_tet_types(char *type_string);
+char			*zs_tet_types(char *type_string);
 char			*tet_string(char **buf, char *type_string);
 char			*find_tet_type(*type_string)
 #endif
