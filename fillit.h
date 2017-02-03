@@ -24,13 +24,13 @@ typedef struct	s_map
 
 typedef struct	s_types
 {
-	int		o[4][2];
-	int		t[4][2];
-	int		i[4][2];
-	int		l[4][2];
-	int		j[4][2];
-	int		z[4][2];
-	int		s[4][2];
+	int		O1[4][2];
+	int		T1[4][2];
+	int		I1[4][2];
+	int		L1[4][2];
+	int		J1[4][2];
+	int		Z1[4][2];
+	int		S1[4][2];
 }				t_types;
 
 static const t_types types = {{{0,0}, {0,1}, {1,0}, {1,1}}, {{0,0}, {0,1}, {0,2}, {1,1}}, {{0,0}, {1,0}, {2,0}, {3,0}}, {{0,0}, {1,0}, {2,0}, {2,1}}, {{0,1}, {1,1}, {2,0}, {2,1}}, {{0,0}, {0,1}, {1,1}, {1,2}}, {{0,1}, {0,2}, {1,0},{1,1}};
@@ -45,5 +45,5 @@ char			*ij_tet_types(char *type_string);
 char			*l_tet_types(char *type_string);
 char			*zs_tet_types(char *type_string);
 char			*tet_string(char **buf, char *type_string);
-char			*find_tet_type(*type_string)
+char			*find_tet_type(char *type_string)
 #endif
