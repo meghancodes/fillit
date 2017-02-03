@@ -1,35 +1,31 @@
 #include "fillit.h"
 
+/*
+**  Reads the tetrimino from the fd to the buffer,
+**  ensures that it's valid, determines the tetrimino type
+**  and the order
+*/
+
 int read_in(int fd)
 {
-	char **buf;
-	char *type;
-	char *type_string;
-	int order;
+	READ_VARS;
 
 	order = 65;
 	if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
 	while (read(fd, *buf, TET_SIZE) > 0)
 	{
-		if (((check_tet(buf)) != 1) && ((check_tet2(buf)) != 1))			//ensures that the tetrimino is valid, if not
-		{																	//function ends
+		if (((check_tet(buf)) != 1) && ((check_tet2(buf)) != 1))			
+		{																	
 			ft_putstr("error\n");
 			exit (fd); 
 			return (0);
 		}
-		else																//tetrimino is valid from here down
+		else																
 		{
 			type_string = tet_string(buf, type_string);
-			if (ot_tet_types(type_string) != 0)								//type is determined here
-				type = ot_tet_types(type_string);
-			else if (ij_tet_types(type_string) != 0)
-				type = ij_tet_types(type_string);
-			else if (l_tet_types(type_string) != 0)
-				type = l_tet_types(type_string);
-			else if (z_tet_types(type_string) != 0)
-				type = z_tet_types(type_string);
-			order = order;													//order is determined here
+			type = find_tet_type(type_string);
+			order = order;													
 			order++;
 		}
 		ft_bzero(buf, TET_SIZE);
@@ -38,8 +34,13 @@ int read_in(int fd)
 	return (1);
 }
 
-char *tet_string(char **buf, char *type_string)
+/*
+**  Defines the tetrimino type as a string
+*/
+
+char *tet_string(char **buf)
 {
+	char *type_string;
 	int hash_count;
 
 	hash_count = 4;
@@ -47,7 +48,7 @@ char *tet_string(char **buf, char *type_string)
 	{
 		if (**buf == '#')
 		{	
-			while (hash_count >= 1)									//determines the tet shape as a string
+			while (hash_count >= 1)									
 			{
 				if (**buf == '#')
 					hash_count--;
@@ -59,4 +60,23 @@ char *tet_string(char **buf, char *type_string)
 		buf++;
 	}
 	return (type_string);
+}
+
+/*
+**  Compares and confirms the tetrimino type
+*/
+
+char *find_tet_type(*type_string)
+{
+	char *type;
+
+	if (ot_tet_types(type_string) != 0)								
+		type = ot_tet_types(type_string);
+	else if (ij_tet_types(type_string) != 0)
+		type = ij_tet_types(type_string);
+	else if (l_tet_types(type_string) != 0)
+		type = l_tet_types(type_string);
+	else if (z_tet_types(type_string) != 0)
+		type = z_tet_types(type_string);
+	return (type);
 }

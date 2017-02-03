@@ -1,5 +1,9 @@
 #include "fillit.h"
 
+/*
+**  Compares the inputted string to each tetrimino type
+*/
+
 char *ot_tet_types(char *type_string)
 {
 	char *o = "##..##";

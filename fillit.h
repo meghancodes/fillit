@@ -3,7 +3,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-#define TET_SIZE 21 
+#define TET_SIZE 21
+#define TET_VARS int row; int column; int check; char **tet
+#define READ_VARS char **buf; char *type; char *type_string; int order
 
 typedef struct	s_tet
 {
@@ -41,4 +43,5 @@ char			*ij_tet_types(char *type_string);
 char			*l_tet_types(char *type_string);
 char			*z_tet_types(char *type_string);
 char			*tet_string(char **buf, char *type_string);
+char			*find_tet_type(*type_string)
 #endif

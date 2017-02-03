@@ -1,4 +1,4 @@
-#define TET_VARS int row; int column; int check; char **tet
+#include "fillit.h"
 
 /*
 **  checks whether input is a '.' or '#'
