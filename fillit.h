@@ -5,7 +5,7 @@
 # include <fcntl.h>
 #define TET_SIZE 21
 #define TET_VARS int row; int column; int check; char **tet
-#define READ_VARS char **buf; char *type; char *type_string; int order
+#define READ_VARS char **buf; char *type; char *type_string; char order
 
 typedef struct	s_tet
 {
