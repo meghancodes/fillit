@@ -6,86 +6,86 @@
 
 char *ot_tet_types(char *type_string)
 {
-	char *o = "##..##";
-	char *t = "###..#"; 
-	char *t2 = "#...##..#";
-	char *t3 = "#..##...#";
-	char *t4 = "#..###";
+	char *O1 = "##..##";
+	char *T1 = "###..#"; 
+	char *T2 = "#...##..#";
+	char *T3 = "#..##...#";
+	char *T4 = "#..###";
 
 	if (ft_strcmp(type_string, o) == 0)
-		return ("o");
+		return ("O1");
 	else if (ft_strcmp(type_string, t) == 0)
-		return ("t1");
+		return ("T1");
 	else if (ft_strcmp(type_string, t2) == 0)
-		return ("t2");
+		return ("T2");
 	else if (ft_strcmp(type_string, t3) == 0)
-		return ("t3");
+		return ("T3");
 	else if (ft_strcmp(type_string, t4) == 0)
-		return ("t4");
+		return ("T4");
 	else
 		return (NULL);
 }
 
 char *ij_tet_types(char *type_string)
 {
-	char *i = "#...#...#...#";
-	char *i2 = "####";
-	char *j = "#...#..##"; //need at least two dots in front to form the shape --> ..#...#..##
-	char *j2 = "##..#...#";
-	char *j3 = "#...###";
-	char *j4 = "###...#";
+	char *I1 = "#...#...#...#";
+	char *I2 = "####";
+	char *J = "#...#..##"; //need at least two dots in front to form the shape --> ..#...#..##
+	char *J2 = "##..#...#";
+	char *J3 = "#...###";
+	char *J4 = "###...#";
 
 	if (ft_strcmp(type_string, i) == 0)
-		return ("i");
+		return ("I1");
 	else if (ft_strcmp(type_string, i2) == 0)
-		return ("i2");
+		return ("I2");
 	else if (ft_strcmp(type_string, j) == 0)
-		return ("j");
+		return ("J1");
 	else if (ft_strcmp(type_string, j2) == 0)
-		return ("j2");
+		return ("J2");
 	else if (ft_strcmp(type_string, j3) == 0)
-		return ("j3");
+		return ("J3");
 	else if (ft_strcmp(type_string, j4) == 0)
-		return ("j4");
+		return ("J4");
 	else
 		return (NULL);
 }
 
 char *l_tet_types(char *type_string)
 {
-	char *l = "#...#...##";
-	char *l2 = "###.#";
-	char *l3 = "##...#...#";
-	char *l4 = "#.###"; //need at least two dots in front to form the shape --> ..#.###
+	char *L1 = "#...#...##";
+	char *L2 = "###.#";
+	char *L3 = "##...#...#";
+	char *L4 = "#.###"; //need at least two dots in front to form the shape --> ..#.###
 
 	if (ft_strcmp(type_string, l3) == 0)
-		return ("l");
+		return ("L1");
 	else if (ft_strcmp(type_string, l4) == 0)
-		return ("l2");
+		return ("L2");
 	else if (ft_strcmp(type_string, l5) == 0)
-		return ("l3");
+		return ("L3");
 	else if (ft_strcmp(type_string, l6) == 0)
-		return ("l4");
+		return ("L4");
 	else
 		return (NULL);
 }
 
 char *zs_tet_types(char *type_string)
 {
-	char *z = "##...##";
-	char *z2 = "#..##..#";
-	char *s = "##.##";
-	char *s2 = "#...##...#";
+	char *Z1 = "##...##";
+	char *Z2 = "#..##..#";
+	char *S1 = "##.##";
+	char *S2 = "#...##...#";
 	
 
 	if (ft_strcmp(type_string, z) == 0)
-		return ("z");
+		return ("Z1");
 	else if (ft_strcmp(type_string, z2) == 0)
-		return ("z2");
+		return ("Z2");
 	else if (ft_strcmp(type_string, z3) == 0)
-		return ("s");
+		return ("S1");
 	else if (ft_strcmp(type_string, z4) == 0)
-		return ("s2");
+		return ("S2");
 	else
 		return (NULL);
 }
