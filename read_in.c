@@ -27,7 +27,7 @@ int read_in(int fd)
 		}
 		else																
 		{
-			type_string = tet_string(buf, type_string);
+			type_string = tet_string(buf);
 			type = find_tet_type(type_string);
 			if (order == 65)
 				current = head = new_tet(type, order, x, y);
@@ -73,7 +73,7 @@ char *tet_string(char **buf)
 **  Compares and confirms the tetrimino type
 */
 
-char *find_tet_type(*type_string)
+char *find_tet_type(char *type_string)
 {
 	char *type;
 
