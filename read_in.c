@@ -38,7 +38,6 @@ int read_in(int fd)
 		ft_bzero(buf, TET_SIZE);
 		ft_bzero(type_string, TET_SIZE);
 	}
-	begin->next = NULL;
 	return (1);
 }
 
@@ -90,7 +89,7 @@ char *tet_string(char **buf)
 **  Compares and confirms the tetrimino type
 */
 
-char *find_tet_type(*type_string)
+char *find_tet_type(char *type_string)
 {
 	char *type;
 
