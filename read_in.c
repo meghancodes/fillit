@@ -9,7 +9,6 @@
 int read_in(int fd)
 {
 	READ_VARS;
-	t_tet *begin;
 	int x;
 	int y;
 
@@ -18,7 +17,7 @@ int read_in(int fd)
 	order = 65;
 	if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
-	while (read(fd, *buf, TET_SIZE) > 0)
+	while (read(fd, (void *)*buf, TET_SIZE) > 0)
 	{
 		if (((check_tet(buf)) != 1) && ((check_tet2(buf)) != 1))			
 		{																	
@@ -30,10 +29,10 @@ int read_in(int fd)
 		{
 			type_string = tet_string(buf, type_string);
 			type = find_tet_type(type_string);
-			order = order;
-			while (order = 65)
-				begin = newtet(type, order, x, y);
-			begin->next = newtet(type, order, x, y);
+			if (order == 65)
+				current = head = new_tet(type, order, x, y);
+			else
+				current = current->next = new_tet(type, order, x, y);
 			order++;
 		}
 		ft_bzero(buf, TET_SIZE);
@@ -47,18 +46,17 @@ int read_in(int fd)
 **  Puts type and order into a struct
 */
 
-void to_struct(void)
+/*void to_struct(void)
 {
 	t_tet *begin;
 	t_tet *current;
 
-	current = head;
 	while (order = 65)
 		begin = newtet(type, order, x, y);
 	while (order = 66)
 	
 
-}
+} */
 
 /*
 **  Defines the tetrimino type as a string
