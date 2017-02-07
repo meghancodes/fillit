@@ -9,7 +9,12 @@
 int read_in(int fd)
 {
 	READ_VARS;
+	t_tet *begin;
+	int x;
+	int y;
 
+	x = 0;
+	y = 0;
 	order = 65;
 	if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
@@ -26,13 +31,33 @@ int read_in(int fd)
 			type_string = tet_string(buf, type_string);
 			type = find_tet_type(type_string);
 			order = order;
-			////////////////////transfer info///////////////////////////											
+			while (order = 65)
+				begin = newtet(type, order, x, y);
+			begin->next = newtet(type, order, x, y);
 			order++;
 		}
 		ft_bzero(buf, TET_SIZE);
 		ft_bzero(type_string, TET_SIZE);
 	}
+	begin->next = NULL;
 	return (1);
+}
+
+/*
+**  Puts type and order into a struct
+*/
+
+void to_struct(void)
+{
+	t_tet *begin;
+	t_tet *current;
+
+	current = head;
+	while (order = 65)
+		begin = newtet(type, order, x, y);
+	while (order = 66)
+	
+
 }
 
 /*
