@@ -30,7 +30,7 @@ char *ij_tet_types(char *type_string)
 {
 	char *I1 = "#...#...#...#";
 	char *I2 = "####";
-	char *J = "#...#..##"; //need at least two dots in front to form the shape --> ..#...#..##
+	char *J1 = "#...#..##"; //need at least two dots in front to form the shape --> ..#...#..##
 	char *J2 = "##..#...#";
 	char *J3 = "#...###";
 	char *J4 = "###...#";
