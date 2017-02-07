@@ -38,25 +38,8 @@ int read_in(int fd)
 		ft_bzero(buf, TET_SIZE);
 		ft_bzero(type_string, TET_SIZE);
 	}
-	begin->next = NULL;
 	return (1);
 }
-
-/*
-**  Puts type and order into a struct
-*/
-
-/*void to_struct(void)
-{
-	t_tet *begin;
-	t_tet *current;
-
-	while (order = 65)
-		begin = newtet(type, order, x, y);
-	while (order = 66)
-	
-
-} */
 
 /*
 **  Defines the tetrimino type as a string
