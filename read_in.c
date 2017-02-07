@@ -15,7 +15,9 @@ int read_in(int fd)
 	order = 65;
 	if (!(list = (t_list *)malloc(sizeof(t_list))))
 		return (0);
-	if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
+	if (!(buf = (char **)malloc(sizeof(char *))))
+		return (0);
+	else if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
 	while (read(fd, (void *)*buf, TET_SIZE) > 0)
 	{
@@ -94,6 +96,7 @@ char *find_tet_type(char *type_string)
 {
 	char *type;
 
+	type = NULL;
 	if (ot_tet_types(type_string) != 0)								
 		type = ot_tet_types(type_string);
 	else if (ij_tet_types(type_string) != 0)
