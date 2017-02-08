@@ -1,4 +1,5 @@
 #include "fillit.h"
+void to_struct(t_list *list, char *type, char order);
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -9,13 +10,14 @@
 int read_in(int fd)
 {
 	READ_VARS;
-	int x;
-	int y;
+	t_list	*list;
 
-	x = 0;
-	y = 0;
 	order = 65;
-	if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
+	if (!(list = (t_list *)malloc(sizeof(t_list))))
+		return (0);
+	if (!(buf = (char **)malloc(sizeof(char *))))
+		return (0);
+	else if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
 	while (read(fd, (void *)*buf, TET_SIZE) > 0)
 	{
@@ -29,16 +31,33 @@ int read_in(int fd)
 		{
 			type_string = tet_string(buf);
 			type = find_tet_type(type_string);
-			if (order == 65)
-				current = head = new_tet(type, order, x, y);
-			else
-				current = current->next = new_tet(type, order, x, y);
+			to_struct(list, type, order);
 			order++;
 		}
 		ft_bzero(buf, TET_SIZE);
 		ft_bzero(type_string, TET_SIZE);
 	}
 	return (1);
+}
+
+/*
+**  Puts type and order into a struct
+*/
+
+void to_struct(t_list *list, char *type, char order)
+{
+	if (order == 65)
+	{
+		list->size = 1;
+		list->head = new_tet(type, order, 0, 0);
+		list->current = list->head;
+	}
+	else
+	{
+		list->size = list->size + 1;
+		list->current->next = new_tet(type, order, 0, 0);
+		list->current = list->current->next;
+	}
 }
 
 /*
@@ -77,6 +96,7 @@ char *find_tet_type(char *type_string)
 {
 	char *type;
 
+	type = NULL;
 	if (ot_tet_types(type_string) != 0)								
 		type = ot_tet_types(type_string);
 	else if (ij_tet_types(type_string) != 0)

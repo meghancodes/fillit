@@ -5,7 +5,7 @@
 # include <fcntl.h>
 #define TET_SIZE 21
 #define TET_VARS int row; int column; int check; char **tet
-#define READ_VARS char **buf; char *type; char *type_string; char order; t_tet *head; t_tet *current;
+#define READ_VARS char **buf; char *type; char *type_string; char order
 
 typedef struct	s_tet
 {
@@ -15,6 +15,13 @@ typedef struct	s_tet
 	int					y;
 	struct s_tet		*next;
 }				t_tet;
+
+typedef struct	s_list
+{
+	int			size;
+	t_tet		*head;
+	t_tet		*current;
+}				t_list;
 
 typedef struct	s_map
 {
@@ -76,7 +83,7 @@ char			*ot_tet_types(char *type_string);
 char			*ij_tet_types(char *type_string);
 char			*l_tet_types(char *type_string);
 char			*zs_tet_types(char *type_string);
-char			*tet_string(char **buf, char *type_string);
+char			*tet_string(char **buf);
 char			*find_tet_type(char *type_string);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
