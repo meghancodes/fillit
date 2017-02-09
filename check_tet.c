@@ -1,15 +1,15 @@
-#define TET_VARS int row; int column; int check; char **tet
+#include "fillit.h"
 
 /*
 **  checks whether input is a '.' or '#'
 */
 
-int	check_tet(void **v_tet)
+int	check_tet(char **v_tet)
 {
 	TET_VARS;
 
 	row = 0;
-	tet = (char **)v_tet;
+	tet = v_tet;
 	while (row < 4)
 	{
 		column = 0;
@@ -31,7 +31,7 @@ int	check_tet(void **v_tet)
 **  (ensures it's a valid tetromino)
 */
 
-int	check_tet2(void **v_tet)
+int	check_tet2(char **v_tet)
 {
 	TET_VARS;
 	int count;
@@ -40,7 +40,7 @@ int	check_tet2(void **v_tet)
 
 	row = 0;
 	count = 0;
-	tet = (char **)v_tet;
+	tet = v_tet;
 	while (row < 4)
 	{
 		column = 0;

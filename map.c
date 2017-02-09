@@ -17,7 +17,7 @@ void	print_map(t_map *map, t_tet *begin)
 }
 
 //Zero out map array
-void	zero_map(t_map *map)
+static void	zero_map(t_map *map)
 {
 	int i;
 	int j;
