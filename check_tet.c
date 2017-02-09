@@ -4,23 +4,22 @@
 **  checks whether input is a '.' or '#'
 */
 
-int	check_tet(char **v_tet)
+int	check_tet(char *v_tet)
 {
 	TET_VARS;
 
-	row = 0;
+	i = 0;
 	tet = v_tet;
-	while (row < 4)
+	while (i < 19)
 	{
-		column = 0;
-		while (column < 4)
+		if (i == 4 || i == 9 || i == 14 || i == 19)
 		{
-			check = tet[row][column];
-			if (check != '.' || check != '#')
+			if (i != '\n')
 				return (0);
-			column++;
 		}
-		row++;
+		else if (tet[i] != '.' || tet[i] != '#')
+			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -31,7 +30,7 @@ int	check_tet(char **v_tet)
 **  (ensures it's a valid tetromino)
 */
 
-int	check_tet2(char **v_tet)
+int	check_tet2(char *v_tet)
 {
 	TET_VARS;
 	int count;
