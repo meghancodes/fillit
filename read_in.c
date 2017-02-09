@@ -1,5 +1,5 @@
 #include "fillit.h"
-void to_struct(t_list *list, char *type, char order);
+void to_struct(t_lst *list, char *type, char order);
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -10,10 +10,10 @@ void to_struct(t_list *list, char *type, char order);
 int read_in(int fd)
 {
 	READ_VARS;
-	t_list	*list;
+	t_lst	*list;
 
 	order = 65;
-	if (!(list = (t_list *)malloc(sizeof(t_list))))
+	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
 	if (!(buf = (char **)malloc(sizeof(char *))))
 		return (0);
@@ -44,7 +44,7 @@ int read_in(int fd)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_list *list, char *type, char order)
+void to_struct(t_lst *list, char *type, char order)
 {
 	if (order == 65)
 	{

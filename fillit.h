@@ -3,6 +3,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "./libft/libft.h"
 #define TET_SIZE 21
 #define TET_VARS int row; int column; int check; char **tet
 #define READ_VARS char **buf; char *type; char *type_string; char order
@@ -16,12 +17,12 @@ typedef struct	s_tet
 	struct s_tet		*next;
 }				t_tet;
 
-typedef struct	s_list
+typedef struct	s_lst
 {
 	int			size;
 	t_tet		*head;
 	t_tet		*current;
-}				t_list;
+}				t_lst;
 
 typedef struct	s_map
 {
