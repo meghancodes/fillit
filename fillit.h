@@ -19,6 +19,7 @@ typedef struct	s_map
 	int			**arr;
 }				t_map;
 
+// Define all 19 different types for quicker reference rather than having to mathematically rotate them
 typedef struct	s_types
 {
 	int		**o;
