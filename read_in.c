@@ -1,5 +1,5 @@
 #include "fillit.h"
-void to_struct(t_list *list, char *type, char order);
+void to_struct(t_lst *list, char *type, char order);
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -10,16 +10,14 @@ void to_struct(t_list *list, char *type, char order);
 int read_in(int fd)
 {
 	READ_VARS;
-	t_list	*list;
+	t_lst	*list;
 
 	order = 65;
-	if (!(list = (t_list *)malloc(sizeof(t_list))))
+	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
-	if (!(buf = (char **)malloc(sizeof(char *))))
+	else if (!(buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
-	else if (!(*buf = (char *)malloc(sizeof(char) * TET_SIZE)))
-		return (0);
-	while (read(fd, (void *)*buf, TET_SIZE) > 0)
+	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{
 		if (((check_tet(buf)) != 1) && ((check_tet2(buf)) != 1))			
 		{																	
@@ -44,7 +42,7 @@ int read_in(int fd)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_list *list, char *type, char order)
+void to_struct(t_lst *list, char *type, char order)
 {
 	if (order == 65)
 	{
@@ -64,21 +62,21 @@ void to_struct(t_list *list, char *type, char order)
 **  Defines the tetrimino type as a string
 */
 
-char *tet_string(char **buf)
+char *tet_string(char *buf)
 {
 	char *type_string;
 	int hash_count;
 
 	hash_count = 4;
-	while (*buf != '\0')
+	while (buf != '\0')
 	{
-		if (**buf == '#')
+		if (*buf == '#')
 		{	
 			while (hash_count >= 1)									
 			{
-				if (**buf == '#')
+				if (*buf == '#')
 					hash_count--;
-				type_string = *buf;
+				type_string = buf;
 				buf++;
 				type_string++;
 			}

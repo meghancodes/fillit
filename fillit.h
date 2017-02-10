@@ -3,9 +3,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include "./libft/libft.h"
 #define TET_SIZE 21
-#define TET_VARS int row; int column; int check; char **tet
-#define READ_VARS char **buf; char *type; char *type_string; char order
+#define TET_VARS int i; char *tet
+#define DIR_VARS int l; int r; int u; int d
+#define READ_VARS char *buf; char *type; char *type_string; char order
 
 typedef struct	s_tet
 {
@@ -16,12 +18,12 @@ typedef struct	s_tet
 	struct s_tet		*next;
 }				t_tet;
 
-typedef struct	s_list
+typedef struct	s_lst
 {
 	int			size;
 	t_tet		*head;
 	t_tet		*current;
-}				t_list;
+}				t_lst;
 
 typedef struct	s_map
 {
@@ -29,6 +31,7 @@ typedef struct	s_map
 	int			**arr;
 }				t_map;
 
+// Define all 19 different types for quicker reference rather than having to mathematically rotate them
 typedef struct	s_types
 {
 	int		**O1;
@@ -77,13 +80,13 @@ static const t_types types = {(int **)o1, (int **)t1, (int **)t2, (int **)t3, (i
 t_tet			*new_tet(char *type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
 int				read_in(int fd);
-int				check_tet(char **v_tet);
-int				check_tet2(char **v_tet);
+int				check_tet(char *v_tet);
+int				check_tet2(char *v_tet);
 char			*ot_tet_types(char *type_string);
 char			*ij_tet_types(char *type_string);
 char			*l_tet_types(char *type_string);
 char			*zs_tet_types(char *type_string);
-char			*tet_string(char **buf);
+char			*tet_string(char *buf);
 char			*find_tet_type(char *type_string);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
