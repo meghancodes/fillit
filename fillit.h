@@ -6,6 +6,7 @@
 # include "./libft/libft.h"
 #define TET_SIZE 21
 #define TET_VARS int i; char *tet
+#define DIR_VARS int l; int r; int u; int d
 #define READ_VARS char *buf; char *type; char *type_string; char order
 
 typedef struct	s_tet

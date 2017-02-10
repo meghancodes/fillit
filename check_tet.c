@@ -24,6 +24,31 @@ int	check_tet(char *v_tet)
 	return (1);
 }
 
+char	**to_arr(char *v_tet)
+{
+	char	**arr;
+	int		i;
+	int		j;
+	int		in;
+
+	if (!(arr = (char **)malloc(sizeof(char *) * 4)))
+		return (0);
+	else if (!(*arr = (char *)malloc(sizeof(char) * 4)))
+		return (0);
+	i = 0;
+	in = 0;
+	while (i++ < 4)
+	{
+		j = 0;
+		in++;
+		while (j++ < 4)
+		{
+			arr[i][j] = v_tet[in++];
+		}
+	}
+	return (arr);
+}
+
 /*
 **  checks whether there are 4 '#' in the tet
 **  and whether every '#' touches one other '#'
@@ -32,27 +57,21 @@ int	check_tet(char *v_tet)
 
 int	check_tet2(char *v_tet)
 {
-	TET_VARS;
-	int count;
-	int next_rowpos;
-	int next_colpos;
+	int		i;
+	int		j;
+	int		count;
+	char	**arr;
 
-	row = 0;
+	i = 0;
 	count = 0;
-	tet = v_tet;
-	while (row < 4)
+	arr = to_arr(v_tet);
+	while (i++ < 4)
 	{
-		column = 0;
-		while (column < 4)
+		j = 0;
+		while (j++ < 4)
 		{
-			check = tet[row][column];
-			next_rowpos = tet[row + 1][column];
-			next_colpos = tet[row][column + 1];
-			if (check == '#' && (next_rowpos == '#' || next_colpos == '#'))
-				count++;
-			column++;
+			
 		}
-		row++;
 	}
 	if (count == 4)
 		return (1);
