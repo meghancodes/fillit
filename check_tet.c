@@ -28,7 +28,7 @@ int	check_tet(char **v_tet)
 /*
 **  checks whether there are 4 '#' in the tet
 **  and whether every '#' touches one other '#'
-**  (ensures it's a valid tetromino)
+**  (ensures it's a valid tetromino)-->> this WILL know that the shape is valid
 */
 
 int	check_tet2(char **v_tet)
