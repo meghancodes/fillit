@@ -1,79 +1,106 @@
 #include "fillit.h"
 
 /*
-**  checks whether input is a '.' or '#'
+**  Ensures that every character is a '.' '#' or '\n'
 */
 
-int	check_tet(char *v_tet)
+int check_tet(char *tet)
 {
-	TET_VARS;
+	int index;
+	int count;
 
-	i = 0;
-	tet = v_tet;
-	while (i < 19)
+	index = 0;
+	count = 0;
+	while (index < strlen(tet))
 	{
-		if (i == 4 || i == 9 || i == 14 || i == 19)
-		{
-			if (i != '\n')
-				return (0);
-		}
-		else if (tet[i] != '.' || tet[i] != '#')
+		if (tet[index] == '.')
+			count++;
+		else if (tet[index] == '#')
+			count++;
+		else if (tet[index] == '\n')
+			count++;
+		else
 			return (0);
-		i++;
+		index++;
 	}
 	return (1);
 }
 
-char	**to_arr(char *v_tet)
-{
-	char	**arr;
-	int		i;
-	int		j;
-	int		in;
+/*
+**  Ensures that there are 4 '#'s and that every '#' touches 
+**  at least one other one
+*/
 
-	if (!(arr = (char **)malloc(sizeof(char *) * 4)))
-		return (0);
-	else if (!(*arr = (char *)malloc(sizeof(char) * 4)))
-		return (0);
-	i = 0;
-	in = 0;
-	while (i++ < 4)
+int check_tet2(char *tet)
+{
+	int index;
+	int count;
+	int hash_touch;
+
+	index = 0;
+	count = 0;
+	hash_touch = 0;
+	while (tet[index] != '\0')
 	{
-		j = 0;
-		in++;
-		while (j++ < 4)
+		if(tet[index] == '#')
 		{
-			arr[i][j] = v_tet[in++];
+			count++;
+			if ((tet[index - 5]) == '#' || (tet[index - 1]) == '#' || (tet[index + 1]) == '#' || 
+				(tet[index + 5]) == '#')
+				hash_touch++;
+			else
+			{
+				ft_putstr("hashes aren't touching\n");
+				return (0);
+			}
 		}
+		index++;
 	}
-	return (arr);
+	if (count != 4)
+	{
+		ft_putstr("wrong number of hashes\n");
+		return (0);
+	}
+	return (1);
 }
 
 /*
-**  checks whether there are 4 '#' in the tet
-**  and whether every '#' touches one other '#'
-**  (ensures it's a valid tetromino)-->> this WILL know that the shape is valid
+**  Ensures that there are 5 '\n's
 */
 
-int	check_tet2(char *v_tet)
+int check_tet3(char *tet)
 {
-	int		i;
-	int		j;
-	int		count;
-	char	**arr;
+	int index;
+	int count;
 
-	i = 0;
+	index = 0;
 	count = 0;
-	arr = to_arr(v_tet);
-	while (i++ < 4)
+	while (tet[index] != '\0')
 	{
-		j = 0;
-		while (j++ < 4)
-		{
-			
-		}
+		if (tet[index] == '\n')
+			count++;
+		index++;
 	}
-	if (count == 4)
-		return (1);
-	return (0);
+	if (count != 5)
+		return (0);
+	return (1);
+}
+
+/*
+**  Ensures that '\n's appear at the right places 
+*/
+
+int check_tet4(char *tet)
+{
+	int index;
+
+	index = 0;
+	while (tet[index] != '\0')
+	{
+		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n' 
+			|| tet[20] != '\n')
+			return (0);
+		index++;
+	}
+	return (1);
 }

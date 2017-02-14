@@ -245,7 +245,7 @@ int check_tet4(char *tet)
 	index = 0;
 	while (tet[index] != '\0')
 	{
-		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n')
+		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n' || tet[20] != '\n')
 		{
 			ft_putstr("newline placement error\n");
 			return (0);

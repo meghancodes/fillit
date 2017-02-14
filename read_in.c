@@ -7,7 +7,7 @@ void to_struct(t_lst *list, char *type, char order);
 **  and the order
 */
 
-int read_in(int fd)
+inint read_in(int fd)
 {
 	READ_VARS;
 	t_lst	*list;
@@ -15,25 +15,23 @@ int read_in(int fd)
 	order = 65;
 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
-	else if (!(buf = (char *)malloc(sizeof(char) * TET_SIZE)))
+	if (!(buf = (char *)malloc(sizeof(char))))
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
-	{
-		if (((check_tet(buf)) != 1) && ((check_tet2(buf)) != 1))			
+	{	
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)))			
 		{																	
 			ft_putstr("error\n");
 			exit (fd); 
 			return (0);
 		}
-		else																
-		{
-			type_string = tet_string(buf);
-			type = find_tet_type(type_string);
-			to_struct(list, type, order);
-			order++;
-		}
-		ft_bzero(buf, TET_SIZE);
-		ft_bzero(type_string, TET_SIZE);
+		type_string = tet_string(buf);
+		final_string = remove_newlines(type_string);
+		type = find_tet_type(final_string);
+		to_struct(list, type, order);
+	 	order++;
+	// 	ft_bzero(buf, TET_SIZE);
+	// 	ft_bzero(type_string, TET_SIZE);
 	}
 	return (1);
 }
@@ -59,31 +57,63 @@ void to_struct(t_lst *list, char *type, char order)
 }
 
 /*
-**  Defines the tetrimino type as a string
+**  Defines the tetrimino type as a string 
+**  (trimmed and with '\n's)
 */
 
 char *tet_string(char *buf)
 {
 	char *type_string;
 	int hash_count;
+	int index;
+	int index2;
 
+	index = 0;
+	index2 = 0;
+	if (!(type_string = (char *)malloc(sizeof(char) * strlen(buf))))
+		return (NULL);
 	hash_count = 4;
-	while (buf != '\0')
+	while (buf[index] != '\0')
 	{
-		if (*buf == '#')
+		if (buf[index] == '#')
 		{	
 			while (hash_count >= 1)									
 			{
-				if (*buf == '#')
+				if (buf[index] == '#')
 					hash_count--;
-				type_string = buf;
-				buf++;
-				type_string++;
+				type_string[index2++] = buf[index++];
 			}
+			type_string[index2] = '\0';
 		}
-		buf++;
+		index++;
 	}
 	return (type_string);
+}
+
+/*
+**  Removes newlines from the trimmed string
+*/
+
+char *remove_newlines(char *type_string)
+{
+	char *final_string;
+	int index;
+	int index2;
+
+	index = 0;
+	index2 = 0;
+	if (!(final_string = (char *)malloc(sizeof(char) * strlen(type_string))))
+		return (NULL);
+	while (type_string[index] != '\0')
+	{
+		if (type_string[index] == '\n')
+			index++;
+		final_string[index2] = type_string[index];
+		index++;
+		index2++;
+	}
+	final_string[index2] = '\0';
+	return (final_string);
 }
 
 /*
