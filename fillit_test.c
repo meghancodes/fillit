@@ -9,9 +9,9 @@ int read_in(int fd);
 char *tet_string(char *buf);
 char *find_tet_type(char *type_string);
 int	check_tet(char *tet);
+int check_tet2(char *tet);
 int	check_tet3(char *tet);
 int	check_tet4(char *tet);
-// int	check_tet2(char **v_tet);
 char *ot_tet_types(char *type_string);
 char *ij_tet_types(char *type_string);
 char *l_tet_types(char *type_string);
@@ -60,7 +60,7 @@ int read_in(int fd)
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{	
-		if (!(check_tet(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)))			
+		if (!(check_tet(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)) || !(check_tet2(buf)))			
 		{																	
 			ft_putstr("error here?\n");
 			exit (fd); 
@@ -109,6 +109,42 @@ int check_tet(char *tet)
 }
 
 /*
+**  Ensures that there are 4 '#' and every '#' touches at least one other one
+*/
+
+int check_tet2(char *tet)
+{
+	int index;
+	int count;
+	int hash_touch;
+
+	index = 0;
+	count = 0;
+	hash_touch = 0;
+	while (tet[index] != '\0')
+	{
+		if(tet[index] == '#')
+		{
+			count++;
+			if ((tet[index - 5]) == '#' || (tet[index - 1]) == '#' || (tet[index + 1]) == '#' || (tet[index + 5]) == '#')
+				hash_touch++;
+			else
+			{
+				ft_putstr("hashes aren't touching\n");
+				return (0);
+			}
+		}
+		index++;
+	}
+	if (count != 4)
+	{
+		ft_putstr("wrong number of hashes\n");
+		return (0);
+	}
+	return (1);
+}
+
+/*
 **  Ensures that there are 4 '\n' in the tet
 */
 
@@ -122,9 +158,7 @@ int check_tet3(char *tet)
 	while (tet[index] != '\0')
 	{
 		if (tet[index] == '\n')
-		{
 			count++;
-		}
 		index++;
 	}
 	if (count != 4)
@@ -155,7 +189,6 @@ int check_tet4(char *tet)
 	}
 	return (1);
 }
-
 
 char *tet_string(char *buf)
 {
