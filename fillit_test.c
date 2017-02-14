@@ -5,7 +5,23 @@
 # include <stdio.h>
 # define TET_SIZE 21
 # define TET_VARS int i; char *tet
-# define READ_VARS char *buf; char *type; char *type_string; char *final_string  //; char order
+# define READ_VARS char *buf; char *type; char *type_string; char *final_string; char order
+typedef struct	s_tet
+{
+	char				*type;
+	char				order;
+	int					x;
+	int					y;
+	struct s_tet		*next;
+}				t_tet;
+
+typedef struct	s_lst
+{
+	int			size;
+	t_tet		*head;
+	t_tet		*current;
+}				t_lst;
+
 int read_in(int fd);
 char *tet_string(char *buf);
 char *remove_newlines(char *type_string);
@@ -24,40 +40,41 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 int	ft_strcmp(const char *s1, const char *s2);
 void	ft_putnbr(int n);
+void to_struct(t_lst *list, char *type, char order);
+t_tet		*new_tet(char *type, char order, int x, int y);
 
-int main (int argc, char **argv)
-{
-	read_in(open(argv[1], O_RDONLY));
-	return (0);
-}
-
-// int main (int argc, char *argv[])
+// int main (int argc, char **argv)
 // {
-// 	int	result;
-
-// 	if (argc != 2)
-// 	{
-// 		ft_putstr("usage: fillit_file\n");
-// 		return (-1);
-// 	}
-
-// 	if ((result = (read_in(open(argv[1], O_RDONLY)))) == 0)
-// 	{
-// 		ft_putstr("error\n");
-// 		return (-1);
-// 	}
-
+// 	read_in(open(argv[1], O_RDONLY));
 // 	return (0);
 // }
+
+int main (int argc, char *argv[])
+{
+	int	result;
+
+	if (argc != 2)
+	{
+		ft_putstr("usage: fillit_file\n");
+		return (-1);
+	}
+
+	if ((result = (read_in(open(argv[1], O_RDONLY)))) == 0)
+	{
+		ft_putstr("error\n");
+		return (-1);
+	}
+	return (0);
+}
 
 int read_in(int fd)
 {
 	READ_VARS;
-//	t_list	*list;
+	t_lst	*list;
 
-//	order = 65;
-//	if (!(list = (t_list *)malloc(sizeof(t_list))))
-//		return (0);
+	order = 65;
+	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
+		return (0);
 	if (!(buf = (char *)malloc(sizeof(char))))
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
@@ -79,14 +96,52 @@ int read_in(int fd)
 		type = find_tet_type(final_string);
 		ft_putstr(type);
 		ft_putchar('\n');
-	// //		to_struct(list, type, order);
-	// 		order++;
+		to_struct(list, type, order);
+	 	order++;
 	// 	}
 	// 	ft_bzero(buf, TET_SIZE);
 	// 	ft_bzero(type_string, TET_SIZE);
 	}
-	// ft_putstr(type);
 	return (1);
+}
+
+/*
+**  Puts type and order into a struct
+*/
+
+void to_struct(t_lst *list, char *type, char order)
+{
+	if (order == 65)
+	{
+		list->size = 1;
+		list->head = new_tet(type, order, 0, 0);
+		list->current = list->head;
+	}
+	else
+	{
+		list->size = list->size + 1;
+		list->current->next = new_tet(type, order, 0, 0);
+		list->current = list->current->next;
+	}
+	printf("%d\n", list->size);
+	printf("%c\n", order);
+}
+
+t_tet		*new_tet(char *type, char order, int x, int y)
+{
+	t_tet	*new;
+
+	new = (t_tet*)malloc(sizeof(t_tet));
+	if (new)
+	{
+		new->type = type;
+		new->order = order;
+		new->x = x;
+		new->y = y;
+		new->next = NULL;
+		return (new);
+	}
+	return (NULL);
 }
 
 /*
@@ -266,41 +321,6 @@ char *find_tet_type(char *type_string)
 		type = zs_tet_types(type_string);
 	return (type);
 }
-
-// int	check_tet(char *v_tet)
-// {
-// 	TET_VARS;
-
-// 	i = 0;
-// 	tet = v_tet;
-// 	while (i < 19)
-// 	{
-// 		if (i == 4 || i == 9 || i == 14 || i == 19)
-// 		{
-// 			if (tet[i] != '\n')
-// 			{
-// 				ft_putstr("maybe here?\n");
-// 				ft_putchar(tet[i]);
-// 				ft_putchar('\n');
-// 				return (0);
-// 			}
-// 		}
-// 		else if (ft_strcmp(&tet[i], "?") || ft_strcmp(&tet[i], "#"))
-// 		{
-// 			ft_putstr("or HERE??\n");
-// 			ft_putchar(tet[i]);
-// 			ft_putchar('\n');
-// 			ft_putnbr(ft_strcmp(&tet[i], "?"));
-// 			ft_putchar('\n');
-// 			ft_putnbr(ft_strcmp(&tet[i], "#"));
-// 			ft_putchar('\n');
-// 			ft_putnbr(i);
-// 			return (0);
-// 		}
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 char *ot_tet_types(char *type_string)
 {
