@@ -1,4 +1,5 @@
 #include "fillit.h"
+#define T(t, i) (t[i - 5] == '#' || t[i - 1] == '#' || t[i + 1] == '#' || t[i +5] == '#')
 
 /*
 **  Ensures that every character is a '.' '#' or '\n'
@@ -11,7 +12,7 @@ int check_tet(char *tet)
 
 	index = 0;
 	count = 0;
-	while (index < ft_strlen(tet))
+	while ((size_t)index < ft_strlen(tet))
 	{
 		if (tet[index] == '.')
 			count++;
@@ -33,25 +34,21 @@ int check_tet(char *tet)
 
 int check_tet2(char *tet)
 {
-	int index;
+	int i;
 	int count;
-	int hash_touch;
 
-	index = 0;
+	i = 0;
 	count = 0;
-	hash_touch = 0;
-	while (tet[index] != '\0')
+	while (tet[i] != '\0')
 	{
-		if(tet[index] == '#')
+		if(tet[i] == '#')
 		{
-			count++;
-			if ((tet[index - 5]) == '#' || (tet[index - 1]) == '#' || (tet[index + 1]) == '#' || 
-				(tet[index + 5]) == '#')
-				hash_touch++;
+			if (T(tet, i))
+				count++;
 			else
 				return (0);
 		}
-		index++;
+		i++;
 	}
 	if (count != 4)
 		return (0);
@@ -59,13 +56,13 @@ int check_tet2(char *tet)
 }
 
 /*
-**  Ensures that there are 5 '\n's
+**  Ensures that '\n's appear at the right places and that there are exactly 5
 */
 
 int check_tet3(char *tet)
 {
 	int index;
-	int count;
+	int	count;
 
 	index = 0;
 	count = 0;
@@ -73,28 +70,12 @@ int check_tet3(char *tet)
 	{
 		if (tet[index] == '\n')
 			count++;
-		index++;
-	}
-	if (count != 5)
-		return (0);
-	return (1);
-}
-
-/*
-**  Ensures that '\n's appear at the right places 
-*/
-
-int check_tet4(char *tet)
-{
-	int index;
-
-	index = 0;
-	while (tet[index] != '\0')
-	{
 		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n' 
 			|| tet[20] != '\n')
 			return (0);
 		index++;
 	}
+	if (count != 5)
+		return (0);
 	return (1);
 }

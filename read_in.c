@@ -18,7 +18,7 @@ inint read_in(int fd)
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{	
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)))			
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))			
 		{																	
 			ft_putstr("error\n");
 			exit (fd); 
