@@ -6,15 +6,18 @@
 **  and the order
 */
 
-inint read_in(int fd)
+int read_in(int fd)
 {
 	READ_VARS;
 	t_lst	*list;
+	char	*final_string;
 
 	order = 65;
 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
 	if (!(buf = (char *)malloc(sizeof(char))))
+		return (0);
+	if(!(final_string = (char *)malloc(sizeof(char))))
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{	
