@@ -62,6 +62,8 @@ int read_in(int fd)
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{	
+		ft_putstr("this is the buffer fresh from read:\n");
+		ft_putstr(buf);
 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)))			
 		{																	
 			ft_putstr("error here?\n");
@@ -153,7 +155,7 @@ int check_tet2(char *tet)
 }
 
 /*
-**  Ensures that there are 4 '\n' in the tet
+**  Ensures that there are 5 '\n' in the tet
 */
 
 int check_tet3(char *tet)
@@ -169,7 +171,7 @@ int check_tet3(char *tet)
 			count++;
 		index++;
 	}
-	if (count != 4)
+	if (count != 5)
 	{
 		ft_putstr("newline number error\n");
 		return (0);
