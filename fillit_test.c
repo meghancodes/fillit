@@ -69,17 +69,15 @@ int read_in(int fd)
 			return (0);
 		}
 		type_string = tet_string(buf);
-		ft_putstr("working?\n");
-		ft_putstr(type_string);
-		final_string = remove_newlines(type_string);
-		type = find_tet_type(final_string);
+		// final_string = remove_newlines(type_string);
+		// type = find_tet_type(final_string);
 	// //		to_struct(list, type, order);
 	// 		order++;
 	// 	}
 	// 	ft_bzero(buf, TET_SIZE);
 	// 	ft_bzero(type_string, TET_SIZE);
 	}
-	ft_putstr(type);
+	// ft_putstr(type);
 	return (1);
 }
 
@@ -198,25 +196,34 @@ char *tet_string(char *buf)
 {
 	char *type_string;
 	int hash_count;
+	int index;
+	int index2;
 
+	index = 0;
+	index2 = 0;
+	if (!(type_string = (char *)malloc(sizeof(char) * strlen(buf))))
+		return (NULL);
 	hash_count = 4;
-	while (*buf != '\0')
+	while (buf[index] != '\0')
 	{
-		if (*buf == '#')
+		if (buf[index] == '#')
 		{	
 			while (hash_count >= 0)									
 			{
-				if (*buf == '#')
+				if (buf[index] == '#')
 					hash_count--;
-				*type_string = *buf;
-				buf++;
-				type_string++;
+				type_string[index2] = buf[index];
+				index++;
+				index2++;
 			}
 		}
-		ft_putstr("working?\n");
-		buf++;
+		index++;
 	}
-	*type_string = '\0';
+	ft_putstr(type_string);
+	ft_putchar('\n');
+	// ft_putstr(buf);
+	// ft_putchar('\n');
+	ft_putstr("working?\n");
 	return (type_string);
 }
 
@@ -225,7 +232,7 @@ char *remove_newlines(char *type_string)
 	char *final_string;
 
 	final_string = NULL;
-	while (!type_string != '\0')
+	while (type_string != '\0')
 	{
 		if (*type_string == '\n')
 			continue;
