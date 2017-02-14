@@ -2,11 +2,13 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <string.h>
+# include <stdio.h>
 # define TET_SIZE 21
 # define TET_VARS int i; char *tet
-# define READ_VARS char *buf; char *type; char *type_string  //; char order
+# define READ_VARS char *buf; char *type; char *type_string; char *final_string  //; char order
 int read_in(int fd);
 char *tet_string(char *buf);
+char *remove_newlines(char *type_string);
 char *find_tet_type(char *type_string);
 int	check_tet(char *tet);
 int check_tet2(char *tet);
@@ -60,22 +62,24 @@ int read_in(int fd)
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{	
-		if (!(check_tet(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)) || !(check_tet2(buf)))			
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)))			
 		{																	
 			ft_putstr("error here?\n");
 			exit (fd); 
 			return (0);
 		}
-	// 	else																
-	// 	{
-	// 		type_string = tet_string(buf);
-	// 		type = find_tet_type(type_string);
+		type_string = tet_string(buf);
+		ft_putstr("working?\n");
+		ft_putstr(type_string);
+		final_string = remove_newlines(type_string);
+		type = find_tet_type(final_string);
 	// //		to_struct(list, type, order);
 	// 		order++;
 	// 	}
 	// 	ft_bzero(buf, TET_SIZE);
 	// 	ft_bzero(type_string, TET_SIZE);
 	}
+	ft_putstr(type);
 	return (1);
 }
 
@@ -196,22 +200,40 @@ char *tet_string(char *buf)
 	int hash_count;
 
 	hash_count = 4;
-	while (buf != '\0')
+	while (*buf != '\0')
 	{
 		if (*buf == '#')
 		{	
-			while (hash_count >= 1)									
+			while (hash_count >= 0)									
 			{
 				if (*buf == '#')
 					hash_count--;
-				type_string = buf;
+				*type_string = *buf;
 				buf++;
 				type_string++;
 			}
 		}
+		ft_putstr("working?\n");
 		buf++;
 	}
+	*type_string = '\0';
 	return (type_string);
+}
+
+char *remove_newlines(char *type_string)
+{
+	char *final_string;
+
+	final_string = NULL;
+	while (!type_string != '\0')
+	{
+		if (*type_string == '\n')
+			continue;
+		*final_string = *type_string;
+		type_string++;
+		final_string++;
+	}
+	return (final_string);
 }
 
 char *find_tet_type(char *type_string)
