@@ -85,6 +85,7 @@ int				check_tet2(char *tet);
 int				check_tet3(char *tet);
 int				check_tet4(char *tet);
 char			*remove_newlines(char *type_string);
+void			to_struct(t_lst *list, char *type, char order);
 char			*ot_tet_types(char *type_string);
 char			*ij_tet_types(char *type_string);
 char			*l_tet_types(char *type_string);
@@ -94,4 +95,5 @@ char			*find_tet_type(char *type_string);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);
+
 #endif

@@ -1,5 +1,4 @@
 #include "fillit.h"
-void to_struct(t_lst *list, char *type, char order);
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -102,7 +101,7 @@ char *remove_newlines(char *type_string)
 
 	index = 0;
 	index2 = 0;
-	if (!(final_string = (char *)malloc(sizeof(char) * strlen(type_string))))
+	if (!(final_string = (char *)malloc(sizeof(char) * ft_strlen(type_string))))
 		return (NULL);
 	while (type_string[index] != '\0')
 	{

@@ -11,7 +11,7 @@ int check_tet(char *tet)
 
 	index = 0;
 	count = 0;
-	while (index < strlen(tet))
+	while (index < ft_strlen(tet))
 	{
 		if (tet[index] == '.')
 			count++;
@@ -49,18 +49,12 @@ int check_tet2(char *tet)
 				(tet[index + 5]) == '#')
 				hash_touch++;
 			else
-			{
-				ft_putstr("hashes aren't touching\n");
 				return (0);
-			}
 		}
 		index++;
 	}
 	if (count != 4)
-	{
-		ft_putstr("wrong number of hashes\n");
 		return (0);
-	}
 	return (1);
 }
 
