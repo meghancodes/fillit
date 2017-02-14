@@ -1,13 +1,16 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <string.h>
 # define TET_SIZE 21
 # define TET_VARS int i; char *tet
-# define READ_VARS char *buf; char *type; char *type_string; char order
+# define READ_VARS char *buf; char *type; char *type_string  //; char order
 int read_in(int fd);
 char *tet_string(char *buf);
 char *find_tet_type(char *type_string);
-int	check_tet(char *v_tet);
+int	check_tet(char *tet);
+int	check_tet3(char *tet);
+int	check_tet4(char *tet);
 // int	check_tet2(char **v_tet);
 char *ot_tet_types(char *type_string);
 char *ij_tet_types(char *type_string);
@@ -50,14 +53,14 @@ int read_in(int fd)
 	READ_VARS;
 //	t_list	*list;
 
-	order = 65;
+//	order = 65;
 //	if (!(list = (t_list *)malloc(sizeof(t_list))))
 //		return (0);
 	if (!(buf = (char *)malloc(sizeof(char))))
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{	
-		if (!(check_tet(test)))			
+		if (!(check_tet(buf)) || !(check_tet3(buf)) || !(check_tet4(buf)))			
 		{																	
 			ft_putstr("error here?\n");
 			exit (fd); 
@@ -75,6 +78,84 @@ int read_in(int fd)
 	}
 	return (1);
 }
+
+/*
+**  Ensures that every character is a '.' '#' or '\n'
+*/
+
+int check_tet(char *tet)
+{
+	int index;
+	int count;
+
+	index = 0;
+	count = 0;
+	while (index < strlen(tet))
+	{
+		if (tet[index] == '.')
+			count++;
+		else if (tet[index] == '#')
+			count++;
+		else if (tet[index] == '\n')
+			count++;
+		else
+		{
+			ft_putstr("invalid character\n");
+			return (0);
+		}
+		index++;
+	}
+	return (1);
+}
+
+/*
+**  Ensures that there are 4 '\n' in the tet
+*/
+
+int check_tet3(char *tet)
+{
+	int index;
+	int count;
+
+	index = 0;
+	count = 0;
+	while (tet[index] != '\0')
+	{
+		if (tet[index] == '\n')
+		{
+			count++;
+		}
+		index++;
+	}
+	if (count != 4)
+	{
+		ft_putstr("newline number error\n");
+		return (0);
+	}
+	return (1);
+}
+
+/*
+**  Ensures that the '\n' appear at every 5th character
+*/
+
+int check_tet4(char *tet)
+{
+	int index;
+
+	index = 0;
+	while (tet[index] != '\0')
+	{
+		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n')
+		{
+			ft_putstr("newline placement error\n");
+			return (0);
+		}
+		index++;
+	}
+	return (1);
+}
+
 
 char *tet_string(char *buf)
 {
@@ -116,69 +197,39 @@ char *find_tet_type(char *type_string)
 	return (type);
 }
 
-int	check_tet(char *v_tet)
-{
-	TET_VARS;
-
-	i = 0;
-	tet = v_tet;
-	while (i < 19)
-	{
-		if (i == 4 || i == 9 || i == 14 || i == 19)
-		{
-			if (tet[i] != '\n')
-			{
-				ft_putstr("maybe here?\n");
-				ft_putchar(tet[i]);
-				ft_putchar('\n');
-				return (0);
-			}
-		}
-		else if (ft_strcmp(&tet[i], "?") || ft_strcmp(&tet[i], "#"))
-		{
-			ft_putstr("or HERE??\n");
-			ft_putchar(tet[i]);
-			ft_putchar('\n');
-			ft_putnbr(ft_strcmp(&tet[i], "?"));
-			ft_putchar('\n');
-			ft_putnbr(ft_strcmp(&tet[i], "#"));
-			ft_putchar('\n');
-			ft_putnbr(i);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-// int	check_tet2(char **v_tet) //Seg faults maybe?
+// int	check_tet(char *v_tet)
 // {
 // 	TET_VARS;
-// 	int count;
-// 	int next_rowpos;
-// 	int next_colpos;
 
-// 	row = 0;
-// 	count = 0;
+// 	i = 0;
 // 	tet = v_tet;
-// 	while (row < 4)
+// 	while (i < 19)
 // 	{
-// 		column = 0;
-// 		while (column < 4)
+// 		if (i == 4 || i == 9 || i == 14 || i == 19)
 // 		{
-// 			check = tet[row][column];
-// 			next_rowpos = tet[row + 1][column];
-// 			next_colpos = tet[row][column + 1];
-// 			if (check == '#' && (next_rowpos == '#' || next_colpos == '#'))
-// 				count++;
-// 			column++;
+// 			if (tet[i] != '\n')
+// 			{
+// 				ft_putstr("maybe here?\n");
+// 				ft_putchar(tet[i]);
+// 				ft_putchar('\n');
+// 				return (0);
+// 			}
 // 		}
-// 		column = 0;
-// 		row++;
+// 		else if (ft_strcmp(&tet[i], "?") || ft_strcmp(&tet[i], "#"))
+// 		{
+// 			ft_putstr("or HERE??\n");
+// 			ft_putchar(tet[i]);
+// 			ft_putchar('\n');
+// 			ft_putnbr(ft_strcmp(&tet[i], "?"));
+// 			ft_putchar('\n');
+// 			ft_putnbr(ft_strcmp(&tet[i], "#"));
+// 			ft_putchar('\n');
+// 			ft_putnbr(i);
+// 			return (0);
+// 		}
+// 		i++;
 // 	}
-// 	if (count == 4)
-// 		return (1);
-// 	return (0);
+// 	return (1);
 // }
 
 char *ot_tet_types(char *type_string)
