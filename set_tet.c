@@ -14,7 +14,11 @@ int		valid_set(t_tet *node, t_map *map)
 
 void	set_tet(t_tet *node, t_map *map, int x, int y)
 {
+	int i;
+
 	node->x = x;
 	node->y = y;
-	map->arr[x][y] = 1; //need to set the rest of the shape to 1
+	i = 0;
+	while (i++ < 4)
+		map->arr[x + node->type[i][1]][y + node->type[i][0]] = 1;
 }
