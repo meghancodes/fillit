@@ -7,11 +7,11 @@
 #define TET_SIZE 21
 #define TET_VARS int i; char *tet
 #define DIR_VARS int l; int r; int u; int d
-#define READ_VARS char *buf; char *type; char *type_string; char order
+#define READ_VARS char *buf; int **type; char *type_string; char order
 
 typedef struct	s_tet
 {
-	char				*type;
+	int					**type;
 	char				order;
 	int					x;
 	int					y;
@@ -31,7 +31,6 @@ typedef struct	s_map
 	int			**arr;
 }				t_map;
 
-// Define all 19 different types for quicker reference rather than having to mathematically rotate them
 typedef struct	s_types
 {
 	int		**O1;
@@ -55,29 +54,33 @@ typedef struct	s_types
 	int		**S2;
 }				t_types;
 
+/*
+** Coordinates relative to 0,0 as the top left to make up a tetrimino
+*/
+
 int				o1[4][2] = {{0,0}, {0,1}, {1,0}, {1,1}};
 int				t1[4][2] = {{0,0}, {0,1}, {0,2}, {1,1}};
-int				t2[4][2] = {{0,1}, {1,0}, {1,1}, {2,1}};
-int				t3[4][2] = {{0,1}, {1,0}, {1,1}, {1,2}};
+int				t2[4][2] = {{0,0}, {1,-1}, {1,0}, {2,0}};
+int				t3[4][2] = {{0,0}, {1,-1}, {1,0}, {1,1}};
 int				t4[4][2] = {{0,0}, {0,1}, {1,1}, {2,0}};
 int				i1[4][2] = {{0,0}, {1,0}, {2,0}, {3,0}};
 int				i2[4][2] = {{0,0}, {0,1}, {0,2}, {0,3}};
 int				l1[4][2] = {{0,0}, {1,0}, {2,0}, {2,1}};
 int				l2[4][2] = {{0,0}, {0,1}, {0,2}, {1,0}};
 int				l3[4][2] = {{0,0}, {0,1}, {1,1}, {2,1}};
-int				l4[4][2] = {{0,2}, {1,0}, {1,1}, {1,2}};
-int				j1[4][2] = {{0,1}, {1,1}, {2,0}, {2,1}};
+int				l4[4][2] = {{0,0}, {1,-2}, {1,-1}, {1,0}};
+int				j1[4][2] = {{0,0}, {1,0}, {2,-1}, {2,0}};
 int				j2[4][2] = {{0,0}, {1,0}, {1,1}, {1,2}};
 int				j3[4][2] = {{0,0}, {0,1}, {1,0}, {2,0}};
 int				j4[4][2] = {{0,0}, {0,1}, {0,2}, {1,2}};
 int				z1[4][2] = {{0,0}, {0,1}, {1,1}, {1,2}};
-int				z2[4][2] = {{0,1}, {1,0}, {1,1}, {2,0}};
-int				s1[4][2] = {{0,1}, {0,2}, {1,0}, {1,1}};
+int				z2[4][2] = {{0,0}, {1,-1}, {1,0}, {2,-1}};
+int				s1[4][2] = {{0,0}, {0,1}, {1,-1}, {1,0}};
 int				s2[4][2] = {{0,0}, {1,0}, {1,1}, {2,1}};
 
 
 static const t_types types = {(int **)o1, (int **)t1, (int **)t2, (int **)t3, (int **)t4, (int **)i1, (int **)i2, (int **)l1, (int **)l2, (int **)l3, (int **)l4, (int **)j1, (int **)j2, (int **)j3, (int **)j4, (int **)z1, (int **)z2, (int **)s1, (int **)s2};
-t_tet			*new_tet(char *type, char order, int x, int y);
+t_tet			*new_tet(int **type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
 int				read_in(int fd);
 int				check_tet(char *tet);
@@ -85,13 +88,13 @@ int				check_tet2(char *tet);
 int				check_tet3(char *tet);
 int				check_tet4(char *tet);
 char			*remove_newlines(char *type_string);
-void			to_struct(t_lst *list, char *type, char order);
-char			*ot_tet_types(char *type_string);
-char			*ij_tet_types(char *type_string);
-char			*l_tet_types(char *type_string);
-char			*zs_tet_types(char *type_string);
+void			to_struct(t_lst *list, int **type, char order);
+int				**ot_tet_types(char *type_string);
+int				**ij_tet_types(char *type_string);
+int				**l_tet_types(char *type_string);
+int				**zs_tet_types(char *type_string);
 char			*tet_string(char *buf);
-char			*find_tet_type(char *type_string);
+int				**find_tet_type(char *type_string);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);

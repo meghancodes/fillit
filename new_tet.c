@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-t_tet		*newtet(char *type, char order, int x, int y)
+t_tet		*new_tet(int **type, char order, int x, int y)
 {
 	t_tet	*new;
 

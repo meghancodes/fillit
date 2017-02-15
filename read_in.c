@@ -42,7 +42,7 @@ int read_in(int fd)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_lst *list, char *type, char order)
+void to_struct(t_lst *list, int **type, char order)
 {
 	if (order == 65)
 	{
@@ -122,9 +122,9 @@ char *remove_newlines(char *type_string)
 **  Compares and confirms the tetrimino type
 */
 
-char *find_tet_type(char *type_string)
+int **find_tet_type(char *type_string)
 {
-	char *type;
+	int **type;
 
 	type = NULL;
 	if (ot_tet_types(type_string) != 0)								
