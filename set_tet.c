@@ -4,7 +4,7 @@
 **  Checks top, right, bottom and left of each coordinate for a 1
 */
 
-int		valid_set(t_tet *node, t_map *map)
+int		valid_set(t_tet *node, t_map *map, int x, int y)
 {
 	int i;
 	int count;
