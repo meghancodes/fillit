@@ -1,5 +1,5 @@
 #include "fillit.h"
-#define T(t, i) (t[i - 5] == '#' || t[i - 1] == '#' || t[i + 1] == '#' || t[i +5] == '#')
+#define T(tet, index) (tet[index - 5] == '#' || tet[index - 1] == '#' || tet[index + 1] == '#' || tet[index +5] == '#')
 
 /*
 **  Ensures that every character is a '.' '#' or '\n'
@@ -34,21 +34,21 @@ int check_tet(char *tet)
 
 int check_tet2(char *tet)
 {
-	int i;
+	int index;
 	int count;
 
-	i = 0;
+	index = 0;
 	count = 0;
-	while (tet[i] != '\0')
+	while (tet[index] != '\0')
 	{
-		if(tet[i] == '#')
+		if(tet[index] == '#')
 		{
-			if (T(tet, i))
+			if (T(tet, index))
 				count++;
 			else
 				return (0);
 		}
-		i++;
+		index++;
 	}
 	if (count != 4)
 		return (0);

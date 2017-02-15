@@ -2,8 +2,12 @@
 
 int		valid_set(t_tet *node, t_map *map)
 {
+	//a function to recognize the tet type
 
-	return (0);
+	if (map->arr[x][y] != 1 && )
+		return (0);
+	if (*node )
+	return (1);
 }
 
 void	set_tet(t_tet *node, t_map *map, int x, int y)
