@@ -82,6 +82,8 @@ int				s2[4][2] = {{0,0}, {1,0}, {1,1}, {2,1}};
 static const t_types types = {(int **)o1, (int **)t1, (int **)t2, (int **)t3, (int **)t4, (int **)i1, (int **)i2, (int **)l1, (int **)l2, (int **)l3, (int **)l4, (int **)j1, (int **)j2, (int **)j3, (int **)j4, (int **)z1, (int **)z2, (int **)s1, (int **)s2};
 t_tet			*new_tet(int **type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
+int				valid_set(t_tet *node, t_map *map);
+int				is_empty_map(t_map *map);
 int				read_in(int fd);
 int				check_tet(char *tet);
 int				check_tet2(char *tet);
