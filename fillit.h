@@ -98,5 +98,8 @@ int				**find_tet_type(char *type_string);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);
+void			solve(t_lst *tets);
+void			print_map(t_map *map);
+void			print_tets(t_lst *tets);
 
 #endif

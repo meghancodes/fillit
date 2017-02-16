@@ -7,13 +7,27 @@
 **  and the order
 */
 
+void	print_tets(t_lst *tets)
+{
+	ft_putstr("List size: ");
+	ft_putnbr(tets->size);
+	ft_putstr("\ntets: ");
+	tets->current = tets->head;
+	while (tets->current != NULL)
+	{
+		ft_putchar(tets->current->order);
+		ft_putstr(", ");
+		tets->current = tets->current->next;
+	}
+}
+
 int read_in(int fd)
 {
 	READ_VARS;
 	t_lst	*list;
 	char	*final_string;
 
-	order = 65;
+	order = 'A';
 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
 	if (!(buf = (char *)malloc(sizeof(char))))
@@ -36,6 +50,8 @@ int read_in(int fd)
 	// 	ft_bzero(buf, TET_SIZE);
 	// 	ft_bzero(type_string, TET_SIZE);
 	}
+//	print_tets(list);
+	solve(list);
 	return (1);
 }
 
@@ -45,7 +61,7 @@ int read_in(int fd)
 
 void to_struct(t_lst *list, int **type, char order)
 {
-	if (order == 65)
+	if (order == 'A')
 	{
 		list->size = 1;
 		list->head = new_tet(type, order, 0, 0);
