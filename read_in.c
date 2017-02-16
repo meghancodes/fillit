@@ -1,4 +1,5 @@
 #include "fillit.h"
+#define READ_VARS char *buf; int **type; char *type_string; char order
 
 /*
 **  Reads the tetrimino from the fd to the buffer,

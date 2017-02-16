@@ -11,10 +11,10 @@ int		ceil_sqrt(int tet_num)
 	return (size);
 }
 
-void	print_map(t_map *map, t_tet *begin)
+/*void	print_map(t_map *map, t_tet *begin)
 {
 
-}
+} */
 
 //Zero out map array
 static void	zero_map(t_map *map)

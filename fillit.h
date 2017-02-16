@@ -6,8 +6,6 @@
 # include "./libft/libft.h"
 #define TET_SIZE 21
 #define TET_VARS int i; char *tet
-#define DIR_VARS int l; int r; int u; int d
-#define READ_VARS char *buf; int **type; char *type_string; char order
 
 typedef struct	s_tet
 {
@@ -58,31 +56,31 @@ typedef struct	s_types
 ** Coordinates relative to 0,0 as the top left to make up a tetrimino
 */
 
-int				o1[4][2] = {{0,0}, {0,1}, {1,0}, {1,1}};
-int				t1[4][2] = {{0,0}, {0,1}, {0,2}, {1,1}};
-int				t2[4][2] = {{0,0}, {1,-1}, {1,0}, {2,0}};
-int				t3[4][2] = {{0,0}, {1,-1}, {1,0}, {1,1}};
-int				t4[4][2] = {{0,0}, {0,1}, {1,1}, {2,0}};
-int				i1[4][2] = {{0,0}, {1,0}, {2,0}, {3,0}};
-int				i2[4][2] = {{0,0}, {0,1}, {0,2}, {0,3}};
-int				l1[4][2] = {{0,0}, {1,0}, {2,0}, {2,1}};
-int				l2[4][2] = {{0,0}, {0,1}, {0,2}, {1,0}};
-int				l3[4][2] = {{0,0}, {0,1}, {1,1}, {2,1}};
-int				l4[4][2] = {{0,0}, {1,-2}, {1,-1}, {1,0}};
-int				j1[4][2] = {{0,0}, {1,0}, {2,-1}, {2,0}};
-int				j2[4][2] = {{0,0}, {1,0}, {1,1}, {1,2}};
-int				j3[4][2] = {{0,0}, {0,1}, {1,0}, {2,0}};
-int				j4[4][2] = {{0,0}, {0,1}, {0,2}, {1,2}};
-int				z1[4][2] = {{0,0}, {0,1}, {1,1}, {1,2}};
-int				z2[4][2] = {{0,0}, {1,-1}, {1,0}, {2,-1}};
-int				s1[4][2] = {{0,0}, {0,1}, {1,-1}, {1,0}};
-int				s2[4][2] = {{0,0}, {1,0}, {1,1}, {2,1}};
+static int				o1[4][2] = {{0,0}, {0,1}, {1,0}, {1,1}};
+static int				t1[4][2] = {{0,0}, {0,1}, {0,2}, {1,1}};
+static int				t2[4][2] = {{0,0}, {1,-1}, {1,0}, {2,0}};
+static int				t3[4][2] = {{0,0}, {1,-1}, {1,0}, {1,1}};
+static int				t4[4][2] = {{0,0}, {0,1}, {1,1}, {2,0}};
+static int				i1[4][2] = {{0,0}, {1,0}, {2,0}, {3,0}};
+static int				i2[4][2] = {{0,0}, {0,1}, {0,2}, {0,3}};
+static int				l1[4][2] = {{0,0}, {1,0}, {2,0}, {2,1}};
+static int				l2[4][2] = {{0,0}, {0,1}, {0,2}, {1,0}};
+static int				l3[4][2] = {{0,0}, {0,1}, {1,1}, {2,1}};
+static int				l4[4][2] = {{0,0}, {1,-2}, {1,-1}, {1,0}};
+static int				j1[4][2] = {{0,0}, {1,0}, {2,-1}, {2,0}};
+static int				j2[4][2] = {{0,0}, {1,0}, {1,1}, {1,2}};
+static int				j3[4][2] = {{0,0}, {0,1}, {1,0}, {2,0}};
+static int				j4[4][2] = {{0,0}, {0,1}, {0,2}, {1,2}};
+static int				z1[4][2] = {{0,0}, {0,1}, {1,1}, {1,2}};
+static int	 			z2[4][2] = {{0,0}, {1,-1}, {1,0}, {2,-1}};
+static int				s1[4][2] = {{0,0}, {0,1}, {1,-1}, {1,0}};
+static int				s2[4][2] = {{0,0}, {1,0}, {1,1}, {2,1}};
 
 
-static const t_types types = {(int **)o1, (int **)t1, (int **)t2, (int **)t3, (int **)t4, (int **)i1, (int **)i2, (int **)l1, (int **)l2, (int **)l3, (int **)l4, (int **)j1, (int **)j2, (int **)j3, (int **)j4, (int **)z1, (int **)z2, (int **)s1, (int **)s2};
+static const extern t_types types = {(int **)o1, (int **)t1, (int **)t2, (int **)t3, (int **)t4, (int **)i1, (int **)i2, (int **)l1, (int **)l2, (int **)l3, (int **)l4, (int **)j1, (int **)j2, (int **)j3, (int **)j4, (int **)z1, (int **)z2, (int **)s1, (int **)s2};
 t_tet			*new_tet(int **type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
-int				valid_set(t_tet *node, t_map *map);
+int				valid_set(t_tet *node, t_map *map, int x, int y);
 int				is_empty_map(t_map *map);
 int				read_in(int fd);
 int				check_tet(char *tet);
