@@ -5,7 +5,8 @@
 # include <stdio.h>
 # define TET_SIZE 21
 # define TET_VARS int i; char *tet
-# define READ_VARS char *buf; char *type; char *type_string; char *final_string; char order
+# define READ_VARS char *buf; int **type; char *type_string; char *final_string; char order
+#define T(tet, index) (tet[index - 5] == '#' || tet[index - 1] == '#' || tet[index + 1] == '#' || tet[index +5] == '#')
 typedef struct	s_tet
 {
 	char				*type;
@@ -41,13 +42,11 @@ void	*ft_memset(void *b, int c, size_t len);
 int	ft_strcmp(const char *s1, const char *s2);
 void	ft_putnbr(int n);
 void to_struct(t_lst *list, char *type, char order);
+int		valid_set(t_tet *node, t_map *map, int x, int y);
+int		is_empty_map(t_map *map);
+void	set_tet(t_tet *node, t_map *map, int x, int y);
+void	solve(t_lst *tets);
 t_tet		*new_tet(char *type, char order, int x, int y);
-
-// int main (int argc, char **argv)
-// {
-// 	read_in(open(argv[1], O_RDONLY));
-// 	return (0);
-// }
 
 int main (int argc, char *argv[])
 {
@@ -66,6 +65,87 @@ int main (int argc, char *argv[])
 	}
 	return (0);
 }
+
+void	solve(t_lst *tets)
+{
+	t_map	*map;
+	int		x;
+	int		y;
+
+	map = new_map(ceil_sqrt(tets->size));
+	print_map(map);
+	x = 0;
+	y = 0;
+	if(valid_set(tets->head, map, x, y))
+		set_tet(tets->head, map, x, y);
+	print_map(map);
+}
+
+int		valid_set(t_tet *node, t_map *map, int x, int y)
+{
+	int i;
+	int count;
+
+	node->x = x;
+	node->y = y;
+	i = 0;
+	count = 0;
+	if (is_empty_map(map))
+		return (1);
+	if (!is_empty_map(map))
+	{
+		ft_putstr("The error isn't here\n");
+		while (i++ < 4)
+		{
+			if (map->arr[x + node->type[i][1]][y + node->type[i][0]] == 0)
+			{
+				if (map->arr[x + node->type[i][1]][(y + node->type[i][0])-1] != 1 || map->arr[(x + node->type[i][1])+1][y + node->type[i][0]] != 1
+					|| map->arr[x + node->type[i][1]][(y + node->type[i][0])+1] != 1 || map->arr[(x + node->type[i][1])-1][y + node->type[i][0]] != 1)
+					count++;
+			}
+		}
+	}
+	ft_putstr("Valid set works \n");
+	if (count >= 1)
+		return (1);
+	return (0);
+}
+
+int		is_empty_map(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i++ < map->size)
+	{
+		j = 0;
+		while (j++ < map->size)
+		{
+			if (map->arr[i][j] != 0)
+				return (0);
+		}
+	}
+	return (1);
+}
+
+void	set_tet(t_tet *node, t_map *map, int x, int y)
+{
+	int i;
+
+	node->x = x;
+	node->y = y;
+	i = 0;
+	while (i < 4)
+	{
+		ft_putstr("inside loop\n");
+		ft_putnbr(node->type[i][1]);
+		ft_putnbr(node->type[i][0]);
+		i++;
+	}
+	map->size = map->size;
+}
+
 
 int read_in(int fd)
 {
@@ -109,7 +189,7 @@ int read_in(int fd)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_lst *list, char *type, char order)
+void to_struct(t_lst *list, int **type, char order)
 {
 	if (order == 65)
 	{
@@ -127,7 +207,7 @@ void to_struct(t_lst *list, char *type, char order)
 	printf("%c\n", order);
 }
 
-t_tet		*new_tet(char *type, char order, int x, int y)
+t_tet		*new_tet(int **type, char order, int x, int y)
 {
 	t_tet	*new;
 
@@ -155,7 +235,7 @@ int check_tet(char *tet)
 
 	index = 0;
 	count = 0;
-	while (index < strlen(tet))
+	while ((size_t)index < ft_strlen(tet))
 	{
 		if (tet[index] == '.')
 			count++;
@@ -164,10 +244,7 @@ int check_tet(char *tet)
 		else if (tet[index] == '\n')
 			count++;
 		else
-		{
-			ft_putstr("invalid character\n");
 			return (0);
-		}
 		index++;
 	}
 	return (1);
@@ -181,42 +258,33 @@ int check_tet2(char *tet)
 {
 	int index;
 	int count;
-	int hash_touch;
 
 	index = 0;
 	count = 0;
-	hash_touch = 0;
 	while (tet[index] != '\0')
 	{
 		if(tet[index] == '#')
 		{
-			count++;
-			if ((tet[index - 5]) == '#' || (tet[index - 1]) == '#' || (tet[index + 1]) == '#' || (tet[index + 5]) == '#')
-				hash_touch++;
+			if (T(tet, index))
+				count++;
 			else
-			{
-				ft_putstr("hashes aren't touching\n");
 				return (0);
-			}
 		}
 		index++;
 	}
 	if (count != 4)
-	{
-		ft_putstr("wrong number of hashes\n");
 		return (0);
-	}
 	return (1);
 }
 
 /*
-**  Ensures that there are 5 '\n' in the tet
+**  Ensures that '\n's appear at the right places and that there are exactly 5
 */
 
 int check_tet3(char *tet)
 {
 	int index;
-	int count;
+	int	count;
 
 	index = 0;
 	count = 0;
@@ -224,34 +292,13 @@ int check_tet3(char *tet)
 	{
 		if (tet[index] == '\n')
 			count++;
+		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n' 
+			|| tet[20] != '\n')
+			return (0);
 		index++;
 	}
 	if (count != 5)
-	{
-		ft_putstr("newline number error\n");
 		return (0);
-	}
-	return (1);
-}
-
-/*
-**  Ensures that the '\n' appear at every 5th character
-*/
-
-int check_tet4(char *tet)
-{
-	int index;
-
-	index = 0;
-	while (tet[index] != '\0')
-	{
-		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n' || tet[20] != '\n')
-		{
-			ft_putstr("newline placement error\n");
-			return (0);
-		}
-		index++;
-	}
 	return (1);
 }
 
@@ -308,7 +355,7 @@ char *remove_newlines(char *type_string)
 
 char *find_tet_type(char *type_string)
 {
-	char *type;
+	int **type;
 
 	type = NULL;
 	if (ot_tet_types(type_string) != 0)								
@@ -331,15 +378,15 @@ char *ot_tet_types(char *type_string)
 	char *T4 = "#..###";
 
 	if (ft_strcmp(type_string, O1) == 0)
-		return ("O1");
+		return ({{0,0}, {0,1}, {1,0}, {1,1}});
 	else if (ft_strcmp(type_string, T1) == 0)
-		return ("T1");
+		return ({{0,0}, {0,1}, {0,2}, {1,1}});
 	else if (ft_strcmp(type_string, T2) == 0)
-		return ("T2");
+		return ({{0,0}, {1,-1}, {1,0}, {2,0}});
 	else if (ft_strcmp(type_string, T3) == 0)
-		return ("T3");
+		return ({{0,0}, {1,-1}, {1,0}, {1,1}});
 	else if (ft_strcmp(type_string, T4) == 0)
-		return ("T4");
+		return ({{0,0}, {0,1}, {1,1}, {2,0}});
 	else
 		return (NULL);
 }
@@ -354,17 +401,17 @@ char *ij_tet_types(char *type_string)
 	char *J4 = "###...#";
 
 	if (ft_strcmp(type_string, I1) == 0)
-		return ("I1");
+		return ({{0,0}, {1,0}, {2,0}, {3,0}});
 	else if (ft_strcmp(type_string, I2) == 0)
-		return ("I2");
+		return ({{0,0}, {0,1}, {0,2}, {0,3}});
 	else if (ft_strcmp(type_string, J1) == 0)
-		return ("J1");
+		return ({{0,0}, {1,0}, {2,-1}, {2,0}});
 	else if (ft_strcmp(type_string, J2) == 0)
-		return ("J2");
+		return ({{0,0}, {1,0}, {1,1}, {1,2}});
 	else if (ft_strcmp(type_string, J3) == 0)
-		return ("J3");
+		return ({{0,0}, {0,1}, {1,0}, {2,0}});
 	else if (ft_strcmp(type_string, J4) == 0)
-		return ("J4");
+		return ({{0,0}, {0,1}, {0,2}, {1,2}});
 	else
 		return (NULL);
 }
@@ -377,13 +424,13 @@ char *l_tet_types(char *type_string)
 	char *L4 = "#.###"; //need at least two dots in front to form the shape --> ..#.###
 
 	if (ft_strcmp(type_string, L1) == 0)
-		return ("L1");
+		return ({{0,0}, {1,0}, {2,0}, {2,1}});
 	else if (ft_strcmp(type_string, L2) == 0)
-		return ("L2");
+		return ({{0,0}, {0,1}, {0,2}, {1,0}});
 	else if (ft_strcmp(type_string, L3) == 0)
-		return ("L3");
+		return ({{0,0}, {0,1}, {1,1}, {2,1}});
 	else if (ft_strcmp(type_string, L4) == 0)
-		return ("L4");
+		return ({{0,0}, {1,-2}, {1,-1}, {1,0}});
 	else
 		return (NULL);
 }
@@ -397,13 +444,13 @@ char *zs_tet_types(char *type_string)
 	
 
 	if (ft_strcmp(type_string, Z1) == 0)
-		return ("Z1");
+		return ({{0,0}, {0,1}, {1,1}, {1,2}});
 	else if (ft_strcmp(type_string, Z2) == 0)
-		return ("Z2");
+		return ({{0,0}, {1,-1}, {1,0}, {2,-1}});
 	else if (ft_strcmp(type_string, S1) == 0)
-		return ("S1");
+		return ({{0,0}, {0,1}, {1,-1}, {1,0}});
 	else if (ft_strcmp(type_string, S2) == 0)
-		return ("S2");
+		return ({{0,0}, {1,0}, {1,1}, {2,1}});
 	else
 		return (NULL);
 }
