@@ -31,25 +31,25 @@ typedef struct	s_map
 
 typedef struct	s_types
 {
-	int		O1[4][2];
-	int		T1[4][2];
-	int		T2[4][2];
-	int		T3[4][2];
-	int		T4[4][2];
-	int		I1[4][2];
-	int		I2[4][2];
-	int		L1[4][2];
-	int		L2[4][2];
-	int		L3[4][2];
-	int		L4[4][2];
-	int		J1[4][2];
-	int		J2[4][2];
-	int		J3[4][2];
-	int		J4[4][2];
-	int		Z1[4][2];
-	int		Z2[4][2];
-	int		S1[4][2];
-	int		S2[4][2];
+	int		(*O1)[2];
+	int		(*T1)[2];
+	int		(*T2)[2];
+	int		(*T3)[2];
+	int		(*T4)[2];
+	int		(*I1)[2];
+	int		(*I2)[2];
+	int		(*L1)[2];
+	int		(*L2)[2];
+	int		(*L3)[2];
+	int		(*L4)[2];
+	int		(*J1)[2];
+	int		(*J2)[2];
+	int		(*J3)[2];
+	int		(*J4)[2];
+	int		(*Z1)[2];
+	int		(*Z2)[2];
+	int		(*S1)[2];
+	int		(*S2)[2];
 }				t_types;
 
 /*
