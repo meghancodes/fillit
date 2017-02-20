@@ -31,25 +31,25 @@ typedef struct	s_map
 
 typedef struct	s_types
 {
-	int		**O1;
-	int		**T1;
-	int		**T2;
-	int		**T3;
-	int		**T4;
-	int		**I1;
-	int		**I2;
-	int		**L1;
-	int		**L2;
-	int		**L3;
-	int		**L4;
-	int		**J1;
-	int		**J2;
-	int		**J3;
-	int		**J4;
-	int		**Z1;
-	int		**Z2;
-	int		**S1;
-	int		**S2;
+	int		O1[4][2];
+	int		T1[4][2];
+	int		T2[4][2];
+	int		T3[4][2];
+	int		T4[4][2];
+	int		I1[4][2];
+	int		I2[4][2];
+	int		L1[4][2];
+	int		L2[4][2];
+	int		L3[4][2];
+	int		L4[4][2];
+	int		J1[4][2];
+	int		J2[4][2];
+	int		J3[4][2];
+	int		J4[4][2];
+	int		Z1[4][2];
+	int		Z2[4][2];
+	int		S1[4][2];
+	int		S2[4][2];
 }				t_types;
 
 /*
@@ -77,7 +77,7 @@ static int				s1[4][2] = {{0,0}, {0,1}, {1,-1}, {1,0}};
 static int				s2[4][2] = {{0,0}, {1,0}, {1,1}, {2,1}};
 
 
-static const t_types types = {(int **)o1, (int **)t1, (int **)t2, (int **)t3, (int **)t4, (int **)i1, (int **)i2, (int **)l1, (int **)l2, (int **)l3, (int **)l4, (int **)j1, (int **)j2, (int **)j3, (int **)j4, (int **)z1, (int **)z2, (int **)s1, (int **)s2};
+static const t_types types = {o1, t1, t2, t3, t4, i1, i2, l1, l2, l3, l4, j1, j2, j3, j4, z1, z2, s1, s2};
 t_tet			*new_tet(int **type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
 int				valid_set(t_tet *node, t_map *map, int x, int y);
