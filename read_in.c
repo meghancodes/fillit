@@ -35,16 +35,16 @@ int read_in(int fd)
 	if(!(final_string = (char *)malloc(sizeof(char))))
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
-	{	
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))			
-		{																	
+	{
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
+		{
 			ft_putstr("error\n");
-			exit (fd); 
+			exit (fd);
 			return (0);
 		}
 		type_string = tet_string(buf);
 		final_string = remove_newlines(type_string);
-		type = find_tet_type(final_string);
+		type = tet_types(final_string);
 		to_struct(list, type, order);
 	 	order++;
 	// 	ft_bzero(buf, TET_SIZE);
@@ -76,7 +76,7 @@ void to_struct(t_lst *list, int **type, char order)
 }
 
 /*
-**  Defines the tetrimino type as a string 
+**  Defines the tetrimino type as a string
 **  (trimmed and with '\n's)
 */
 
@@ -95,8 +95,8 @@ char *tet_string(char *buf)
 	while (buf[index] != '\0')
 	{
 		if (buf[index] == '#')
-		{	
-			while (hash_count >= 1)									
+		{
+			while (hash_count >= 1)
 			{
 				if (buf[index] == '#')
 					hash_count--;
@@ -135,22 +135,22 @@ char *remove_newlines(char *type_string)
 	return (final_string);
 }
 
-/*
-**  Compares and confirms the tetrimino type
-*/
-
-int **find_tet_type(char *type_string)
-{
-	int **type;
-
-	type = NULL;
-	if (ot_tet_types(type_string) != 0)								
-		type = ot_tet_types(type_string);
-	else if (ij_tet_types(type_string) != 0)
-		type = ij_tet_types(type_string);
-	else if (l_tet_types(type_string) != 0)
-		type = l_tet_types(type_string);
-	else if (zs_tet_types(type_string) != 0)
-		type = zs_tet_types(type_string);
-	return (type);
-}
+// /*
+// **  Compares and confirms the tetrimino type
+// */
+//
+// int **find_tet_type(char *type_string)
+// {
+// 	int **type;
+//
+// 	type = NULL;
+// 	if (ot_tet_types(type_string) != 0)
+// 		type = ot_tet_types(type_string);
+// 	else if (ij_tet_types(type_string) != 0)
+// 		type = ij_tet_types(type_string);
+// 	else if (l_tet_types(type_string) != 0)
+// 		type = l_tet_types(type_string);
+// 	else if (zs_tet_types(type_string) != 0)
+// 		type = zs_tet_types(type_string);
+// 	return (type);
+// }
