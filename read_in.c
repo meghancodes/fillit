@@ -89,7 +89,7 @@ char *tet_string(char *buf)
 
 	index = 0;
 	index2 = 0;
-	if (!(type_string = (char *)malloc(sizeof(char) * strlen(buf))))
+	if (!(type_string = (char *)malloc(sizeof(char) * ft_strlen(buf))))
 		return (NULL);
 	hash_count = 4;
 	while (buf[index] != '\0')
