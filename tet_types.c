@@ -2,7 +2,7 @@
 
 static t_types *types;
 static char *shapes[19];
-static int *coords[4][2];
+static int coords[19][4][2];
 /*
 ** Order is 01, T1, T2, T3, T4, I1, I2, J1, J2, J3, J4, L1, L2, L3, L3, Z1, Z2
 ** S1, S2
@@ -30,7 +30,7 @@ static void init_shapes(void)
 	shapes[18] = "#...##...#";
 }
 
-void init_coords(void)
+static void init_coords(void)
 {
 	coords = {{{0,0}, {0,1}, {1,0}, {1,1}},
 			{{0,0}, {0,1}, {0,2}, {1,1}},
@@ -53,7 +53,8 @@ void init_coords(void)
 			{{0,0}, {1,0}, {1,1}, {2,1}}};
 }
 
-t_type	*new_type(int *c[2], char *s)
+// Creates a new type struct, just need to do this once
+t_type	*new_type(int c[4][2], char *s)
 {
 	t_type	*new;
 	int		i;
@@ -80,13 +81,14 @@ t_type	*new_type(int *c[2], char *s)
 	return (new);
 }
 
-void	create_typelist(void)
+//Creates the linked list of types that we'll cycle through to identify tet types
+int	create_typelist(void)
 {
 	int i;
 
 	types = (*t_types)malloc(sizeof(t_types));
 	if (!types)
-		return (NULL);
+		return (0);
 	types->size = 19;
 	init_coords();
 	init_shapes();
@@ -98,8 +100,10 @@ void	create_typelist(void)
 		types->current = new_type(coords[i], shapes[i]);
 		types->current = types->current->next;
 	}
+	return (1);
 }
 
+// Converts it from a static array to a double pointer
 int	**to_ptr(int arr[4][2])
 {
 	int **ptr;
