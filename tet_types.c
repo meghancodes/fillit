@@ -32,7 +32,7 @@ static void init_shapes(void)
 
 static void init_coords(void)
 {
-	coords = {{{0,0}, {0,1}, {1,0}, {1,1}},
+	int coords_2[19][4][2] = {{{0,0}, {0,1}, {1,0}, {1,1}},
 			{{0,0}, {0,1}, {0,2}, {1,1}},
 			{{0,0}, {1,-1}, {1,0}, {2,0}},
 			{{0,0}, {1,-1}, {1,0}, {1,1}},
@@ -51,6 +51,7 @@ static void init_coords(void)
 			{{0,0}, {1,-1}, {1,0}, {2,-1}},
 			{{0,0}, {0,1}, {1,-1}, {1,0}},
 			{{0,0}, {1,0}, {1,1}, {2,1}}};
+	ft_memcpy((void *)coords, (const void*)coords_2, sizeof(coords_2));
 }
 
 // Creates a new type struct, just need to do this once
@@ -60,7 +61,7 @@ t_type	*new_type(int c[4][2], char *s)
 	int		i;
 	int		j;
 
-	new = (*t_type)malloc(sizeof(t_type));
+	new = malloc(sizeof(t_type));
 	if (!new)
 		return (NULL);
 	new->coords = (int **)malloc(sizeof(char *) * 4);
@@ -86,7 +87,7 @@ int	create_typelist(void)
 {
 	int i;
 
-	types = (*t_types)malloc(sizeof(t_types));
+	types = malloc(sizeof(t_types));
 	if (!types)
 		return (0);
 	types->size = 19;
@@ -103,30 +104,7 @@ int	create_typelist(void)
 	return (1);
 }
 
-// Converts it from a static array to a double pointer
-int	**to_ptr(int arr[4][2])
-{
-	int **ptr;
-	int i;
-	int j;
 
-	ptr = (int **)malloc(sizeof(int *) * 4);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	while (i++ < 4)
-	{
-		j = 0;
-		while (j++ < 2)
-		{
-			ptr[i] = (int *)malloc(sizeof(int) * 2);
-			if (!ptr[i])
-				return (NULL);
-			ptr[i][j] = arr[i][j];
-		}
-	}
-	return (ptr);
-}
 /*
 **  Compares the inputted string to each tetrimino type
 */
@@ -136,9 +114,10 @@ int **tet_types(char *type_string)
 	while (types->current != NULL)
 	{
 		if (ft_strcmp(type_string, types->current->shape) == 0)
-			return (to_ptr(types->current->coords));
+			return (types->current->coords);
 		types->current = types->current->next;
 	}
+	return (NULL);
 }
 //
 // int **ot_tet_types(char *type_string)
