@@ -44,6 +44,9 @@ int read_in(int fd)
 		}
 		type_string = tet_string(buf);
 		final_string = remove_newlines(type_string);
+		ft_putstr("Error is in create\n");
+		if (!create_typelist())
+			ft_putstr("Error is in creating types\n");
 		type = tet_types(final_string);
 		to_struct(list, type, order);
 	 	order++;
@@ -51,6 +54,7 @@ int read_in(int fd)
 	// 	ft_bzero(type_string, TET_SIZE);
 	}
 //	print_tets(list);
+	ft_putstr("Got through allocating types\n");
 	solve(list);
 	return (1);
 }

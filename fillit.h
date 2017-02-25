@@ -56,6 +56,7 @@ void			to_struct(t_lst *list, int **type, char order);
 int				**tet_types(char *type_string);
 char			*tet_string(char *buf);
 //int				**find_tet_type(char *type_string);
+int				create_typelist(void);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);

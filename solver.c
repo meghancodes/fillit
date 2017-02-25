@@ -10,7 +10,7 @@ void	solve(t_lst *tets)
 	print_map(map);
 	x = 0;
 	y = 0;
-	if(valid_set(tets->head, map, x, y))
-		set_tet(tets->head, map, x, y);
-	print_map(map);
+//	if(valid_set(tets->head, map, x, y))
+//		set_tet(tets->head, map, x, y);
+//	print_map(map);
 }

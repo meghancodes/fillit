@@ -64,12 +64,13 @@ t_type	*new_type(int c[4][2], char *s)
 	new = malloc(sizeof(t_type));
 	if (!new)
 		return (NULL);
-	new->coords = (int **)malloc(sizeof(char *) * 4);
+	new->coords = (int **)malloc(sizeof(int *) * 4);
 	if (!new->coords)
 		return (0);
 	i = 0;
 	while (i++ < 4)
 	{
+		new->coords[i] = (int *)malloc(sizeof(int) * 2);
 		j = 0;
 		while (j++ < 2)
 			new->coords[i][j] = c[i][j];
@@ -93,14 +94,19 @@ int	create_typelist(void)
 	types->size = 19;
 	init_coords();
 	init_shapes();
+	ft_putstr("Init works\n");
 	i = 1;
 	types->head = new_type(coords[0], shapes[0]);
+	ft_putstr("New type works\n");
 	types->current = types->head;
-	while (i++ < 19)
+	while (i++ < types->size)
 	{
+		ft_putstr("Inside of the loop\n");
 		types->current = new_type(coords[i], shapes[i]);
 		types->current = types->current->next;
 	}
+	types->current = types->head;
+	ft_putstr("Error is in comparison\n");
 	return (1);
 }
 
