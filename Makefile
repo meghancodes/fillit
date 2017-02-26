@@ -13,7 +13,7 @@
 
 NAME	= fillit
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -I "fillit.h" -L./libft -lft
+CFLAGS	= -Wall -Wextra -Werror -g -I "fillit.h" -L./libft -lft
 FILES	= main2.c check_tet.c new_tet.c set_tet.c map.c read_in.c tet_types.c solver.c
 LIBFT_DIR = ./libft
 

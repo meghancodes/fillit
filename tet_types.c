@@ -94,19 +94,14 @@ int	create_typelist(void)
 	types->size = 19;
 	init_coords();
 	init_shapes();
-	ft_putstr("Init works\n");
 	i = 1;
 	types->head = new_type(coords[0], shapes[0]);
-	ft_putstr("New type works\n");
 	types->current = types->head;
-	while (i++ < types->size)
+	while (i++ < 18)
 	{
-		ft_putstr("Inside of the loop\n");
-		types->current = new_type(coords[i], shapes[i]);
+		types->current->next = new_type(coords[i], shapes[i]);
 		types->current = types->current->next;
 	}
-	types->current = types->head;
-	ft_putstr("Error is in comparison\n");
 	return (1);
 }
 
@@ -119,9 +114,13 @@ int **tet_types(char *type_string)
 	types->current = types->head;
 	while (types->current != NULL)
 	{
+		ft_putstr(types->current->shape);
 		if (ft_strcmp(type_string, types->current->shape) == 0)
+		{
 			return (types->current->coords);
+		}
 		types->current = types->current->next;
+		ft_putstr(types->current->shape);
 	}
 	return (NULL);
 }
