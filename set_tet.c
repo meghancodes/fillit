@@ -15,7 +15,7 @@ int		valid_set(t_tet *node, t_map *map, int x, int y)
 	count = 0;
 	if (is_empty_map(map))
 	{
-		if (is_big_enough(map, node->head))	
+		// if (is_big_enough(map, node->head))	
 		return (1);
 	}
 	if (!is_empty_map(map))
@@ -64,14 +64,14 @@ int		is_empty_map(t_map *map)
 **  (Calls in each coordinate of the tet_shape)
 */
 
-int		is_big_enough(t_map *map, t_tet *node)
-{
-	node->x = x;
-	node->y = y;
+// int		is_big_enough(t_map *map, t_tet *node)
+// {
+// 	node->x = x;
+// 	node->y = y;
 
-	if (map->arr[x][y] != 0)
-		return (0);
-}
+// 	if (map->arr[x][y] != 0)
+// 		return (0);
+// }
 
 void	set_tet(t_tet *node, t_map *map, int x, int y)
 {
