@@ -1,19 +1,19 @@
 #include "fillit.h"
 
-void		print_type(t_tet *tet)
-{
-	ft_putnbr(tet->type[1][1]);
-/*	int i;
-	int j;
-
-	i = 0;
-	while (i++ < 4)
-	{
-		j = 0;
-		while (j++ < 2)
-			ft_putnbr(tet->type[i][j]);
-	} */
-}
+// void		print_type(t_tet *tet)
+// {
+// 	ft_putnbr(tet->type[1][1]);
+// /*	int i;
+// 	int j;
+//
+// 	i = 0;
+// 	while (i++ < 4)
+// 	{
+// 		j = 0;
+// 		while (j++ < 2)
+// 			ft_putnbr(tet->type[i][j]);
+// 	} */
+// }
 
 t_tet		*new_tet(int **type, char order, int x, int y)
 {
@@ -34,7 +34,6 @@ t_tet		*new_tet(int **type, char order, int x, int y)
 		new->x = x;
 		new->y = y;
 		new->next = NULL;
-		print_type(new);
 		return (new);
 	}
 	return (NULL);

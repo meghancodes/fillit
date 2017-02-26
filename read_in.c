@@ -34,6 +34,7 @@ int read_in(int fd)
 		return (0);
 	if(!(final_string = (char *)malloc(sizeof(char))))
 		return (0);
+	create_typelist();
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{
 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
@@ -44,18 +45,11 @@ int read_in(int fd)
 		}
 		type_string = tet_string(buf);
 		final_string = remove_newlines(type_string);
-		ft_putstr("Error is in create\n");
-		if (!create_typelist())
-			ft_putstr("Error is in creating types\n");
 		type = tet_types(final_string);
 		to_struct(list, type, order);
 	 	order++;
-	// 	ft_bzero(buf, TET_SIZE);
-	// 	ft_bzero(type_string, TET_SIZE);
 	}
-//	print_tets(list);
-	ft_putstr("Got through allocating types\n");
-	solve(list);
+//	solve(list);
 	return (1);
 }
 

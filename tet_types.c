@@ -84,13 +84,13 @@ t_type	*new_type(int c[4][2], char *s)
 }
 
 //Creates the linked list of types that we'll cycle through to identify tet types
-int	create_typelist(void)
+void	create_typelist(void)
 {
 	int i;
 
 	types = malloc(sizeof(t_types));
 	if (!types)
-		return (0);
+		return ;
 	types->size = 19;
 	init_coords();
 	init_shapes();
@@ -102,7 +102,6 @@ int	create_typelist(void)
 		types->current->next = new_type(coords[i], shapes[i]);
 		types->current = types->current->next;
 	}
-	return (1);
 }
 
 
@@ -114,13 +113,9 @@ int **tet_types(char *type_string)
 	types->current = types->head;
 	while (types->current != NULL)
 	{
-		ft_putstr(types->current->shape);
 		if (ft_strcmp(type_string, types->current->shape) == 0)
-		{
 			return (types->current->coords);
-		}
 		types->current = types->current->next;
-		ft_putstr(types->current->shape);
 	}
 	return (NULL);
 }
