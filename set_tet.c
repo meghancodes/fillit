@@ -15,7 +15,11 @@ int		valid_set(t_tet *node, t_map *map, int x, int y)
 	count = 0;
 	if (is_empty_map(map))
 	{
-		// if (is_big_enough(map, node->head))	
+		// if (is_big_enough(map, node))
+		// {
+		// 	ft_putstr("does this work?\n");
+		// 	return (1);
+		// }
 		return (1);
 	}
 	if (!is_empty_map(map))
@@ -66,11 +70,23 @@ int		is_empty_map(t_map *map)
 
 // int		is_big_enough(t_map *map, t_tet *node)
 // {
-// 	node->x = x;
-// 	node->y = y;
+// 	int i;
+// 	int x;
+// 	int y;
 
-// 	if (map->arr[x][y] != 0)
-// 		return (0);
+// 	i = 0;
+// 	x = 0;
+// 	y = 0;
+// 	while (i++ < 4)
+// 	{
+// 		ft_putstr("does this part work?\n");
+// 		if (map->arr[x + node->type[i][0]][y + node->type[i][1]] == 0)
+// 		{
+// 			ft_putstr("map not big enough\n");
+// 			return (0);
+// 		}
+// 	}
+// 	return (1);
 // }
 
 void	set_tet(t_tet *node, t_map *map, int x, int y)
