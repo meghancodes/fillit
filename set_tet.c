@@ -100,8 +100,8 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	while (tet->type->shape[i] != '\0')
 	{
 		if (tet->type->shape[i] == '#')
-			map->[x][y] = 1;
-		else if (i % 4 = 0)
+			map->arr[x][y] = 1;
+		else if (i % 4 == 0)
 		{
 			x++;
 			y = tet->y;

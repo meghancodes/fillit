@@ -13,22 +13,22 @@ static void init_shapes(void)
 {
 	shapes[0] = "##..##";
 	shapes[1] = "###..#";
-	shapes[2] = "#...##..#";
-	shapes[3] = "#..##...#";
-	shapes[4] = "#..###";
+	shapes[2] = "#..##...#"; //T2 needs one dot before
+	shapes[3] = "#..###"; //T3 needs one dot before
+	shapes[4] = "#...##..#";
 	shapes[5] = "#...#...#...#";
 	shapes[6] = "####";
-	shapes[7] = "#...#..##";
-	shapes[8] = "##..#...#";
-	shapes[9] = "#...###";
-	shapes[10] = "###...#";
+	shapes[7] = "#...#...##"; //J1 needs one dot before
+	shapes[8] = "#...###";
+	shapes[9] = "##..#...#";
+	shapes[10] = "###....#";
 	shapes[11] = "#...#...##";
 	shapes[12] = "###.#";
-	shapes[13] = "##...#...#";
-	shapes[14] = "#.###";
+	shapes[13] = "##...#....#";
+	shapes[14] = "#.###"; // L4 needs two dots before
 	shapes[15] = "##...##";
-	shapes[16] = "#..##..#";
-	shapes[17] = "##.##";
+	shapes[16] = "#..##..#"; // Z2 needs one dot before
+	shapes[17] = "##.##"; // S1 needs one dot before
 	shapes[18] = "#...##...#";
 }
 
