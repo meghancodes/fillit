@@ -49,7 +49,7 @@ int read_in(int fd)
 		to_struct(list, type, order);
 	 	order++;
 	}
-//	solve(list);
+	solve(list);
 	return (1);
 }
 

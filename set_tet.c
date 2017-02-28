@@ -27,10 +27,10 @@ int		valid_set(t_tet *node, t_map *map, int x, int y)
 					count++;
 			}
 		}
+		if (count >= 1)
+			return (1);
 	}
 	ft_putstr("Valid set works \n");
-	if (count >= 1)
-		return (1);
 	return (0);
 }
 
@@ -52,19 +52,20 @@ int		is_empty_map(t_map *map)
 	return (1);
 }
 
-void	set_tet(t_tet *node, t_map *map, int x, int y)
+void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;
 
-	node->x = x;
-	node->y = y;
+	tet->x = x;
+	tet->y = y;
 	i = 0;
-	while (i < 4)
-	{
-		ft_putstr("inside loop\n");
-		ft_putnbr(node->type[i][1]);
-		ft_putnbr(node->type[i][0]);
-		i++;
-	}
+//	while (i++ < 4)
+//	{
+	ft_putstr("Can't get the numbers\n");
+		ft_putnbr(tet->type[0][1]);
+		ft_putstr("\n");
+		ft_putnbr(tet->type[0][0]);
+		ft_putstr("\n");
+//	}
 	map->size = map->size;
 }
