@@ -97,11 +97,11 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	i = 0;
 //	while (i++ < 4)
 //	{
-	ft_putstr("Can't get the numbers\n");
-		ft_putnbr(tet->type[0][1]);
-		ft_putstr("\n");
-		ft_putnbr(tet->type[0][0]);
-		ft_putstr("\n");
+	ft_putstr("Can't get the number\n");
+	ft_putnbr(tet->type[0][1]);
+	ft_putstr("\n");
+	ft_putnbr(tet->type[0][0]);
+	ft_putstr("\n");
 //	}
 	map->size = map->size;
 }
