@@ -88,6 +88,8 @@ int		is_empty_map(t_map *map)
 // 	}
 // 	return (1);
 // }
+//
+// Basically set_tet is using the string to loop through and make the shape instead of using coordinates. The only issue should be in the shapes that needed dots before them so that's why I saved the shape name to be able to quickly identify the shape. Maybe should write a separate function to do this
 void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;
@@ -95,13 +97,17 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	tet->x = x;
 	tet->y = y;
 	i = 0;
-//	while (i++ < 4)
-//	{
-	ft_putstr("Can't get the number\n");
-	ft_putnbr(tet->type[0][1]);
-	ft_putstr("\n");
-	ft_putnbr(tet->type[0][0]);
-	ft_putstr("\n");
-//	}
+	while (tet->type->shape[i] != '\0')
+	{
+		if (tet->type->shape[i] == '#')
+			map->[x][y] = 1;
+		else if (i % 4 = 0)
+		{
+			x++;
+			y = tet->y;
+		}
+		else
+			y++;
+	}
 	map->size = map->size;
 }

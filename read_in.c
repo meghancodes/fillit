@@ -1,5 +1,5 @@
 #include "fillit.h"
-#define READ_VARS char *buf; int **type; char *type_string; char order
+#define READ_VARS char *buf; char *type_string; char order
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -45,8 +45,7 @@ int read_in(int fd)
 		}
 		type_string = tet_string(buf);
 		final_string = remove_newlines(type_string);
-		type = tet_types(final_string);
-		to_struct(list, type, order);
+		to_struct(list, tet_types(final_string), order);
 	 	order++;
 	}
 	solve(list);
