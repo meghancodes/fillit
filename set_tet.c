@@ -14,7 +14,14 @@ int		valid_set(t_tet *node, t_map *map, int x, int y)
 	i = 0;
 	count = 0;
 	if (is_empty_map(map))
+	{
+		// if (is_big_enough(map, node))
+		// {
+		// 	ft_putstr("does this work?\n");
+		// 	return (1);
+		// }
 		return (1);
+	}
 	if (!is_empty_map(map))
 	{
 		ft_putstr("The error isn't here\n");
@@ -34,6 +41,10 @@ int		valid_set(t_tet *node, t_map *map, int x, int y)
 	return (0);
 }
 
+/*
+**  Checks if map is empty
+*/
+
 int		is_empty_map(t_map *map)
 {
 	int i;
@@ -52,6 +63,31 @@ int		is_empty_map(t_map *map)
 	return (1);
 }
 
+/*
+**  Checks whether first tet can fit inside empty map
+**  (Calls in each coordinate of the tet_shape)
+*/
+
+// int		is_big_enough(t_map *map, t_tet *node)
+// {
+// 	int i;
+// 	int x;
+// 	int y;
+
+// 	i = 0;
+// 	x = 0;
+// 	y = 0;
+// 	while (i++ < 4)
+// 	{
+// 		ft_putstr("does this part work?\n");
+// 		if (map->arr[x + node->type[i][0]][y + node->type[i][1]] == 0)
+// 		{
+// 			ft_putstr("map not big enough\n");
+// 			return (0);
+// 		}
+// 	}
+// 	return (1);
+// }
 void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;

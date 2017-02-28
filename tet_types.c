@@ -2,7 +2,7 @@
 
 static t_types *types;
 static char *shapes[19];
-static int coords[19][4][2];
+static int coords_list[19][4][2];
 /*
 ** Order is 01, T1, T2, T3, T4, I1, I2, J1, J2, J3, J4, L1, L2, L3, L3, Z1, Z2
 ** S1, S2
@@ -41,21 +41,21 @@ static void init_coords(void)
 			{{0,0}, {0,1}, {0,2}, {0,3}},
 			{{0,0}, {1,0}, {2,0}, {2,1}},
 			{{0,0}, {0,1}, {0,2}, {1,0}},
-			{{0,0}, {0,1}, {1,1}, {2,1}},
+			{{0,0}, {0,1}, {1,1}, {2,1}}, 
 			{{0,0}, {1,-2}, {1,-1}, {1,0}},
 			{{0,0}, {1,0}, {2,-1}, {2,0}},
 			{{0,0}, {1,0}, {1,1}, {1,2}},
 			{{0,0}, {0,1}, {1,0}, {2,0}},
-			{{0,0}, {0,1}, {0,2}, {1,2}},
+			{{0,0}, {0,1}, {0,2}, {1,2}}, //L1
 			{{0,0}, {0,1}, {1,1}, {1,2}},
 			{{0,0}, {1,-1}, {1,0}, {2,-1}},
 			{{0,0}, {0,1}, {1,-1}, {1,0}},
 			{{0,0}, {1,0}, {1,1}, {2,1}}};
-	ft_memcpy((void *)coords, (const void*)coords_2, sizeof(coords_2));
+	ft_memcpy((void *)coords_list, (const void*)coords_2, sizeof(coords_2));
 }
 
 // Creates a new type struct, just need to do this once
-t_type	*new_type(int c[4][2], char *s)
+t_type	*new_type(int coords_list[4][2], char *s)
 {
 	t_type	*new;
 	int		i;
@@ -73,7 +73,7 @@ t_type	*new_type(int c[4][2], char *s)
 		new->coords[i] = (int *)malloc(sizeof(int) * 2);
 		j = 0;
 		while (j++ < 2)
-			new->coords[i][j] = c[i][j];
+			new->coords[i][j] = coords_list[i][j];
 	}
 	new->shape = (char *)malloc(sizeof(char) * ft_strlen(s));
 	if (!new->shape)
@@ -95,11 +95,11 @@ void	create_typelist(void)
 	init_coords();
 	init_shapes();
 	i = 1;
-	types->head = new_type(coords[0], shapes[0]);
+	types->head = new_type(coords_list[0], shapes[0]);
 	types->current = types->head;
 	while (i++ < 18)
 	{
-		types->current->next = new_type(coords[i], shapes[i]);
+		types->current->next = new_type(coords_list[i], shapes[i]);
 		types->current = types->current->next;
 	}
 }
