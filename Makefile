@@ -14,16 +14,25 @@
 NAME	= fillit
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -I "fillit.h" -L./libft -lft
+OFLAGS = -Wall -Wextra -Werror -I "fillit.h"
 FILES	= main2.c check_tet.c new_tet.c set_tet.c map.c read_in.c tet_types.c solver.c
 LIBFT_DIR = ./libft
+OBJS = $(addprefix src/, $(FILES:.c=.o))
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR)
-	$(CC) $(CFLAGS) $(FILES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+src/%.o: ./%.c | src
+	$(CC) $(OFLAGS) -o $@ -c $^
+
+src:
+	mkdir src
 
 clean:
+	rm -rf src/
 	cd $(LIBFT_DIR) && $(MAKE) clean
 
 fclean: clean
