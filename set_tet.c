@@ -1,6 +1,26 @@
 #include "fillit.h"
 
 /*
+** Check if the shape is one of the shapes that need extra dots
+*/
+
+void	check_shape(t_type *type, int *lines)
+{
+	char one_dot[5][2] = {"T2", "T3", "J1", "Z2", "S1"};
+	int i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (!ft_strcmp(type->name, one_dot[i]))
+			*lines += 1;
+		i++;
+	}
+	if (!ft_strcmp(type->name, "L4"))
+		*lines += 2;
+}
+
+/*
 **  Checks top, right, bottom and left of each coordinate for a 1
 */
 
@@ -27,12 +47,12 @@ int		valid_set(t_tet *node, t_map *map, int x, int y)
 		ft_putstr("The error isn't here\n");
 		while (i++ < 4)
 		{
-			if (map->arr[x + node->type[i][1]][y + node->type[i][0]] == 0)
+/*			if (map->arr[x + node->type[i][1]][y + node->type[i][0]] == 0)
 			{
 				if (map->arr[x + node->type[i][1]][(y + node->type[i][0])-1] != 1 || map->arr[(x + node->type[i][1])+1][y + node->type[i][0]] != 1
 					|| map->arr[x + node->type[i][1]][(y + node->type[i][0])+1] != 1 || map->arr[(x + node->type[i][1])-1][y + node->type[i][0]] != 1)
 					count++;
-			}
+			} */
 		}
 		if (count >= 1)
 			return (1);
@@ -89,25 +109,34 @@ int		is_empty_map(t_map *map)
 // 	return (1);
 // }
 //
-// Basically set_tet is using the string to loop through and make the shape instead of using coordinates. The only issue should be in the shapes that needed dots before them so that's why I saved the shape name to be able to quickly identify the shape. Maybe should write a separate function to do this
 void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;
+	int lines;
 
 	tet->x = x;
 	tet->y = y;
 	i = 0;
+	lines = 0;
+	check_shape(tet->type, &lines);
 	while (tet->type->shape[i] != '\0')
 	{
+		ft_putnbr(lines);
+		ft_putstr(" inside loop\n");
 		if (tet->type->shape[i] == '#')
-			map->arr[x][y] = 1;
-		else if (i % 4 == 0)
+		{
+			ft_putstr("inside first if\n");
+			set_map_val(map, x, y);
+			ft_putstr("Placed 1\n");
+		}
+		else if (lines % 4 == 0)
 		{
 			x++;
 			y = tet->y;
 		}
 		else
 			y++;
+		i++;
+		lines++;
 	}
-	map->size = map->size;
 }

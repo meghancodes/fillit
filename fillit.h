@@ -60,6 +60,7 @@ void			create_typelist(void);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);
+void			set_map_val(t_map *map, int x, int y);
 void			solve(t_lst *tets);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);

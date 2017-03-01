@@ -27,6 +27,11 @@ void	print_map(t_map *map)
 	}
 }
 
+void	set_map_val(t_map *map, int x, int y)
+{
+	map->arr[x][y] = 1;
+}
+
 //Zero out map array
 void	zero_map(t_map *map)
 {
@@ -51,16 +56,15 @@ t_map	*new_map(int size)
 {
 	t_map *new;
 
-	new = (t_map*)malloc(sizeof(t_map));
-	if (new)
+	new = (t_map *)malloc(sizeof(t_map));
+	if (!new)
+		return (NULL);
+	new->size = size;
+	new->arr = (int**)malloc(sizeof(int*) * size);
+	if (new->arr)
 	{
-		new->size = size;
-		new->arr = (int**)malloc(sizeof(int*) * size);
-		if (new->arr)
-		{
-			zero_map(new);
-			return (new);
-		}
+		zero_map(new);
+		return (new);
 	}
 	return (NULL);
 }
