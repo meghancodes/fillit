@@ -43,7 +43,7 @@ typedef struct	s_types
 	t_type		*current;
 }				t_types;
 
-t_tet			*new_tet(int **type, char order, int x, int y);
+t_tet			*new_tet(t_type *type, char order, int x, int y);
 void			set_tet(t_tet *node, t_map *map, int x, int y);
 int				valid_set(t_tet *node, t_map *map, int x, int y);
 int				is_empty_map(t_map *map);
@@ -52,7 +52,7 @@ int				check_tet(char *tet);
 int				check_tet2(char *tet);
 int				check_tet3(char *tet);
 char			*remove_newlines(char *type_string);
-void			to_struct(t_lst *list, int **type, char order);
+void			to_struct(t_lst *list, t_type *type, char order);
 t_type			*tet_types(char *type_string);
 char			*tet_string(char *buf);
 //int				**find_tet_type(char *type_string);
