@@ -56,7 +56,7 @@ int read_in(int fd)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_lst *list, int **type, char order)
+void to_struct(t_lst *list, t_type *type, char order)
 {
 	if (order == 'A')
 	{

@@ -15,7 +15,7 @@
 // 	} */
 // }
 
-t_tet		*new_tet(int **type, char order, int x, int y)
+t_tet		*new_tet(t_type *type, char order, int x, int y)
 {
 	t_tet	*new;
 	int		i;
@@ -24,7 +24,7 @@ t_tet		*new_tet(int **type, char order, int x, int y)
 	if (new)
 	{
 		i = 0;
-		new->type = (int **)malloc(sizeof(int *) * 4);
+		new->type = (t_type *)malloc(sizeof(t_type));
 		while (i++ < 4)
 			new->type[i] = (int *)malloc(sizeof(int) * 2);
 		if (!new->type)
