@@ -121,21 +121,18 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	check_shape(tet->type, &lines);
 	while (tet->type->shape[i] != '\0')
 	{
-		ft_putnbr(lines);
-		ft_putstr(" inside loop\n");
-		if (tet->type->shape[i] == '#')
-		{
-			ft_putstr("inside first if\n");
-			set_map_val(map, x, y);
-			ft_putstr("Placed 1\n");
-		}
-		else if (lines % 4 == 0)
+		if (lines == 4)
 		{
 			x++;
 			y = tet->y;
+			lines = 0;
 		}
-		else
+		if (tet->type->shape[i] == '#')
+		{
+			map->arr[x][y] = 1;
 			y++;
+		}
+		
 		i++;
 		lines++;
 	}

@@ -24,7 +24,7 @@ static void init_shapes(void)
 	shapes[10] = "###....#";
 	shapes[11] = "#...#...##";
 	shapes[12] = "###.#";
-	shapes[13] = "##...#....#";
+	shapes[13] = "##...#...#";
 	shapes[14] = "#.###"; // L4 needs two dots before
 	shapes[15] = "##...##";
 	shapes[16] = "#..##..#"; // Z2 needs one dot before

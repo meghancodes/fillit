@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "1B8192D67801FC792BB68A7E89EB16C543CF199A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D" : 0,
+    "1B8192D67801FC792BB68A7E89EB16C543CF199A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6DCB1AFB-B739-43D0-82C6-BE715D3AF6C2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D" : "fillit\/libft\/",
+    "1B8192D67801FC792BB68A7E89EB16C543CF199A" : "fillit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "fillit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "fillit.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/meghancodes\/fillit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1B8192D67801FC792BB68A7E89EB16C543CF199A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/minghorn\/libft.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D"
+    }
+  ]
+}

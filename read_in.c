@@ -1,5 +1,5 @@
 #include "fillit.h"
-#define READ_VARS char *buf; char *type_string; char order
+#define READ_VARS char *buf; char *type_string; char order; char *final_string
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -21,22 +21,34 @@ void	print_tets(t_lst *tets)
 	}
 }
 
+void	clear_stuff(char *buf, char *type_string, char *final_string)
+{
+	ft_bzero(buf, sizeof(char) * ft_strlen(buf));
+	ft_bzero(type_string, sizeof(char) * ft_strlen(type_string));
+	ft_bzero(final_string, sizeof(char) * ft_strlen(final_string));
+}
+
 int read_in(int fd)
 {
 	READ_VARS;
 	t_lst	*list;
-	char	*final_string;
 
 	order = 'A';
 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
-	if (!(buf = (char *)malloc(sizeof(char))))
+	if (!(list->current = (t_tet *)malloc(sizeof(t_tet))))
 		return (0);
-	if(!(final_string = (char *)malloc(sizeof(char))))
+	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
+		return (0);
+	if (!(buf = (char *)malloc(sizeof(char))))
 		return (0);
 	create_typelist();
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{
+		if(!(final_string = (char *)malloc(sizeof(char))))
+			return (0);
+		if(!(type_string = (char *)malloc(sizeof(char))))
+			return (0);
 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
 		{
 			ft_putstr("error\n");
@@ -47,7 +59,9 @@ int read_in(int fd)
 		final_string = remove_newlines(type_string);
 		to_struct(list, tet_types(final_string), order);
 	 	order++;
+		clear_stuff(buf, type_string, final_string);
 	}
+	free(buf);
 	solve(list);
 	return (1);
 }

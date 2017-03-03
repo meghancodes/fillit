@@ -9,10 +9,11 @@ void	solve(t_lst *tets)
 		return ;
 	map = new_map(ceil_sqrt(tets->size));
 	print_map(map);
-	ft_putnbr(map->arr[0][0]);
+	int x = 0;
+	int y = 0;
 //	ft_putchar('\n');
 //	print_map(map);
 //	if(valid_set(tets->head, map, x, y))
-//		set_tet(tets->head, map, x, y);
-//	print_map(map);
+	set_tet(tets->head, map, x, y);
+	print_map(map);
 }
