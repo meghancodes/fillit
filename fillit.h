@@ -64,5 +64,6 @@ void			set_map_val(t_map *map, int x, int y);
 void			solve(t_lst *tets);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);
+int				is_big_enough(t_map *map, t_tet *tet);
 
 #endif

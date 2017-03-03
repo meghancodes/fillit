@@ -88,27 +88,44 @@ int		is_empty_map(t_map *map)
 **  (Calls in each coordinate of the tet_shape)
 */
 
-// int		is_big_enough(t_map *map, t_tet *node)
-// {
-// 	int i;
-// 	int x;
-// 	int y;
+int		is_big_enough(t_map *map, t_tet *tet)
+{
+	int lines;
+	int max_x;
+	int max_y;
+	int y;
+	int i;
 
-// 	i = 0;
-// 	x = 0;
-// 	y = 0;
-// 	while (i++ < 4)
-// 	{
-// 		ft_putstr("does this part work?\n");
-// 		if (map->arr[x + node->type[i][0]][y + node->type[i][1]] == 0)
-// 		{
-// 			ft_putstr("map not big enough\n");
-// 			return (0);
-// 		}
-// 	}
-// 	return (1);
-// }
-//
+	lines = 0;
+	y = 0;
+	max_x = 0;
+	max_y = 0;
+	i = 0;
+	check_shape(tet->type, &lines);
+	while (tet->type->shape[i] != '\0')
+	{
+	 if (lines == 4)
+	 {
+		 max_x++;
+		 y = 0;
+		 lines = 0;
+	 }
+	 if (tet->type->shape[i] == '#')
+	 {
+		 y++;
+		 if (y > max_y)
+			 max_y = y;
+	 }
+	 
+	 i++;
+	 lines++;
+	}
+	max_x++;
+	if (max_x > (map->size) || max_y > (map->size))
+		return (0);
+	return (1);
+}
+
 void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;
