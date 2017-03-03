@@ -103,12 +103,12 @@ void	create_typelist(void)
 /*
 **  Compares the inputted string to each tetrimino type
 */
-t_type *tet_types(char *type_string)
+t_type *tet_types(char *final_string)
 {
 	types->current = types->head;
 	while (types->current != NULL)
 	{
-		if (ft_strcmp(type_string, types->current->shape) == 0)
+		if (ft_strcmp(final_string, types->current->shape) == 0)
 			return (types->current);
 		types->current = types->current->next;
 	}
