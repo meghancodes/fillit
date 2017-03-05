@@ -24,42 +24,53 @@ void	check_shape(t_type *type, int *lines)
 **  Checks top, right, bottom and left of each coordinate for a 1
 */
 
-int		valid_set(t_tet *node, t_map *map, int x, int y)
-{
-	int i;
-	int count;
+// int		valid_set(t_tet *node, t_map *map, int x, int y)
+// {
+// 	int i;
+// 	int count;
+// 	unsigned int tmp_x;
+// 	unsigned int tmp_y;
 
-	node->x = x;
-	node->y = y;
-	i = 0;
-	count = 0;
-	if (is_empty_map(map))
-	{
-		// if (is_big_enough(map, node))
-		// {
-		// 	ft_putstr("does this work?\n");
-		// 	return (1);
-		// }
-		return (1);
-	}
-	if (!is_empty_map(map))
-	{
-		ft_putstr("The error isn't here\n");
-		while (i++ < 4)
-		{
-/*			if (map->arr[x + node->type[i][1]][y + node->type[i][0]] == 0)
-			{
-				if (map->arr[x + node->type[i][1]][(y + node->type[i][0])-1] != 1 || map->arr[(x + node->type[i][1])+1][y + node->type[i][0]] != 1
-					|| map->arr[x + node->type[i][1]][(y + node->type[i][0])+1] != 1 || map->arr[(x + node->type[i][1])-1][y + node->type[i][0]] != 1)
-					count++;
-			} */
-		}
-		if (count >= 1)
-			return (1);
-	}
-	ft_putstr("Valid set works \n");
-	return (0);
-}
+// 	node->x = x;
+// 	node->y = y;
+// 	tmp_x = x;
+// 	tmp_y = y;
+// 	i = 0;
+// 	count = 0;
+// 	if (is_empty_map(map))
+// 	{
+// 		ft_putstr("empty map confirmed\n");
+// 		return (1);
+// 	}
+// 	if (!is_empty_map(map))
+// 	{
+// 		ft_putstr("The map isnt empty\n");
+// 		if (map->arr[x][y] == 0)
+// 		{
+// 			while (tet->type->shape != '\0')
+// 			{
+// 				if (map->arr[x + node->type[i][1]][(y + node->type[i][0])-1] != 1 || map->arr[(x + node->type[i][1])+1][y + node->type[i][0]] != 1
+// 					|| map->arr[x + node->type[i][1]][(y + node->type[i][0])+1] != 1 || map->arr[(x + node->type[i][1])-1][y + node->type[i][0]] != 1)
+// 					count++;
+// 				if (tmp_x > map->size)
+// 			}
+// 		}	 
+// 	}
+// 	if (count >= 1)
+// 		return (1);
+// 	ft_putstr("Valid set works \n");
+// 	return (0);
+// }
+
+/*
+**  Checks if each tet can fit inside current map->size
+**  If not calls for a bigger map
+*/
+
+// int can_tet_fit()
+// {
+
+// }
 
 /*
 **  Checks if map is empty
@@ -122,8 +133,13 @@ int		is_big_enough(t_map *map, t_tet *tet)
 	}
 	max_x++;
 	if (max_x > (map->size) || max_y > (map->size))
-		return (0);
-	return (1);
+	{
+		if (max_x > max_y)
+			return (max_x);
+		else
+			return (max_y);
+	}
+	return (0);
 }
 
 void	set_tet(t_tet *tet, t_map *map, int x, int y)

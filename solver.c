@@ -20,13 +20,17 @@ void	solve(t_lst *list)
 	list->current = list->head;
 	while (list->current != NULL)
 	{
-		if (!is_big_enough(map, list->current))
+		if (is_big_enough(map, list->current))
 		{
-			new_size = map->size + 1;
+			new_size = is_big_enough(map, list->current);
 			ft_bzero(map, sizeof(map));
 			map = new_map(new_size);
-			ft_putstr("New size");
+			ft_putstr("New size\n");
 		}
 		list->current = list->current->next;
 	}
+	int x = 0;
+	int y = 0;
+	set_tet(list->head, map, x, y);
+	print_map(map);
 }
