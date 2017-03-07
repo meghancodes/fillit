@@ -4,20 +4,29 @@
 ** Check if the shape is one of the shapes that need extra dots
 */
 
-void	check_shape(t_type *type, int *lines)
+//check shape doesn't work
+
+int	check_shape(t_type *type)
 {
-	char one_dot[5][2] = {"T2", "T3", "J1", "Z2", "S1"};
+	int lines = 0;
+	// char one_dot[5][2] = {"T2", "T3", "J1", "Z2", "S1"};
 	int i;
 
 	i = 0;
-	while (i < 5)
-	{
-		if (!ft_strcmp(type->name, one_dot[i]))
-			*lines += 1;
-		i++;
-	}
+	ft_putstr(type->name);
+	ft_putchar('\n');
+	// while (i < 5)
+	// {
+	if (!ft_strcmp(type->name, "T3"))
+		lines += 1;
+		// i++;
+	// }
 	if (!ft_strcmp(type->name, "L4"))
-		*lines += 2;
+		lines += 2;
+	ft_putstr("Here are # lines from check_shape:\n");
+	ft_putnbr(lines);
+	ft_putchar('\n');
+	return (lines);
 }
 
 /*
@@ -107,12 +116,12 @@ int		is_big_enough(t_map *map, t_tet *tet)
 	int y;
 	int i;
 
-	lines = 0;
+	lines = 1;
 	y = 0;
 	max_x = 0;
 	max_y = 0;
 	i = 0;
-	check_shape(tet->type, &lines);
+	// check_shape(tet->type, &lines);
 	while (tet->type->shape[i] != '\0')
 	{
 	 if (lines == 4)
@@ -145,13 +154,17 @@ int		is_big_enough(t_map *map, t_tet *tet)
 void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;
+	int d;
 	int lines;
 
 	tet->x = x;
 	tet->y = y;
 	i = 0;
-	lines = 0;
-	check_shape(tet->type, &lines);
+	d = 0;
+	lines = 1;
+	// lines = check_shape(tet->type);
+	ft_putnbr(lines);
+	ft_putchar('\n');
 	while (tet->type->shape[i] != '\0')
 	{
 		if (lines == 4)
@@ -160,12 +173,29 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			y = tet->y;
 			lines = 0;
 		}
+		if (lines == 1 && d == 0)
+		{
+			map->arr[0][1] = 1;
+			d++;
+		}
+		if (lines == 2 && d == 0)
+		{
+			map->arr[0][2] = 1;
+			d++;
+		}
+		if (!ft_strcmp(tet->type->name, "T2") && i == 7)
+			y = 1;
+		if (tet->type->shape[i] == '#' && d == 1)
+		{
+			map->arr[x][y] = 0;
+			y++;
+			d = 3;
+		}
 		if (tet->type->shape[i] == '#')
 		{
 			map->arr[x][y] = 1;
 			y++;
 		}
-		
 		i++;
 		lines++;
 	}
