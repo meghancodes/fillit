@@ -1,4 +1,5 @@
 #include "fillit.h"
+#include <stdio.h>
 
 /*
 ** Check if the shape is one of the shapes that need extra dots
@@ -147,6 +148,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	d = 0;
 	lines = 0;
 	check_shape(tet->type, &lines);
+	printf("%s\n", tet->type->name);
 	while (tet->type->shape[i] != '\0')
 	{
 		if (lines == 4)
@@ -155,45 +157,57 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			y = tet->y;
 			lines = 0;
 		}
-		if (!ft_strcmp(tet->type->name, "L3") && i == 4)
-			y = 1;
-		if (!ft_strcmp(tet->type->name, "L3") && i == 8)
-			y = 1;
-		if (!ft_strcmp(tet->type->name, "S2") && i == 8)
-			y= 1;
-		if (!ft_strcmp(tet->type->name, "J4") && i == 4)
-			y = 2;
-		if (!ft_strcmp(tet->type->name, "Z1") && i == 4)
-			y = 1;
-		if (lines == 1 && d == 0 && i == 0)
-		{
-			map->arr[0][1] = 1;
-			d++;
-		}
-		if (lines == 2 && d == 0 && i == 0)
-		{
-			map->arr[0][2] = 1;
-			d++;
-		}
-		if (!ft_strcmp(tet->type->name, "T2") && i == 7)
-			y = 1;
-		if (tet->type->shape[i] == '#' && d == 1)
-		{
-			map->arr[x][y] = 0;
-			y++;
-			d = 3;
-		}
-		if (!ft_strcmp(tet->type->name, "T1") && i == 4)
-			y = 1;
-		if (!ft_strcmp(tet->type->name, "J1") && i == 4)
-			y = 1;
 		if (tet->type->shape[i] == '#')
 		{
 			map->arr[x][y] = 1;
+			printf("x: %d y: %d shape: %c\n", x, y, tet->type->shape[i]);
 			y++;
 		}
-		if (!ft_strcmp(tet->type->name, "L4") && i == 0)
-			map->arr[0][1] = 0;
+		else if (tet->type->shape[i] == '.')
+		{
+			printf("x: %d y: %d shape: %c\n", x, y, tet->type->shape[i]);
+			y++;
+		}
+//		if (!ft_strcmp(tet->type->name, "L3") && i == 4)
+//			y = 1;
+//		if (!ft_strcmp(tet->type->name, "L3") && i == 8)
+//			y = 1;
+//		if (!ft_strcmp(tet->type->name, "S2") && i == 8)
+//			y= 1;
+//		if (!ft_strcmp(tet->type->name, "J4") && i == 4)
+//			y = 2;
+//		if (!ft_strcmp(tet->type->name, "Z1") && i == 4)
+//			y = 1;
+//		if (lines == 1 && d == 0 && i == 0)
+//		{
+//			map->arr[0][1] = 1;
+//			d++;
+//		}
+//		if (lines == 2 && d == 0 && i == 0)
+//		{
+//			map->arr[0][2] = 1;
+//			d++;
+//		}
+//		if (!ft_strcmp(tet->type->name, "T2") && i == 7)
+//			y = 1;
+//		if (tet->type->shape[i] == '#' && d == 1)
+//		{
+//			map->arr[x][y] = 0;
+//			y++;
+//			d = 3;
+//		}
+//		if (!ft_strcmp(tet->type->name, "T1") && i == 4)
+//			y = 1;
+//		if (!ft_strcmp(tet->type->name, "J1") && i == 4)
+//			y = 1;
+//		if (tet->type->shape[i] == '#')
+//		{
+//			map->arr[x][y] = 1;
+//			y++;
+//		}
+//		if (!ft_strcmp(tet->type->name, "L4") && i == 0)
+//			map->arr[0][1] = 0;
+		
 		i++;
 		lines++;
 	}

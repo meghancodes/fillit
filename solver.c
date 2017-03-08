@@ -26,10 +26,15 @@ void	solve(t_lst *list)
 			ft_bzero(map, sizeof(map));
 			map = new_map(new_size);
 		}
+		else
+		{
+			int x = 0;
+			int y = 0;
+			ft_bzero(map, sizeof(map));
+			map = new_map(ceil_sqrt(list->size));
+			set_tet(list->current, map, x, y);
+			print_map(map);
+		}
 		list->current = list->current->next;
 	}
-	int x = 0;
-	int y = 0;
-	set_tet(list->head, map, x, y);
-	print_map(map);
 }
