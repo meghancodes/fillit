@@ -160,6 +160,10 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			y = tet->y;
 			lines = 0;
 		}
+		if (!ft_strcmp(tet->type->name, "L3") && i == 4)
+			y = 1;
+		if (!ft_strcmp(tet->type->name, "L3") && i == 8)
+			y = 1;
 		if (lines == 1 && d == 0 && i == 0)
 		{
 			map->arr[0][1] = 1;
@@ -180,6 +184,8 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		}
 		if (!ft_strcmp(tet->type->name, "T1") && i == 4)
 			y = 1;
+		if (!ft_strcmp(tet->type->name, "J1") && i == 4)
+			y = 1;
 		if (tet->type->shape[i] == '#')
 		{
 			map->arr[x][y] = 1;
@@ -189,3 +195,4 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		lines++;
 	}
 }
+
