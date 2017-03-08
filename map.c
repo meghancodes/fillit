@@ -33,25 +33,7 @@ void	set_map_val(t_map *map, int x, int y)
 	map->arr[x][y] = 1;
 }
 
-//Zero out map array
-//void	zero_map(t_map *map)
-//{
-//	int i;
-//	int j;
-//
-//	i = 0;
-//	while (i++ < map->size)
-//	{
-//		j = 0;
-//		while (j++ < map->size)
-//		{
-//		map->arr[i] = (int *)malloc(sizeof(int) * map->size); // This malloc isn't doing anything
-//			if (!(map->arr[i]))
-//				break ;
-//			map->arr[i][j] = 0;
-//		}
-//	}
-//}
+
 
 t_map	*new_map(int size)
 {

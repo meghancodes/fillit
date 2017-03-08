@@ -7,7 +7,8 @@
 
 void	check_shape(t_type *type, int *lines)
 {
-	if (!ft_strcmp(type->name, "T2") || !ft_strcmp(type->name, "T3") || !ft_strcmp(type->name, "J1") 
+	if (!ft_strcmp(type->name, "T2") || !ft_strcmp(type->name, "T3")
+		|| !ft_strcmp(type->name, "J1")
 		|| !ft_strcmp(type->name, "Z2") || !ft_strcmp(type->name, "S1"))
 		*lines += 1;
 	if (!ft_strcmp(type->name, "L4"))
@@ -147,7 +148,6 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	i = 0;
 	d = 0;
 	lines = 0;
-	check_shape(tet->type, &lines);
 	printf("%s\n", tet->type->name);
 	while (tet->type->shape[i] != '\0')
 	{
@@ -156,6 +156,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			x++;
 			y = tet->y;
 			lines = 0;
+			check_shape(tet->type, &lines);
 		}
 		if (tet->type->shape[i] == '#')
 		{

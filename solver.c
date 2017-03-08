@@ -1,5 +1,24 @@
 #include "fillit.h"
 
+//Zero out map array
+void	zero_map(t_map *map)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	while (i < map->size)
+	{
+		j = 0;
+		while (j < map->size)
+		{
+			map->arr[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	solve(t_lst *list)
 {
 	t_map	*map;
@@ -29,9 +48,8 @@ void	solve(t_lst *list)
 		else
 		{
 			int x = 0;
-			int y = 0;
-			ft_bzero(map, sizeof(map));
-			map = new_map(ceil_sqrt(list->size));
+			int y = 1;
+			zero_map(map);
 			set_tet(list->current, map, x, y);
 			print_map(map);
 		}

@@ -168,6 +168,7 @@
 		7A4A3F311E67A45400D8788B /* check_tet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = check_tet.c; sourceTree = "<group>"; };
 		7A4A3F321E67A45400D8788B /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		7A6764A01E68F3F200B4B60F /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		7A9D68741E70B8E900A25869 /* dots_test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dots_test.txt; sourceTree = "<group>"; };
 		7AC644801E67A3A2005DD177 /* fillit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fillit; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -270,6 +271,7 @@
 				7A4A3F301E67A45400D8788B /* tet_types.c */,
 				7A4A3F311E67A45400D8788B /* check_tet.c */,
 				7A4A3F321E67A45400D8788B /* test.txt */,
+				7A9D68741E70B8E900A25869 /* dots_test.txt */,
 				7AC644811E67A3A2005DD177 /* Products */,
 			);
 			sourceTree = "<group>";
