@@ -39,20 +39,19 @@ void	solve(t_lst *list)
 	list->current = list->head;
 	while (list->current != NULL)
 	{
-		if (is_big_enough(map, list->current))
+		int x = 0;
+		int y = 2;
+		list->current->x = x;
+		list->current->y = y;
+		while (is_big_enough(map, list->current))
 		{
 			new_size = is_big_enough(map, list->current);
 			ft_bzero(map, sizeof(map));
 			map = new_map(new_size);
 		}
-		else
-		{
-			int x = 0;
-			int y = 1;
-			zero_map(map);
-			set_tet(list->current, map, x, y);
-			print_map(map);
-		}
+		zero_map(map);
+		set_tet(list->current, map, x, y);
+		print_map(map);
 		list->current = list->current->next;
 	}
 }
