@@ -8,15 +8,9 @@ void	check_shape(t_type *type, int *lines)
 {
 	if (!ft_strcmp(type->name, "T2") || !ft_strcmp(type->name, "T3") || !ft_strcmp(type->name, "J1") 
 		|| !ft_strcmp(type->name, "Z2") || !ft_strcmp(type->name, "S1"))
-	{
-		ft_putstr("Inside the first loop\n");
 		*lines += 1;
-	}
 	if (!ft_strcmp(type->name, "L4"))
-	{
-		ft_putstr("Inside the L4 loop\n");
 		*lines += 2;
-	}
 }
 
 /*

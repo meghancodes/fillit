@@ -49,12 +49,12 @@ int read_in(int fd)
 			return (0);
 		if(!(type_string = (char *)malloc(sizeof(char))))
 			return (0);
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
-		{
-			ft_putstr("error\n");
-			exit (fd);
-			return (0);
-		}
+		// if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
+		// {
+		// 	ft_putstr("error\n");
+		// 	exit (fd);
+		// 	return (0);
+		// }
 		type_string = tet_string(buf);
 		final_string = remove_newlines(type_string);
 		to_struct(list, tet_types(final_string), order);
