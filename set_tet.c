@@ -83,6 +83,10 @@ int		is_big_enough(t_map *map, t_tet *tet)
 		 y = 0;
 		 lines = 0;
 	 }
+	 if (!ft_strcmp(tet->type->name, "Z1") && i == 4)
+	 	y = 1;
+	 if (!ft_strcmp(tet->type->name, "S1") && i == 3)
+	 	y = 1;
 	 if (tet->type->shape[i] == '#')
 	 {
 		 y++;
@@ -101,9 +105,6 @@ int		is_big_enough(t_map *map, t_tet *tet)
 		else
 			return (max_y);
 	}
-	ft_putstr("This is max y:\n");
-	ft_putnbr(max_y);
-	ft_putchar('\n');
 	return (0);
 }
 
@@ -164,6 +165,12 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			y = 1;
 		if (!ft_strcmp(tet->type->name, "L3") && i == 8)
 			y = 1;
+		if (!ft_strcmp(tet->type->name, "S2") && i == 8)
+			y= 1;
+		if (!ft_strcmp(tet->type->name, "J4") && i == 4)
+			y = 2;
+		if (!ft_strcmp(tet->type->name, "Z1") && i == 4)
+			y = 1;
 		if (lines == 1 && d == 0 && i == 0)
 		{
 			map->arr[0][1] = 1;
@@ -191,6 +198,8 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			map->arr[x][y] = 1;
 			y++;
 		}
+		if (!ft_strcmp(tet->type->name, "L4") && i == 0)
+			map->arr[0][1] = 0;
 		i++;
 		lines++;
 	}
