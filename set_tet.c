@@ -1,5 +1,6 @@
 #include "fillit.h"
 #include <stdio.h>
+int		is_big_enough(t_map *map, t_tet *tet);
 
 /*
 ** Check if the shape is one of the shapes that need extra dots
@@ -16,47 +17,81 @@ int	check_shape(t_type *type)
 	return (0);
 }
 
+int check_around(t_map *map, int x, int y)
+{
+	if (x + 1 < map->size)
+	{
+		if (map->arr[x + 1][y])
+			return (1);
+	}
+	if (x - 1 >= 0)
+	{
+		if (map->arr[x - 1][y])
+			return (1);
+	}
+	if (y + 1 < map->size)
+	{
+		if (map->arr[x][y + 1])
+			return (1);
+	}
+	if (y - 1 >= 0)
+	{
+		if (map->arr[x][y - 1])
+			return (1);
+	}
+	return (0);
+}
+
 /*
-**  Checks top, right, bottom and left of each coordinate for a 1
+** Checks top, right, bottom and left of each coordinate for a 1
+** Also checks if the coordinates are okay for the tet
 */
 
-// int		valid_set(t_tet *node, t_map *map, int x, int y)
-// {
-// 	int i;
-// 	int count;
-// 	unsigned int tmp_x;
-// 	unsigned int tmp_y;
+int		valid_set(t_tet *tet, t_map *map, int x, int y)
+{
+	int i;
+	int count;
+	int lines;
 
-// 	node->x = x;
-// 	node->y = y;
-// 	tmp_x = x;
-// 	tmp_y = y;
-// 	i = 0;
-// 	count = 0;
-// 	if (is_empty_map(map))
-// 	{
-// 		ft_putstr("empty map confirmed\n");
-// 		return (1);
-// 	}
-// 	if (!is_empty_map(map))
-// 	{
-// 		ft_putstr("The map isnt empty\n");
-// 		if (map->arr[x][y] == 0)
-// 		{
-// 			while (tet->type->shape != '\0')
-// 			{
-// 				if (map->arr[x + node->type[i][1]][(y + node->type[i][0])-1] != 1 || map->arr[(x + node->type[i][1])+1][y + node->type[i][0]] != 1
-// 					|| map->arr[x + node->type[i][1]][(y + node->type[i][0])+1] != 1 || map->arr[(x + node->type[i][1])-1][y + node->type[i][0]] != 1)
-// 					count++;
-// 				if (tmp_x > map->size)
-// 			}
-// 		}	 
-// 	}
-// 	if (count >= 1)
-// 		return (1);
-// 	ft_putstr("Valid set works \n");
-// 	return (0);
-// }
+	tet->x = x;
+	tet->y = y;
+	i = 0;
+	count = 0;
+	lines = check_shape(tet->type);
+	if (is_big_enough(map, tet))
+		return (0);
+	if (is_empty_map(map))
+		return (1);
+	else
+	{
+		while (tet->type->shape[i] != '\0')
+		{
+			if (lines == 4)
+			{
+				x++;
+				y = tet->y - check_shape(tet->type);
+				lines = 0;
+			}
+			if (tet->type->shape[i] == '#')
+			{
+				if (map->arr[x][y])
+					return (0);
+				count += check_around(map, x, y);
+				y++;
+			}
+			else if (tet->type->shape[i] == '.')
+				y++;
+			i++;
+			lines++;
+		}
+	}
+	if (count)
+	{
+		printf("count: %d\n", count);
+		return (1);
+	}
+	return (0);
+}
 
 int		is_big_enough(t_map *map, t_tet *tet)
 {
@@ -79,17 +114,12 @@ int		is_big_enough(t_map *map, t_tet *tet)
 		 max_x++;
 		 y = tet->y - check_shape(tet->type);
 	 }
-//	 if (!ft_strcmp(tet->type->name, "Z1") && i == 4)
-//	 	y = 1;
-//	 if (!ft_strcmp(tet->type->name, "S1") && i == 3)
-//	 	y = 1;
 	 if (tet->type->shape[i] == '#')
 	 {
 		 y++;
 		 if (y > max_y)
 			 max_y = y;
 	 }
-	 
 	 i++;
 	 lines++;
 	}
@@ -104,17 +134,6 @@ int		is_big_enough(t_map *map, t_tet *tet)
 	return (0);
 }
 
-
-/*
-**  Checks if each tet can fit inside current map->size
-**  If not calls for a bigger map
-*/
-
-// int can_tet_fit()
-// {
-
-// }
-
 /*
 **  Checks if map is empty
 */
@@ -125,14 +144,16 @@ int		is_empty_map(t_map *map)
 	int j;
 
 	i = 0;
-	while (i++ < map->size)
+	while (i < map->size)
 	{
 		j = 0;
-		while (j++ < map->size)
+		while (j < map->size)
 		{
 			if (map->arr[i][j] != 0)
 				return (0);
+			j++;
 		}
+		i++;
 	}
 	return (1);
 }
@@ -146,7 +167,6 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	tet->y = y;
 	i = 0;
 	lines = check_shape(tet->type);
-	printf("%s\n", tet->type->name);
 	while (tet->type->shape[i] != '\0')
 	{
 		if (lines == 4)
@@ -154,7 +174,6 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			x++;
 			y = tet->y - check_shape(tet->type);
 			lines = 0;
-			//lines = check_shape(tet->type);
 		}
 		if (tet->type->shape[i] == '#')
 		{
@@ -162,9 +181,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 			y++;
 		}
 		else if (tet->type->shape[i] == '.')
-		{
 			y++;
-		}
 		i++;
 		lines++;
 	}

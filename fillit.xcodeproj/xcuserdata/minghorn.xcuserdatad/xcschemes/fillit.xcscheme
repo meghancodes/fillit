@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "$PROJECT_DIR/test.txt"
+            argument = "$PROJECT_DIR/small_test.txt"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
