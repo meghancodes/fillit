@@ -4,29 +4,19 @@
 ** Check if the shape is one of the shapes that need extra dots
 */
 
-//check shape doesn't work
-
-int	check_shape(t_type *type)
+void	check_shape(t_type *type, int *lines)
 {
-	int lines = 0;
-	// char one_dot[5][2] = {"T2", "T3", "J1", "Z2", "S1"};
-	int i;
-
-	i = 0;
-	ft_putstr(type->name);
-	ft_putchar('\n');
-	// while (i < 5)
-	// {
-	if (!ft_strcmp(type->name, "T3"))
-		lines += 1;
-		// i++;
-	// }
+	if (!ft_strcmp(type->name, "T2") || !ft_strcmp(type->name, "T3") || !ft_strcmp(type->name, "J1") 
+		|| !ft_strcmp(type->name, "Z2") || !ft_strcmp(type->name, "S1"))
+	{
+		ft_putstr("Inside the first loop\n");
+		*lines += 1;
+	}
 	if (!ft_strcmp(type->name, "L4"))
-		lines += 2;
-	ft_putstr("Here are # lines from check_shape:\n");
-	ft_putnbr(lines);
-	ft_putchar('\n');
-	return (lines);
+	{
+		ft_putstr("Inside the L4 loop\n");
+		*lines += 2;
+	}
 }
 
 /*
@@ -71,6 +61,50 @@ int	check_shape(t_type *type)
 // 	return (0);
 // }
 
+int		is_big_enough(t_map *map, t_tet *tet)
+{
+	int lines;
+	int max_x;
+	int max_y;
+	int y;
+	int i;
+
+	lines = 0;
+	y = 0;
+	max_x = 0;
+	max_y = 0;
+	i = 0;
+	check_shape(tet->type, &lines);
+	while (tet->type->shape[i] != '\0')
+	{
+	 if (lines == 4)
+	 {
+		 max_x++;
+		 y = 0;
+		 lines = 0;
+	 }
+	 if (tet->type->shape[i] == '#')
+	 {
+		 y++;
+		 if (y > max_y)
+			 max_y = y;
+	 }
+	 
+	 i++;
+	 lines++;
+	}
+	max_x++;
+	if (max_x > (map->size) || max_y > (map->size))
+	{
+		if (max_x > max_y)
+			return (max_x);
+		else
+			return (max_y);
+	}
+	return (0);
+}
+
+
 /*
 **  Checks if each tet can fit inside current map->size
 **  If not calls for a bigger map
@@ -103,54 +137,6 @@ int		is_empty_map(t_map *map)
 	return (1);
 }
 
-/*
-**  Checks whether first tet can fit inside empty map
-**  (Calls in each coordinate of the tet_shape)
-*/
-
-int		is_big_enough(t_map *map, t_tet *tet)
-{
-	int lines;
-	int max_x;
-	int max_y;
-	int y;
-	int i;
-
-	lines = 1;
-	y = 0;
-	max_x = 0;
-	max_y = 0;
-	i = 0;
-	// check_shape(tet->type, &lines);
-	while (tet->type->shape[i] != '\0')
-	{
-	 if (lines == 4)
-	 {
-		 max_x++;
-		 y = 0;
-		 lines = 0;
-	 }
-	 if (tet->type->shape[i] == '#')
-	 {
-		 y++;
-		 if (y > max_y)
-			 max_y = y;
-	 }
-	 
-	 i++;
-	 lines++;
-	}
-	max_x++;
-	if (max_x > (map->size) || max_y > (map->size))
-	{
-		if (max_x > max_y)
-			return (max_x);
-		else
-			return (max_y);
-	}
-	return (0);
-}
-
 void	set_tet(t_tet *tet, t_map *map, int x, int y)
 {
 	int i;
@@ -161,10 +147,8 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 	tet->y = y;
 	i = 0;
 	d = 0;
-	lines = 1;
-	// lines = check_shape(tet->type);
-	ft_putnbr(lines);
-	ft_putchar('\n');
+	lines = 0;
+	check_shape(tet->type, &lines);
 	while (tet->type->shape[i] != '\0')
 	{
 		if (lines == 4)

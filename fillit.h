@@ -65,5 +65,6 @@ void			solve(t_lst *list);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);
 int				is_big_enough(t_map *map, t_tet *tet);
+void			check_shape(t_type *type, int *lines);
 
 #endif
