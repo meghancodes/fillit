@@ -49,11 +49,12 @@ void	solve(t_lst *list)
 			ft_bzero(map, sizeof(map));
 			map = new_map(new_size);
 		}
-		if (valid_set(list->current, map, x, y))
-			set_tet(list->current, map, x, y);
+		//if (valid_set(list->current, map, x, y))
+		ft_putstr(list->current->type->name);
+		ft_putchar('\n');
+		set_tet(list->current, map, x, y);
 		print_map(map);
+		zero_map(map);
 		list->current = list->current->next;
-		x = 0;
-		y = 0;
 	}
 }

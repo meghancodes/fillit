@@ -98,38 +98,36 @@ int		is_big_enough(t_map *map, t_tet *tet)
 	int lines;
 	int max_x;
 	int max_y;
-	int y;
 	int i;
+	int comp;
 
 	lines = 0;
-	y = tet->y;
-	max_x = tet->x;
-	max_y = tet->y;
+	max_x = 0;
 	i = 0;
 	lines = check_shape(tet->type);
+	max_y = lines;
+	comp = map->size - 1;
 	while (tet->type->shape[i] != '\0')
 	{
-	 if (lines == 4)
-	 {
-		 max_x++;
-		 y = tet->y - check_shape(tet->type);
-	 }
-	 if (tet->type->shape[i] == '#')
-	 {
-		 y++;
-		 if (y > max_y)
-			 max_y = y;
-	 }
-	 i++;
-	 lines++;
+		if (lines == 4)
+		{
+			max_x++;
+			lines = 0;
+		}
+		if (tet->type->shape[i] == '#')
+		{
+			if ((i % 4) > max_y)
+				max_y = (i % 4);
+		}
+		i++;
+		lines++;
 	}
-	max_x++;
-	if (max_x > (map->size) || max_y > (map->size))
+	if ((tet->x + max_x) > comp || (tet->y + max_y) > comp)
 	{
-		if (max_x > max_y)
-			return (max_x);
+		if ((max_x + tet->x) > (max_y + tet->y))
+			return (max_x + tet->x + 1);
 		else
-			return (max_y);
+			return (max_y + tet->y + 1);
 	}
 	return (0);
 }
