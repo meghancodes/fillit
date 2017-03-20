@@ -24,7 +24,9 @@ void	solve(t_lst *list)
 	t_map	*map;
 	int		new_size;
 	int x = 0;
-	int y = 2;
+	int y = 0;
+	int i = 0;
+	int j;
 
 	map = (t_map *)malloc(sizeof(t_map));
 	if (!map)
@@ -39,22 +41,32 @@ void	solve(t_lst *list)
 	//set_tet(list->head, map, x, y);
 	//print_map(map);
 	list->current = list->head;
+	while (is_big_enough(map, list->current))
+	{
+		new_size = is_big_enough(map, list->current);
+		ft_bzero(map, sizeof(map));
+		map = new_map(new_size);
+	}
 	while (list->current != NULL)
 	{
-		list->current->x = x;
-		list->current->y = y;
-		while (is_big_enough(map, list->current))
+		while (i < map->size)
 		{
-			new_size = is_big_enough(map, list->current);
-			ft_bzero(map, sizeof(map));
-			map = new_map(new_size);
+			j = 0;
+			while (j < map->size)
+			{
+				if (!map->arr[i][j])
+				{
+					list->current->x = i;
+					list->current->y = j;
+					if (valid_set(list->current, map, x, y))
+						set_tet(list->current, map, x, y);
+				}
+				j++;
+			}
+			i++;
 		}
-		//if (valid_set(list->current, map, x, y))
-		ft_putstr(list->current->type->name);
-		ft_putchar('\n');
-		set_tet(list->current, map, x, y);
-		print_map(map);
 		zero_map(map);
 		list->current = list->current->next;
 	}
+	print_map(map);
 }
