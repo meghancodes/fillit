@@ -28,7 +28,7 @@ void	clear_stuff(char *buf, char *type_string, char *final_string)
 	ft_bzero(final_string, sizeof(char) * ft_strlen(final_string));
 }
 
-int read_in(int fd)
+t_lst *read_in(int fd)
 {
 	READ_VARS;
 	t_lst	*list;
@@ -62,8 +62,7 @@ int read_in(int fd)
 		clear_stuff(buf, type_string, final_string);
 	}
 	free(buf);
-	solve(list);
-	return (1);
+	return (list);
 }
 
 /*

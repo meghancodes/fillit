@@ -19,7 +19,35 @@ void	zero_map(t_map *map)
 	}
 }
 
-void	solve(t_lst *list)
+int solve(t_lst *tets, t_map *map)
+{
+	int x;
+	int y;
+	
+	x = 0;
+	while (tets->current->next != NULL)
+	{
+		while (x < map->size)
+		{
+			y = 0;
+			while (y < map->size)
+			{
+				if (valid_set(tets->current, map, x, y))
+				{
+					set_tet(tets->current, map, x, y);
+					tets->current = tets->current->next;
+					if (solve(tets, map))
+						return (1);
+				}
+				y++;
+			}
+			x++;
+		}
+	}
+	return (0);
+}
+
+/* void	solve(t_lst *list)
 {
 	t_map	*map;
 	int		new_size;
@@ -57,4 +85,4 @@ void	solve(t_lst *list)
 		zero_map(map);
 		list->current = list->current->next;
 	}
-}
+} */
