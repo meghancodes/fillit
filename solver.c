@@ -23,8 +23,8 @@ void	solve(t_lst *list)
 {
 	t_map	*map;
 	int		new_size;
-	int x = 0;
-	int y = 0;
+	// int x = 0;
+	// int y = 0;
 	int i = 0;
 	int j;
 
@@ -58,14 +58,14 @@ void	solve(t_lst *list)
 				{
 					list->current->x = i;
 					list->current->y = j;
-					if (valid_set(list->current, map, x, y))
-						set_tet(list->current, map, x, y);
+					if (valid_set(list->current, map, list->current->x, list->current->y))
+						set_tet(list->current, map, list->current->x, list->current->y);
 				}
 				j++;
 			}
 			i++;
 		}
-		zero_map(map);
+		// zero_map(map);
 		list->current = list->current->next;
 	}
 	print_map(map);
