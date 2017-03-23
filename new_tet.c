@@ -30,6 +30,7 @@ t_tet		*new_tet(t_type *type, char order, int x, int y)
 		new->order = order;
 		new->x = x;
 		new->y = y;
+		tet_size(new);
 		new->next = NULL;
 		return (new);
 	}

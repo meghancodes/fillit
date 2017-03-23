@@ -1,6 +1,6 @@
 #include "fillit.h"
 #include <stdio.h>
-int		is_big_enough(t_map *map, t_tet *tet);
+int		is_big_enough(t_map *map, t_tet *tet, int lines);
 
 /*
 ** Check if the shape is one of the shapes that need extra dots
@@ -58,7 +58,7 @@ int		valid_set(t_tet *tet, t_map *map, int x, int y)
 	i = 0;
 	count = 0;
 	lines = check_shape(tet->type);
-	if (is_big_enough(map, tet))
+	if (lines > y || is_big_enough(map, tet, lines))
 		return (0);
 	if (is_empty_map(map))
 		return (1);
@@ -86,48 +86,27 @@ int		valid_set(t_tet *tet, t_map *map, int x, int y)
 		}
 	}
 	if (count)
-	{
-		printf("count: %d\n", count);
 		return (1);
-	}
 	return (0);
 }
 
-int		is_big_enough(t_map *map, t_tet *tet)
-{
-	int lines;
-	int max_x;
-	int max_y;
-	int i;
-	int comp;
+/*
+** Checks whether the map is large enough to fit a shape at an XY
+*/
 
-	lines = 0;
-	max_x = 0;
-	i = 0;
-	lines = check_shape(tet->type);
-	max_y = lines;
-	comp = map->size - 1;
-	while (tet->type->shape[i] != '\0')
+int		is_big_enough(t_map *map, t_tet *tet, int lines)
+{
+	int x;
+	int y;
+	
+	x = tet->x + tet->h;
+	y = tet->y + tet->w - lines;
+	if (x > map->size - 1 || y > map->size - 1)
 	{
-		if (lines == 4)
-		{
-			max_x++;
-			lines = 0;
-		}
-		if (tet->type->shape[i] == '#')
-		{
-			if ((i % 4) > max_y)
-				max_y = (i % 4);
-		}
-		i++;
-		lines++;
-	}
-	if ((tet->x + max_x) > comp || (tet->y + max_y) > comp)
-	{
-		if ((max_x + tet->x) > (max_y + tet->y))
-			return (max_x + tet->x + 1);
+		if (x > y)
+			return (x + 1);
 		else
-			return (max_y + tet->y + 1);
+			return (y + 1);
 	}
 	return (0);
 }
@@ -183,5 +162,6 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		i++;
 		lines++;
 	}
+	print_map(map);
 }
 

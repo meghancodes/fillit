@@ -20,6 +20,8 @@ typedef struct	s_tet
 	char				order;
 	int					x;
 	int					y;
+	int					h;
+	int					w;
 	struct s_tet		*next;
 }				t_tet;
 
@@ -65,7 +67,8 @@ void			solver(t_lst *list);
 int				solve(t_lst *list, t_map *map);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);
-int				is_big_enough(t_map *map, t_tet *tet);
-int			check_shape(t_type *type);
+int				is_big_enough(t_map *map, t_tet *tet, int lines);
+int				check_shape(t_type *type);
+void			tet_size(t_tet *tet);
 
 #endif

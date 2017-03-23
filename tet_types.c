@@ -4,7 +4,6 @@ static t_types *types;
 static char *shapes[19];
 static char *names[] = {"O1", "T1", "T2", "T3", "T4", "I1", "I2", "J1", "J2", "J3", "J4", "L1", "L2", "L3", "L4", "Z1", "Z2", "S1", "S2"};
 
-//static int coords_list[19][4][2];
 /*
 ** Order is 01, T1, T2, T3, T4, I1, I2, J1, J2, J3, J4, L1, L2, L3, L3, Z1, Z2
 ** S1, S2
@@ -31,30 +30,6 @@ static void init_shapes(void)
 	shapes[17] = "##.##"; // S1 needs one dot before
 	shapes[18] = "#...##...#"; //S2
 }
-
-/*static void init_coords(void)
-{
-	int coords_2[19][4][2] = {{{0,0}, {0,1}, {1,0}, {1,1}},
-			{{0,0}, {0,1}, {0,2}, {1,1}},
-			{{0,0}, {1,-1}, {1,0}, {2,0}},
-			{{0,0}, {1,-1}, {1,0}, {1,1}},
-			{{0,0}, {0,1}, {1,1}, {2,0}},
-			{{0,0}, {1,0}, {2,0}, {3,0}},
-			{{0,0}, {0,1}, {0,2}, {0,3}},
-			{{0,0}, {1,0}, {2,0}, {2,1}},
-			{{0,0}, {0,1}, {0,2}, {1,0}},
-			{{0,0}, {0,1}, {1,1}, {2,1}}, 
-			{{0,0}, {1,-2}, {1,-1}, {1,0}},
-			{{0,0}, {1,0}, {2,-1}, {2,0}},
-			{{0,0}, {1,0}, {1,1}, {1,2}},
-			{{0,0}, {0,1}, {1,0}, {2,0}},
-			{{0,0}, {0,1}, {0,2}, {1,2}}, //L1
-			{{0,0}, {0,1}, {1,1}, {1,2}},
-			{{0,0}, {1,-1}, {1,0}, {2,-1}},
-			{{0,0}, {0,1}, {1,-1}, {1,0}},
-			{{0,0}, {1,0}, {1,1}, {2,1}}};
-	ft_memcpy(coords_list, coords_2, sizeof(coords_2));
-} */
 
 // Creates a new type struct, just need to do this once
 t_type	*new_type(char *name, char *s)
@@ -115,70 +90,37 @@ t_type *tet_types(char *final_string)
 	}
 	return (NULL);
 }
-//
-// int **ot_tet_types(char *type_string)
-// {
-//
-//
-// 	if (ft_strcmp(type_string, O1) == 0)
-// 		return (types.O1);
-// 	else if (ft_strcmp(type_string, T1) == 0)
-// 		return (types.T1);
-// 	else if (ft_strcmp(type_string, T2) == 0)
-// 		return (types.T2);
-// 	else if (ft_strcmp(type_string, T3) == 0)
-// 		return (types.T3);
-// 	else if (ft_strcmp(type_string, T4) == 0)
-// 		return (types.T4);
-// 	else
-// 		return (NULL);
-// }
-//
-// int **ij_tet_types(char *type_string)
-// {
-//
-//
-// 	if (ft_strcmp(type_string, I1) == 0)
-// 		return (types.I1);
-// 	else if (ft_strcmp(type_string, I2) == 0)
-// 		return (types.I2);
-// 	else if (ft_strcmp(type_string, J1) == 0)
-// 		return (types.J1);
-// 	else if (ft_strcmp(type_string, J2) == 0)
-// 		return (types.J2);
-// 	else if (ft_strcmp(type_string, J3) == 0)
-// 		return (types.J3);
-// 	else if (ft_strcmp(type_string, J4) == 0)
-// 		return (types.J4);
-// 	else
-// 		return (NULL);
-// }
-//
-// int **l_tet_types(char *type_string)
-// {
-//
-// 	if (ft_strcmp(type_string, L1) == 0)
-// 		return (types.L1);
-// 	else if (ft_strcmp(type_string, L2) == 0)
-// 		return (types.L2);
-// 	else if (ft_strcmp(type_string, L3) == 0)
-// 		return (types.L3);
-// 	else if (ft_strcmp(type_string, L4) == 0)
-// 		return (types.L4);
-// 	else
-// 		return (NULL);
-// }
-//
-// int **zs_tet_types(char *type_string)
-// {
-// 	if (ft_strcmp(type_string, Z1) == 0)
-// 		return (types.Z1);
-// 	else if (ft_strcmp(type_string, Z2) == 0)
-// 		return (types.Z2);
-// 	else if (ft_strcmp(type_string, S1) == 0)
-// 		return (types.S1);
-// 	else if (ft_strcmp(type_string, S2) == 0)
-// 		return (types.S2);
-// 	else
-// 		return (NULL);
-// }
+
+/*
+ ** Sets the height and width of a tet
+ */
+
+void		tet_size(t_tet *tet)
+{
+	int lines;
+	int max_x;
+	int max_y;
+	int i;
+	
+	max_x = 0;
+	i = 0;
+	lines = check_shape(tet->type);
+	max_y = lines;
+	while (tet->type->shape[i] != '\0')
+	{
+		if (lines == 4)
+		{
+			max_x++;
+			lines = 0;
+		}
+		if (tet->type->shape[i] == '#')
+		{
+			if ((lines % 4) > max_y)
+				max_y = (lines % 4);
+		}
+		i++;
+		lines++;
+	}
+	tet->h = max_x;
+	tet->w = max_y;
+}

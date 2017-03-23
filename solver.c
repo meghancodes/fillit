@@ -25,24 +25,21 @@ int solve(t_lst *tets, t_map *map)
 	int y;
 	
 	x = 0;
-	while (tets->current->next != NULL)
+	while (tets->current->next != NULL && x < map->size)
 	{
-		while (x < map->size)
+		y = 0;
+		while (y < map->size)
 		{
-			y = 0;
-			while (y < map->size)
+			if (valid_set(tets->current, map, x, y))
 			{
-				if (valid_set(tets->current, map, x, y))
-				{
-					set_tet(tets->current, map, x, y);
-					tets->current = tets->current->next;
-					if (solve(tets, map))
-						return (1);
-				}
-				y++;
+				set_tet(tets->current, map, x, y);
+				tets->current = tets->current->next;
+				if (solve(tets, map))
+					return (1);
 			}
-			x++;
+			y++;
 		}
+		x++;
 	}
 	return (0);
 }
