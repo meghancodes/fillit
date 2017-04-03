@@ -25,7 +25,8 @@ int solve(t_lst *tets, t_map *map)
 	int y;
 	
 	x = 0;
-	while (tets->current != NULL && x < map->size && tets->current->next != NULL)
+	tets->current = tets->head;
+	while (tets->current->next != NULL && x < map->size)
 	{
 		y = 0;
 		while (y < map->size)
@@ -34,8 +35,12 @@ int solve(t_lst *tets, t_map *map)
 			{
 				set_tet(tets->current, map, x, y);
 				tets->current = tets->current->next;
-				if (solve(tets, map) && tets->current != NULL)
+				print_map(map);
+				if (tets->current == NULL)
+				{
+					ft_putstr("does this work!!!?\n");
 					return (1);
+				}
 			}
 			y++;
 		}
