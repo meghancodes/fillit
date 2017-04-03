@@ -162,6 +162,6 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		i++;
 		lines++;
 	}
-	print_map(map);
+	//print_map(map);
 }
 
