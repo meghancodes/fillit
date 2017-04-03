@@ -4,3 +4,5 @@ src
 fillit
 fillit.dSYM
 fillit.xcodeproj
+.DS_Store
+._.DS_Store
