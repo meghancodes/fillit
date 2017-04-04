@@ -21,22 +21,22 @@ int check_around(t_map *map, int x, int y)
 {
 	if (x + 1 < map->size)
 	{
-		if (map->arr[x + 1][y])
+		if (ft_isalpha(map->arr[x + 1][y]))
 			return (1);
 	}
 	if (x - 1 >= 0)
 	{
-		if (map->arr[x - 1][y])
+		if (ft_isalpha(map->arr[x - 1][y]))
 			return (1);
 	}
 	if (y + 1 < map->size)
 	{
-		if (map->arr[x][y + 1])
+		if (ft_isalpha(map->arr[x][y + 1]))
 			return (1);
 	}
 	if (y - 1 >= 0)
 	{
-		if (map->arr[x][y - 1])
+		if (ft_isalpha(map->arr[x][y - 1]))
 			return (1);
 	}
 	return (0);
@@ -126,7 +126,7 @@ int		is_empty_map(t_map *map)
 		j = 0;
 		while (j < map->size)
 		{
-			if (map->arr[i][j] != 0)
+			if (ft_isalpha(map->arr[i][j]))
 				return (0);
 			j++;
 		}
@@ -154,7 +154,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		}
 		if (tet->type->shape[i] == '#')
 		{
-			map->arr[x][y] = 1;
+			map->arr[x][y] = tet->order;
 			y++;
 		}
 		else if (tet->type->shape[i] == '.')
@@ -162,6 +162,35 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		i++;
 		lines++;
 	}
-	//print_map(map);
+	print_map(map);
 }
 
+// void	set_tet(t_tet *tet, t_map *map, int x, int y)
+// {
+// 	int i;
+// 	int lines;
+
+// 	tet->x = x;
+// 	tet->y = y;
+// 	i = 0;
+// 	lines = check_shape(tet->type);
+// 	while (tet->type->shape[i] != '\0')
+// 	{
+// 		if (lines == 4)
+// 		{
+// 			x++;
+// 			y = tet->y - check_shape(tet->type);
+// 			lines = 0;
+// 		}
+// 		if (tet->type->shape[i] == '#')
+// 		{
+// 			map->arr[x][y] = 1;
+// 			y++;
+// 		}
+// 		else if (tet->type->shape[i] == '.')
+// 			y++;
+// 		i++;
+// 		lines++;
+// 	}
+// 	//print_map(map);
+// }

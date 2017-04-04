@@ -2,8 +2,8 @@
 
 int		main(int argc, char **argv)
 {
-	t_lst	*list;
-	t_map	*map;
+	t_lst	*list = NULL;
+	t_map	*map = NULL;
 	int		size;
 	int		solved;
 	
@@ -19,13 +19,14 @@ int		main(int argc, char **argv)
 			return (0);
 		size = ceil_sqrt(list->size);
 		map = new_map(size);
+		print_map(map);
 		list->current = list->head;
 		while (!solve(list, map) && list->current != NULL)
 		{
 			list->current = list->head;
 			map = new_map(size++);
 		}
-        print_map(map);
+        // print_map(map);
     }
 	free_map(map);
 	return (0);

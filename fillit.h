@@ -35,7 +35,7 @@ typedef struct	s_lst
 typedef struct	s_map
 {
 	int			size;
-	int			**arr;
+	char		**arr;
 }				t_map;
 
 typedef struct	s_types
@@ -70,5 +70,6 @@ void			print_tets(t_lst *tets);
 int				is_big_enough(t_map *map, t_tet *tet, int lines);
 int				check_shape(t_type *type);
 void			tet_size(t_tet *tet);
+void			zero_map(t_map *map);
 
 #endif
