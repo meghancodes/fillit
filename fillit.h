@@ -70,5 +70,6 @@ void			print_tets(t_lst *tets);
 int				is_big_enough(t_map *map, t_tet *tet, int lines);
 int				check_shape(t_type *type);
 void			tet_size(t_tet *tet);
+void            rot_list(t_lst *list);
 
 #endif

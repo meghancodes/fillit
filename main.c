@@ -8,6 +8,8 @@ int		main(int argc, char **argv)
 	int		solved;
 	
 	solved = 0;
+	list = NULL;
+	map = NULL;
 	if (argc == 2)
     {
         int fd;
@@ -20,7 +22,7 @@ int		main(int argc, char **argv)
 		size = ceil_sqrt(list->size);
 		map = new_map(size);
 		list->current = list->head;
-		while (!solve(list, map) && list->current != NULL)
+		while (!solve(list, map))
 		{
 			list->current = list->head;
 			map = new_map(size++);
