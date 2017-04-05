@@ -29,10 +29,10 @@ void	print_map(t_map *map)
 	}
 }
 
-void	set_map_val(t_map *map, int x, int y)
-{
-	map->arr[x][y] = 1;
-}
+// void	set_map_val(t_map *map, int x, int y)
+// {
+// 	map->arr[x][y] = 1;
+// }
 
 
 

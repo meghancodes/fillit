@@ -17,7 +17,6 @@ void	zero_map(t_map *map)
 		}
 		i++;
 	}
-//    map->arr[i][j] = '\0';
 }
 
 int solve(t_lst *tets, t_map *map)
