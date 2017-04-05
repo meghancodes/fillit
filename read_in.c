@@ -1,5 +1,6 @@
 #include "fillit.h"
-#define READ_VARS char *buf; char *type_string; char order; char *final_string
+// #define READ_VARS char *buf; char *type_string; char order; char *final_string
+#define READ_VARS char *buf; char order 
 
 /*
 **  Reads the tetrimino from the fd to the buffer,
@@ -28,6 +29,42 @@ void	clear_stuff(char *buf, char *type_string, char *final_string)
 	ft_bzero(final_string, sizeof(char) * ft_strlen(final_string));
 }
 
+// t_lst *read_in(int fd)
+// {
+// 	READ_VARS;
+// 	t_lst *list;
+
+// 	order = 'A';
+// 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
+// 		return (0);
+// 	if (!(list->current = (t_tet *)malloc(sizeof(t_tet))))
+// 		return (0);
+// 	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
+// 		return (0);
+// 	if (!(buf = (char *)malloc(sizeof(char))))
+// 		return (0);
+// 	create_typelist();
+// 	while (read(fd, (void *)buf, TET_SIZE) > 0)
+// 	{
+// 		if(!(final_string = (char *)malloc(sizeof(char))))
+// 			return (0);
+// 		if(!(type_string = (char *)malloc(sizeof(char))))
+// 			return (0);
+// 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
+// 		{
+// 			ft_putstr("error\n");
+// 			exit (fd);
+// 		}
+// 		type_string = tet_string(buf);
+// 		final_string = remove_newlines(type_string);
+// 		to_struct(list, tet_types(final_string), order);
+// 	 	order++;
+// 		clear_stuff(buf, type_string, final_string);
+// 	}
+// 	free(buf);
+// 	return (list);
+// }
+
 t_lst *read_in(int fd)
 {
 	READ_VARS;
@@ -42,26 +79,37 @@ t_lst *read_in(int fd)
 		return (0);
 	if (!(buf = (char *)malloc(sizeof(char))))
 		return (0);
-	create_typelist();
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{
-		if(!(final_string = (char *)malloc(sizeof(char))))
-			return (0);
-		if(!(type_string = (char *)malloc(sizeof(char))))
-			return (0);
 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
 		{
 			ft_putstr("error\n");
 			exit (fd);
 		}
-		type_string = tet_string(buf);
-		final_string = remove_newlines(type_string);
-		to_struct(list, tet_types(final_string), order);
-	 	order++;
-		clear_stuff(buf, type_string, final_string);
+		if (process_string(buf, list, order))
+			order++;
+		else
+			return (0);
 	}
-	free(buf);
 	return (list);
+}
+
+int		process_string(void *buf, t_lst *list, char order)
+{	
+	char *type_string;
+	char *final_string;
+
+	create_typelist();
+	if(!(final_string = (char *)malloc(sizeof(char))))
+		return (0);
+	if(!(type_string = (char *)malloc(sizeof(char))))
+		return (0);
+	type_string = tet_string(buf);
+	final_string = remove_newlines(type_string);
+	to_struct(list, tet_types(final_string), order);
+	clear_stuff(buf, type_string, final_string);
+	free(buf);
+	return (1);
 }
 
 /*
