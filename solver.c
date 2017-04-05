@@ -19,31 +19,70 @@ void	zero_map(t_map *map)
 	}
 }
 
+
+/*
+** Rotates the list of tets forward one
+** Last tet->next = first tet
+** Last tet = head
+** Second to last tet->next = NULL
+*/
+
+void rot_list(t_lst *list)
+{
+	int i;
+	
+	i = 0;
+	list->current = list->head;
+	while (i < list->size - 1)
+	{
+		list->current = list->current->next;
+		i++;
+	}
+	list->current->next = list->head;
+	list->head = list->current;
+	i = 0;
+	while (i < list->size - 1)
+	{
+		list->current = list->current->next;
+		i++;
+	}
+	list->current->next = NULL;
+	list->current = list->head;
+}
+
 int solve(t_lst *tets, t_map *map)
 {
 	int x;
 	int y;
+	int i;
 	
-	x = 0;
-	while (tets->current->next != NULL && x < map->size)
+	i = 0;
+	while (i < tets->size)
 	{
-		y = 0;
-		while (y < map->size)
+		x = 0;
+		while (tets->current->next != NULL && x < map->size)
 		{
-			if (valid_set(tets->current, map, x, y))
+			y = 0;
+			while (y < map->size)
 			{
-				set_tet(tets->current, map, x, y);
-				tets->current = tets->current->next;
-				print_map(map);
-				if (tets->current == NULL)
+				if (valid_set(tets->current, map, x, y))
 				{
-					ft_putstr("Final Solution\n");
-					return (1);
+					set_tet(tets->current, map, x, y);
+					tets->current = tets->current->next;
+					print_map(map);
+					if (tets->current == NULL)
+					{
+						ft_putstr("Final Solution\n");
+						return (1);
+					}
 				}
+				y++;
 			}
-			y++;
+			x++;
 		}
-		x++;
+		rot_list(tets);
+		zero_map(map);
+		i++;
 	}
 	return (0);
 }
