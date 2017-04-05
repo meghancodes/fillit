@@ -1,5 +1,5 @@
 #include "fillit.h"
-#define T(tet, index) (tet[index - 5] == '#' || tet[index - 1] == '#' || tet[index + 1] == '#' || tet[index +5] == '#')
+#define T(tet, i) (tet[i - 5] == '#' || tet[i- 1] == '#' || tet[i + 1] == '#' || tet[i + 5] == '#')
 
 /*
 **  Ensures that every character is a '.' '#' or '\n'
@@ -34,21 +34,21 @@ int check_tet(char *tet)
 
 int check_tet2(char *tet)
 {
-	int index;
+	int i;
 	int count;
 
-	index = 0;
+	i = 0;
 	count = 0;
-	while (tet[index] != '\0')
+	while (tet[i] != '\0')
 	{
-		if(tet[index] == '#')
+		if(tet[i] == '#')
 		{
-			if (T(tet, index))
+			if (T(tet, i))
 				count++;
 			else
 				return (0);
 		}
-		index++;
+		i++;
 	}
 	if (count != 4)
 		return (0);
@@ -70,12 +70,35 @@ int check_tet3(char *tet)
 	{
 		if (tet[index] == '\n')
 			count++;
-		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n' 
-			|| tet[20] != '\n')
+		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n' || tet[19] != '\n')
 			return (0);
 		index++;
 	}
-	if (count != 5)
-		return (0);
-	return (1);
+	if (count == 4 || count == 5)
+		return (1);
+	return (0);
 }
+
+// int check_tet3(char *tet)
+// {
+// 	int index;
+// 	int	count;
+
+// 	index = 0;
+// 	count = 0;
+// 	while (tet[index] != '\0')
+// 	{
+// 		if (tet[index] == '\n')
+// 		{
+// 			ft_putstr("There's a newline at index:\n");
+// 			ft_putnbr(index);
+// 			ft_putchar('\n');
+// 		}
+// 		index++;
+// 	}
+// 	ft_putchar('\n');
+// 	ft_putstr("Last index:\n");
+// 	ft_putnbr(index);
+// 	ft_putchar('\n');
+// 	return (1);
+// }
