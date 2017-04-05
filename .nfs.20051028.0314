@@ -4,7 +4,7 @@
 void	zero_map(t_map *map)
 {
 	int i;
-	int j = 0;
+	int j;
 	
 	i = 0;
 	while (i < map->size)
@@ -12,7 +12,7 @@ void	zero_map(t_map *map)
 		j = 0;
 		while (j < map->size)
 		{
-			map->arr[i][j] = '.';
+			map->arr[i][j] = 0;
 			j++;
 		}
 		i++;
@@ -37,7 +37,7 @@ int solve(t_lst *tets, t_map *map)
 				print_map(map);
 				if (tets->current == NULL)
 				{
-					ft_putstr("Final Solution\n");
+					ft_putstr("does this work!!!?\n");
 					return (1);
 				}
 			}

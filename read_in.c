@@ -7,19 +7,19 @@
 **  and the order
 */
 
-void	print_tets(t_lst *tets)
-{
-	ft_putstr("List size: ");
-	ft_putnbr(tets->size);
-	ft_putstr("\ntets: ");
-	tets->current = tets->head;
-	while (tets->current != NULL)
-	{
-		ft_putchar(tets->current->order);
-		ft_putstr(", ");
-		tets->current = tets->current->next;
-	}
-}
+// void	print_tets(t_lst *tets)
+// {
+// 	ft_putstr("List size: ");
+// 	ft_putnbr(tets->size);
+// 	ft_putstr("\ntets: ");
+// 	tets->current = tets->head;
+// 	while (tets->current != NULL)
+// 	{
+// 		ft_putchar(tets->current->order);
+// 		ft_putstr(", ");
+// 		tets->current = tets->current->next;
+// 	}
+// }
 
 void	clear_stuff(char *buf, char *type_string, char *final_string)
 {
@@ -31,7 +31,7 @@ void	clear_stuff(char *buf, char *type_string, char *final_string)
 t_lst *read_in(int fd)
 {
 	READ_VARS;
-	t_lst	*list;
+	t_lst *list;
 
 	order = 'A';
 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
@@ -49,12 +49,11 @@ t_lst *read_in(int fd)
 			return (0);
 		if(!(type_string = (char *)malloc(sizeof(char))))
 			return (0);
-		// if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
-		// {
-		// 	ft_putstr("error\n");
-		// 	exit (fd);
-		// 	return (0);
-		// }
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
+		{
+			ft_putstr("error\n");
+			exit (fd);
+		}
 		type_string = tet_string(buf);
 		final_string = remove_newlines(type_string);
 		to_struct(list, tet_types(final_string), order);
