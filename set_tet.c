@@ -74,7 +74,7 @@ int		valid_set(t_tet *tet, t_map *map, int x, int y)
 			}
 			if (tet->type->shape[i] == '#')
 			{
-				if (map->arr[x][y])
+				if (ft_isalpha(map->arr[x][y]))
 					return (0);
 				count += check_around(map, x, y);
 				y++;
@@ -162,7 +162,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		i++;
 		lines++;
 	}
-	print_map(map);
+//	print_map(map);
 }
 
 // void	set_tet(t_tet *tet, t_map *map, int x, int y)
