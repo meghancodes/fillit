@@ -94,7 +94,7 @@ t_lst *read_in(int fd)
 	return (list);
 }
 
-int		process_string(void *buf, t_lst *list, char order)
+int	process_string(void *buf, t_lst *list, char order)
 {	
 	char *type_string;
 	char *final_string;
