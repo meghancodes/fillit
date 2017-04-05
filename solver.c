@@ -4,7 +4,7 @@
 void	zero_map(t_map *map)
 {
 	int i;
-	int j;
+	int j = 0;
 	
 	i = 0;
 	while (i < map->size)
@@ -17,6 +17,7 @@ void	zero_map(t_map *map)
 		}
 		i++;
 	}
+//    map->arr[i][j] = '\0';
 }
 
 int solve(t_lst *tets, t_map *map)
