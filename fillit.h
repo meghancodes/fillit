@@ -46,7 +46,7 @@ typedef struct	s_types
 }				t_types;
 
 t_tet			*new_tet(t_type *type, char order, int x, int y);
-void			set_tet(t_tet *node, t_map *map, int x, int y);
+void			set_tet(t_tet *node, char fill, t_map *map, int x, int y);
 int				valid_set(t_tet *node, t_map *map, int x, int y);
 int				is_empty_map(t_map *map);
 t_lst			*read_in(int fd);

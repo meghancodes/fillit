@@ -183,7 +183,7 @@ int		is_empty_map(t_map *map)
 	return (1);
 }
 
-void	set_tet(t_tet *tet, t_map *map, int x, int y)
+void	set_tet(t_tet *tet, char fill, t_map *map, int x, int y)
 {
 	int i;
 	int lines;
@@ -202,7 +202,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		}
 		if (tet->type->shape[i] == '#')
 		{
-			map->arr[x][y] = tet->order;
+			map->arr[x][y] = fill;
 			y++;
 		}
 		else if (tet->type->shape[i] == '.')
@@ -210,7 +210,6 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		i++;
 		lines++;
 	}
-//	print_map(map);
 }
 
 // void	set_tet(t_tet *tet, t_map *map, int x, int y)
