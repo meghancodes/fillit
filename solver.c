@@ -19,11 +19,6 @@ void	zero_map(t_map *map)
 	}
 }
 
-void roll_back(t_map *map, t_lst *list)
-{
-	
-}
-
 
 /*
 ** Rotates the list of tets forward one
@@ -55,33 +50,31 @@ void rot_list(t_lst *list)
 	list->current = list->head;
 }
 
-int solve(t_lst *tets, t_map *map)
+int solve(t_tet *tet, t_map *map)
 {
 	int		x;
 	int		y;
 	t_tet	*save;
 	
 	x = 0;
-	save = tets->current;
+	save = tet;
 	if (!save)
 		return (1);
-	while (x < map->size)
+	while (x < map->size - tet->h)
 	{
 		y = 0;
-		while (y < map->size)
+		while (y < map->size - tet->w)
 		{
 			if (valid_set(save, map, x, y))
 			{
-				set_tet(save, save->order, map, x, y);
-				tets->current = tets->current->next;
 				print_map(map);
 				ft_putchar('\n');
-				if (solve(tets, map))
+				if (solve(set_tet(save, save->order, map, x, y), map))
 				{
 					ft_putstr("Final Solution\n");
 					return (1);
 				}
-				set_tet(save, '.', map, x, y);
+				unset_tet(map, save);
 			}
 			y++;
 		}

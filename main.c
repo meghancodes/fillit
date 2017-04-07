@@ -21,7 +21,7 @@ int		main(int argc, char **argv)
 		map = new_map(size);
 		// print_map(map);
 		list->current = list->head;
-		while (!solve(list, map) && list->current != NULL)
+		while (!solve(list->head, map) && list->current != NULL)
 		{
 			list->current = list->head;
 			map = new_map(size++);

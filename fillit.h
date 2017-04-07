@@ -46,7 +46,8 @@ typedef struct	s_types
 }				t_types;
 
 t_tet			*new_tet(t_type *type, char order, int x, int y);
-void			set_tet(t_tet *node, char fill, t_map *map, int x, int y);
+t_tet			*set_tet(t_tet *tet, char fill, t_map *map, int x, int y);
+void			unset_tet(t_map *map, t_tet *tet);
 int				valid_set(t_tet *node, t_map *map, int x, int y);
 int				is_empty_map(t_map *map);
 t_lst			*read_in(int fd);
@@ -64,7 +65,7 @@ t_map			*new_map(int size);
 void			free_map(t_map *map);
 void			set_map_val(t_map *map, int x, int y);
 void			solver(t_lst *list);
-int				solve(t_lst *list, t_map *map);
+int				solve(t_tet *tet, t_map *map);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);
 int				is_big_enough(t_map *map, t_tet *tet, int lines);
