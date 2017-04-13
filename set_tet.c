@@ -174,24 +174,28 @@ void unset_tet(t_map *map, t_tet *tet)
 {
 	int i;
 	int lines;
+	int x;
+	int y;
 	
 	i = 0;
+	x = tet->x;
+	y = tet->y;
 	lines = check_shape(tet->type);
 	while (tet->type->shape[i] != '\0')
 	{
 		if (lines == 4)
 		{
-			tet->x++;
-			tet->y = tet->y - check_shape(tet->type);
+			x++;
+			y = tet->y - check_shape(tet->type);
 			lines = 0;
 		}
 		if (tet->type->shape[i] == '#')
 		{
-			map->arr[tet->x][tet->y] = '.';
-			tet->y++;
+			map->arr[x][y] = '.';
+			y++;
 		}
 		else if (tet->type->shape[i] == '.')
-			tet->y++;
+			y++;
 		i++;
 		lines++;
 	}

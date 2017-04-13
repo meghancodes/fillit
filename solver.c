@@ -1,4 +1,5 @@
 #include "fillit.h"
+#include <stdio.h>
 
 //Zero out map array
 void	zero_map(t_map *map)
@@ -52,33 +53,33 @@ void rot_list(t_lst *list)
 
 int solve(t_tet *tet, t_map *map)
 {
-	int		x;
-	int		y;
+	int		row;
+	int		col;
 	t_tet	*save;
 	
-	x = 0;
+	row = 0;
 	save = tet;
+	// Base case for recursion, when it reaches the end of the list of tets
 	if (!save)
 		return (1);
-	while (x < map->size - tet->h)
+	while (row < map->size)
 	{
-		y = 0;
-		while (y < map->size - tet->w)
+		col = 0;
+		while (col < map->size)
 		{
-			if (valid_set(save, map, x, y))
+			if (valid_set(save, map, row, col))
 			{
 				print_map(map);
 				ft_putchar('\n');
-				if (solve(set_tet(save, save->order, map, x, y), map))
-				{
-					ft_putstr("Final Solution\n");
+				if (solve(set_tet(save, save->order, map, row, col), map))
 					return (1);
-				}
+				printf("Reset board: %c\n", save->order);
 				unset_tet(map, save);
+				printf("\n");
 			}
-			y++;
+			col++;
 		}
-		x++;
+		row++;
 	}
 	return (0);
 }
