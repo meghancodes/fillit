@@ -1,4 +1,5 @@
 #include "fillit.h"
+#include <stdio.h>
 
 //Zero out map array
 void	zero_map(t_map *map)
@@ -19,82 +20,66 @@ void	zero_map(t_map *map)
 	}
 }
 
-int solve(t_lst *tets, t_map *map)
+
+/*
+** Rotates the list of tets forward one
+** Last tet->next = first tet
+** Last tet = head
+** Second to last tet->next = NULL
+*/
+
+void rot_list(t_lst *list)
 {
-	int x;
-	int y;
+	int i;
 	
-	x = 0;
-	while (tets->current->next != NULL && x < map->size)
+	i = 0;
+	list->current = list->head;
+	while (i < list->size - 1)
 	{
-		y = 0;
-		while (y < map->size)
+		list->current = list->current->next;
+		i++;
+	}
+	list->current->next = list->head;
+	list->head = list->current;
+	i = 0;
+	while (i < list->size - 1)
+	{
+		list->current = list->current->next;
+		i++;
+	}
+	list->current->next = NULL;
+	list->current = list->head;
+}
+
+int solve(t_tet *tet, t_map *map)
+{
+	int		row;
+	int		col;
+	t_tet	*save;
+	
+	row = 0;
+	save = tet;
+	// Base case for recursion, when it reaches the end of the list of tets
+	if (!save)
+		return (1);
+	while (row < map->size)
+	{
+		col = 0;
+		while (col < map->size)
 		{
-			if (valid_set(tets->current, map, x, y))
+			if (valid_set(save, map, row, col))
 			{
-				set_tet(tets->current, map, x, y);
-				tets->current = tets->current->next;
 				print_map(map);
-				if (tets->current == NULL)
-				{
-					ft_putstr("Final Solution\n");
+				ft_putchar('\n');
+				if (solve(set_tet(save, save->order, map, row, col), map))
 					return (1);
-				}
+				printf("Reset board: %c\n", save->order);
+				unset_tet(map, save);
+				printf("\n");
 			}
-			y++;
+			col++;
 		}
-		x++;
+		row++;
 	}
 	return (0);
 }
-
-/* void	solve(t_lst *list)
-{
-	t_map	*map;
-	int		new_size;
-	// int x = 0;
-	// int y = 0;
-	int i = 0;
-	int j;
-
-	map = (t_map *)malloc(sizeof(t_map));
-	if (!map)
-		return ;
-	map = new_map(ceil_sqrt(list->size));
-	// print_map(map);
-//	int x = 0;
-//	int y = 0;
-//	ft_putchar('\n');
-//	print_map(map);
-//	if(valid_set(tets->head, map, x, y))
-	//set_tet(list->head, map, x, y);
-	//print_map(map);
-	list->current = list->head;
-	while (is_big_enough(map, list->current))
-	{
-		new_size = is_big_enough(map, list->current);
-		ft_bzero(map, sizeof(map));
-		map = new_map(new_size);
-	}
-	while (list->current != NULL)
-	{
-		while (i < map->size)
-		{
-			j = 0;
-			while (j < map->size)
-			{
-				if (!map->arr[i][j])
-				{
-					list->current->x = i;
-					list->current->y = j;
-					if (valid_set(list->current, map, list->current->x, list->current->y))
-						set_tet(list->current, map, list->current->x, list->current->y);
-				}
-				j++;
-			}
-			i++;
-		}
-		// zero_map(map);
-		list->current = list->current->next;
-	}
-} */

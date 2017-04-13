@@ -17,11 +17,11 @@ int		main(int argc, char **argv)
             list = read_in(open(argv[1], O_RDONLY));
 		if (!list)
 			return (0);
-		size = ceil_sqrt(list->size);
+		size = 5; //ceil_sqrt(list->size);
 		map = new_map(size);
 		// print_map(map);
 		list->current = list->head;
-		while (!solve(list, map) && list->current != NULL)
+		while (!solve(list->head, map) && list->current != NULL)
 		{
 			list->current = list->head;
 			map = new_map(size++);

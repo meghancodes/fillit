@@ -47,49 +47,6 @@ int check_around(t_map *map, int x, int y)
 ** Also checks if the coordinates are okay for the tet
 */
 
-// int		valid_set(t_tet *tet, t_map *map, int x, int y)
-// {
-// 	int i;
-// 	int count;
-// 	int lines;
-
-// 	tet->x = x;
-// 	tet->y = y;
-// 	i = 0;
-// 	count = 0;
-// 	lines = check_shape(tet->type);
-// 	if (lines > y || is_big_enough(map, tet, lines))
-// 		return (0);
-// 	if (is_empty_map(map))
-// 		return (1);
-// 	else
-// 	{
-// 		while (tet->type->shape[i] != '\0')
-// 		{
-// 			if (lines == 4)
-// 			{
-// 				x++;
-// 				y = tet->y - check_shape(tet->type);
-// 				lines = 0;
-// 			}
-// 			if (tet->type->shape[i] == '#')
-// 			{
-// 				if (ft_isalpha(map->arr[x][y]))
-// 					return (0);
-// 				count += check_around(map, x, y);
-// 				y++;
-// 			}
-// 			else if (tet->type->shape[i] == '.')
-// 				y++;
-// 			i++;
-// 			lines++;
-// 		}
-// 	}
-// 	if (count)
-// 		return (1);
-// 	return (0);
-// }
-
 int		valid_set(t_tet *tet, t_map *map, int x, int y)
 {
 	int count;
@@ -183,7 +140,7 @@ int		is_empty_map(t_map *map)
 	return (1);
 }
 
-void	set_tet(t_tet *tet, t_map *map, int x, int y)
+t_tet *set_tet(t_tet *tet, char fill, t_map *map, int x, int y)
 {
 	int i;
 	int lines;
@@ -202,7 +159,7 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		}
 		if (tet->type->shape[i] == '#')
 		{
-			map->arr[x][y] = tet->order;
+			map->arr[x][y] = fill;
 			y++;
 		}
 		else if (tet->type->shape[i] == '.')
@@ -210,35 +167,36 @@ void	set_tet(t_tet *tet, t_map *map, int x, int y)
 		i++;
 		lines++;
 	}
-//	print_map(map);
+	return (tet->next);
 }
 
-// void	set_tet(t_tet *tet, t_map *map, int x, int y)
-// {
-// 	int i;
-// 	int lines;
-
-// 	tet->x = x;
-// 	tet->y = y;
-// 	i = 0;
-// 	lines = check_shape(tet->type);
-// 	while (tet->type->shape[i] != '\0')
-// 	{
-// 		if (lines == 4)
-// 		{
-// 			x++;
-// 			y = tet->y - check_shape(tet->type);
-// 			lines = 0;
-// 		}
-// 		if (tet->type->shape[i] == '#')
-// 		{
-// 			map->arr[x][y] = 1;
-// 			y++;
-// 		}
-// 		else if (tet->type->shape[i] == '.')
-// 			y++;
-// 		i++;
-// 		lines++;
-// 	}
-// 	//print_map(map);
-// }
+void unset_tet(t_map *map, t_tet *tet)
+{
+	int i;
+	int lines;
+	int x;
+	int y;
+	
+	i = 0;
+	x = tet->x;
+	y = tet->y;
+	lines = check_shape(tet->type);
+	while (tet->type->shape[i] != '\0')
+	{
+		if (lines == 4)
+		{
+			x++;
+			y = tet->y - check_shape(tet->type);
+			lines = 0;
+		}
+		if (tet->type->shape[i] == '#')
+		{
+			map->arr[x][y] = '.';
+			y++;
+		}
+		else if (tet->type->shape[i] == '.')
+			y++;
+		i++;
+		lines++;
+	}
+}
