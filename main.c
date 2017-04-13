@@ -19,7 +19,6 @@ int		main(int argc, char **argv)
 			return (0);
 		size = ceil_sqrt(list->size);
 		map = new_map(size);
-		// print_map(map);
 		list->current = list->head;
 		while (!solve(list->head, map) && list->current != NULL)
 		{
