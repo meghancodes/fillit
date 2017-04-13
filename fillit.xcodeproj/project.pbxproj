@@ -158,7 +158,6 @@
 		7A3515711E95B153003F6CBB /* ft_toupper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_toupper.c; sourceTree = "<group>"; };
 		7A3515731E95B153003F6CBB /* libft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libft.h; sourceTree = "<group>"; };
 		7A3515741E95B153003F6CBB /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		7A3515B71E95B3D4003F6CBB /* fillit_test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fillit_test.txt; sourceTree = "<group>"; };
 		7A4A3F291E67A45400D8788B /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; };
 		7A4A3F2A1E67A45400D8788B /* solver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solver.c; sourceTree = "<group>"; };
 		7A4A3F2B1E67A45400D8788B /* fillit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fillit.h; sourceTree = "<group>"; };
@@ -267,7 +266,6 @@
 				7A6764A01E68F3F200B4B60F /* main.c */,
 				7A4A3F2A1E67A45400D8788B /* solver.c */,
 				7A4A3F2C1E67A45400D8788B /* new_tet.c */,
-				7A3515B71E95B3D4003F6CBB /* fillit_test.txt */,
 				7A4A3F2D1E67A45400D8788B /* read_in.c */,
 				7A4A3F2E1E67A45400D8788B /* map.c */,
 				7A4A3F2F1E67A45400D8788B /* set_tet.c */,

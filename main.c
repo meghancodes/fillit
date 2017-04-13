@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
             list = read_in(open(argv[1], O_RDONLY));
 		if (!list)
 			return (0);
-		size = 5; //ceil_sqrt(list->size);
+		size = ceil_sqrt(list->size);
 		map = new_map(size);
 		// print_map(map);
 		list->current = list->head;
