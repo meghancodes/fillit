@@ -8,6 +8,8 @@ int		main(int argc, char **argv)
 	int		solved;
 	
 	solved = 0;
+	list = NULL;
+	map = NULL;
 	if (argc == 2)
     {
         int fd;
