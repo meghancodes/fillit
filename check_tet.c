@@ -78,27 +78,3 @@ int check_tet3(char *tet)
 		return (1);
 	return (0);
 }
-
-// int check_tet3(char *tet)
-// {
-// 	int index;
-// 	int	count;
-
-// 	index = 0;
-// 	count = 0;
-// 	while (tet[index] != '\0')
-// 	{
-// 		if (tet[index] == '\n')
-// 		{
-// 			ft_putstr("There's a newline at index:\n");
-// 			ft_putnbr(index);
-// 			ft_putchar('\n');
-// 		}
-// 		index++;
-// 	}
-// 	ft_putchar('\n');
-// 	ft_putstr("Last index:\n");
-// 	ft_putnbr(index);
-// 	ft_putchar('\n');
-// 	return (1);
-// }
