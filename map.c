@@ -11,7 +11,6 @@ int		ceil_sqrt(int tet_num)
 	return (size);
 }
 
-// Currently only printing the array
 void	print_map(t_map *map)
 {
 	int i;
@@ -22,18 +21,12 @@ void	print_map(t_map *map)
 	{
 		j = 0;
 		while (j < map->size)
-			ft_putnbr(map->arr[i][j++]);
+			ft_putchar(map->arr[i][j++]);
+		map->arr[i][j] = '\0';
 		ft_putchar('\n');
 		i++;
 	}
 }
-
-void	set_map_val(t_map *map, int x, int y)
-{
-	map->arr[x][y] = 1;
-}
-
-
 
 t_map	*new_map(int size)
 {
@@ -43,13 +36,14 @@ t_map	*new_map(int size)
 	if (!new)
 		return (NULL);
 	new->size = size;
-	new->arr = (int**)malloc(sizeof(int*) * size);
+	new->arr = (char **)malloc(sizeof(char*) * size + 5);
 	if (new->arr)
 	{
 		int i;
 		i = 0;
 		while (i < size)
-			new->arr[i++] = (int *)malloc(sizeof(int) * size);
+			new->arr[i++] = (char *)malloc(sizeof(char) * size + 5);
+		zero_map(new);
 		return (new);
 	}
 	return (NULL);
