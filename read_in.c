@@ -1,5 +1,4 @@
 #include "fillit.h"
-#define READ_VARS char *buf; char order
 
 void	clear_stuff(char *buf, char *type_string, char *final_string)
 {
@@ -35,7 +34,7 @@ t_lst *read_in(int fd)
 			ft_putstr("error\n");
 			exit (fd);
 		}
-		if (process_string(buf, list, order))
+		if (process_string(fd, buf, list, order))
 			order++;
 		else
 			return (0);
@@ -43,10 +42,11 @@ t_lst *read_in(int fd)
 	return (list);
 }
 
-int	process_string(void *buf, t_lst *list, char order)
+int	process_string(int fd, void *buf, t_lst *list, char order)
 {	
 	char *type_string;
 	char *final_string;
+	t_type *save;
 
 	create_typelist();
 	if(!(final_string = (char *)malloc(sizeof(char))))
@@ -55,7 +55,12 @@ int	process_string(void *buf, t_lst *list, char order)
 		return (0);
 	type_string = tet_string(buf);
 	final_string = remove_newlines(type_string);
-	to_struct(list, tet_types(final_string), order);
+	if ((save = tet_types(final_string)) == NULL)
+	{
+		ft_putstr("error\n");
+		exit (fd);
+	}
+	to_struct(list, save, order);
 	clear_stuff(buf, type_string, final_string);
 	free(buf);
 	return (1);
