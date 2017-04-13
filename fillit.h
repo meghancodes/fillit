@@ -6,6 +6,8 @@
 # include "./libft/libft.h"
 #define TET_SIZE 21
 #define TET_VARS int i; char *tet
+#define READ_VARS char *buf; char order
+#define T(tet, i) (tet[i - 5] == '#' || tet[i- 1] == '#' || tet[i + 1] == '#' || tet[i + 5] == '#')
 
 typedef struct	s_type
 {
@@ -58,7 +60,6 @@ char			*remove_newlines(char *type_string);
 void			to_struct(t_lst *list, t_type *type, char order);
 t_type			*tet_types(char *final_string);
 char			*tet_string(char *buf);
-//int				**find_tet_type(char *type_string);
 void			create_typelist(void);
 int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
@@ -73,6 +74,7 @@ int				check_shape(t_type *type);
 void			tet_size(t_tet *tet);
 void			zero_map(t_map *map);
 int				fill_in(t_tet *tet, t_map *map, int lines, int x, int y, int count);
-int				process_string(void *buf, t_lst *list, char order);
+int				process_string(int fd, void *buf, t_lst *list, char order);
+int				check_tet4(char *final_string);
 
 #endif

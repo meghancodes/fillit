@@ -62,7 +62,6 @@ void	create_typelist(void)
 	if (!types)
 		return ;
 	types->size = 19;
-//	init_coords();
 	init_shapes();
 	i = 1;
 	types->head = new_type(names[0], shapes[0]);
