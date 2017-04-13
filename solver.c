@@ -69,13 +69,13 @@ int solve(t_tet *tet, t_map *map)
 		{
 			if (valid_set(save, map, row, col))
 			{
-				print_map(map);
-				ft_putchar('\n');
+				// print_map(map);
+				// ft_putchar('\n');
 				if (solve(set_tet(save, save->order, map, row, col), map))
 					return (1);
-				printf("Reset board: %c\n", save->order);
+				// printf("Reset board: %c\n", save->order);
 				unset_tet(map, save);
-				printf("\n");
+				// printf("\n");
 			}
 			col++;
 		}
