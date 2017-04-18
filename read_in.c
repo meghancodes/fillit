@@ -29,7 +29,7 @@ t_lst *read_in(int fd)
 		return (0);
 	while (read(fd, (void *)buf, TET_SIZE) > 0)
 	{
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)) || (!first_check(buf)))
 		{
 			ft_putstr("error\n");
 			exit (fd);
@@ -40,6 +40,24 @@ t_lst *read_in(int fd)
 			return (0);
 	}
 	return (list);
+}
+
+int first_check(char *buf)
+{
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	while (buf[i] != '\0')
+	{
+		if (buf[i] == '.')
+			c++;
+		i++;
+	}
+	if (c != 12)
+		return (0);
+	return (1);
 }
 
 int	process_string(int fd, void *buf, t_lst *list, char order)

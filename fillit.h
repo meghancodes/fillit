@@ -75,6 +75,6 @@ void			tet_size(t_tet *tet);
 void			zero_map(t_map *map);
 int				fill_in(t_tet *tet, t_map *map, int lines, int x, int y, int count);
 int				process_string(int fd, void *buf, t_lst *list, char order);
-int				check_tet4(char *final_string);
+int 			first_check(char *buf);
 
 #endif
