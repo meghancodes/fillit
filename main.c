@@ -1,14 +1,28 @@
 #include "fillit.h"
 
+void	error_message(int fd)
+{
+	ft_putstr("error\n");
+	exit(fd);
+}
+
 int		main(int argc, char **argv)
 {
-	t_lst	*list = NULL;
-	t_map	*map = NULL;
+	t_lst	*list;
+	t_map	*map;
+	char	*buf;
 	int		size;
 	int		solved;
 	
 	solved = 0;
-	list = NULL;
+	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
+		return (0);
+	if (!(list->current = (t_tet *)malloc(sizeof(t_tet))))
+		return (0);
+	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
+		return (0);
+	if (!(buf = (char *)malloc(sizeof(char))))
+		return (0);
 	map = NULL;
 	if (argc == 2)
     {
@@ -16,9 +30,12 @@ int		main(int argc, char **argv)
         
         fd = open(argv[1], O_RDONLY);
         if (fd > 0)
-            list = read_in(open(argv[1], O_RDONLY));
-		if (!list)
+            list = read_in(open(argv[1], O_RDONLY), 'A', list, buf);
+		if (!list->size)
+		{
+			error_message(fd);
 			return (0);
+		}
 		size = ceil_sqrt(list->size);
 		map = new_map(size);
 		list->current = list->head;

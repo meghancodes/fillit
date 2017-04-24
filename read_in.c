@@ -7,60 +7,27 @@ void	clear_stuff(char *buf, char *type_string, char *final_string)
 	ft_bzero(final_string, sizeof(char) * ft_strlen(final_string));
 }
 
-int read_is_empty(int fd)
-{
-	char *buf;
-	
-	if (!(buf = (char *)malloc(sizeof(char))))
-		return (0);
-	if (!read(fd, (void *)buf, TET_SIZE))
-	{
-		ft_putstr("error\n");
-		free(buf);
-		exit(fd);
-		return (0);
-	}
-	free(buf);
-	return (1);
-}
-
 /*
  **  Reads the tetrimino from the fd to the buffer,
  **  ensures that it's valid, determines the tetrimino type
  **  and the order
  */
 
-t_lst *read_in(int fd)
-{
-	READ_VARS;
-	t_lst *list;
-	
-	list = NULL;
-	if (!(buf = (char *)malloc(sizeof(char))))
-		return (0);
-	order = 'A';
-//	if (!read_is_empty(fd))
-//		return (0);
-	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
-		return (0);
-	if (!(list->current = (t_tet *)malloc(sizeof(t_tet))))
-		return (0);
-	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
-		return (0);
-	while (read(fd, (void *)buf, TET_SIZE) > 0)
+t_lst *read_in(int fd, char order, t_lst *list, char *buf)
+{	
+	if (read(fd, (void *)buf, TET_SIZE) == 0)
+		return (list);
+	else
 	{
 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf))
 			|| (!first_check(buf)))
-		{
-			ft_putstr("error\n");
-			exit(fd);
-		}
+			error_message(fd);
 		if (process_string(fd, buf, list, order))
 			order++;
 		else
 			return (0);
 	}
-	return (list);
+	return (read_in(fd, order, list, buf));
 }
 
 int first_check(char *buf)
@@ -96,8 +63,7 @@ int	process_string(int fd, void *buf, t_lst *list, char order)
 	final_string = remove_newlines(type_string);
 	if ((save = tet_types(final_string)) == NULL)
 	{
-		ft_putstr("error\n");
-		exit (fd);
+		error_message(fd);
 		return (0);
 	}
 	to_struct(list, save, order);
