@@ -66,6 +66,9 @@
 		7A3515B11E95B153003F6CBB /* ft_tolower.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A3515701E95B153003F6CBB /* ft_tolower.c */; };
 		7A3515B21E95B153003F6CBB /* ft_toupper.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A3515711E95B153003F6CBB /* ft_toupper.c */; };
 		7A3515B41E95B153003F6CBB /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 7A3515741E95B153003F6CBB /* Makefile */; };
+		7A35176E1EAEABCD003F6CBB /* ft_ctdigits.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A35176B1EAEABCD003F6CBB /* ft_ctdigits.c */; };
+		7A35176F1EAEABCD003F6CBB /* ft_itoc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A35176C1EAEABCD003F6CBB /* ft_itoc.c */; };
+		7A3517701EAEABCD003F6CBB /* ft_swap.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A35176D1EAEABCD003F6CBB /* ft_swap.c */; };
 		7A4A3F731E67A45400D8788B /* solver.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A4A3F2A1E67A45400D8788B /* solver.c */; };
 		7A4A3F741E67A45400D8788B /* new_tet.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A4A3F2C1E67A45400D8788B /* new_tet.c */; };
 		7A4A3F751E67A45400D8788B /* read_in.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A4A3F2D1E67A45400D8788B /* read_in.c */; };
@@ -74,7 +77,6 @@
 		7A4A3F781E67A45400D8788B /* tet_types.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A4A3F301E67A45400D8788B /* tet_types.c */; };
 		7A4A3F791E67A45400D8788B /* check_tet.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A4A3F311E67A45400D8788B /* check_tet.c */; };
 		7A6764A11E68F3F200B4B60F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A6764A01E68F3F200B4B60F /* main.c */; };
-		AB2A591F1EA0361F0068A231 /* ft_isspace.c in Sources */ = {isa = PBXBuildFile; fileRef = AB2A591E1EA0361F0068A231 /* ft_isspace.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -152,6 +154,9 @@
 		7A3515711E95B153003F6CBB /* ft_toupper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_toupper.c; sourceTree = "<group>"; };
 		7A3515731E95B153003F6CBB /* libft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libft.h; sourceTree = "<group>"; };
 		7A3515741E95B153003F6CBB /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		7A35176B1EAEABCD003F6CBB /* ft_ctdigits.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_ctdigits.c; sourceTree = "<group>"; };
+		7A35176C1EAEABCD003F6CBB /* ft_itoc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_itoc.c; sourceTree = "<group>"; };
+		7A35176D1EAEABCD003F6CBB /* ft_swap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_swap.c; sourceTree = "<group>"; };
 		7A4A3F291E67A45400D8788B /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 4; path = Makefile; sourceTree = "<group>"; };
 		7A4A3F2A1E67A45400D8788B /* solver.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solver.c; sourceTree = "<group>"; };
 		7A4A3F2B1E67A45400D8788B /* fillit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fillit.h; sourceTree = "<group>"; };
@@ -165,7 +170,6 @@
 		7A6764A01E68F3F200B4B60F /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		7A9D68741E70B8E900A25869 /* dots_test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dots_test.txt; sourceTree = "<group>"; };
 		7AC644801E67A3A2005DD177 /* fillit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = fillit; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB2A591E1EA0361F0068A231 /* ft_isspace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_isspace.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,9 @@
 		7A3515321E95B153003F6CBB /* libft */ = {
 			isa = PBXGroup;
 			children = (
+				7A35176B1EAEABCD003F6CBB /* ft_ctdigits.c */,
+				7A35176C1EAEABCD003F6CBB /* ft_itoc.c */,
+				7A35176D1EAEABCD003F6CBB /* ft_swap.c */,
 				7A3515341E95B153003F6CBB /* author */,
 				7A3515351E95B153003F6CBB /* ft_atoi.c */,
 				7A3515361E95B153003F6CBB /* ft_bzero.c */,
@@ -197,7 +204,6 @@
 				7A3515421E95B153003F6CBB /* ft_lstiter.c */,
 				7A3515431E95B153003F6CBB /* ft_lstmap.c */,
 				7A3515441E95B153003F6CBB /* ft_lstnew.c */,
-				AB2A591E1EA0361F0068A231 /* ft_isspace.c */,
 				7A3515451E95B153003F6CBB /* ft_memalloc.c */,
 				7A3515461E95B153003F6CBB /* ft_memccpy.c */,
 				7A3515471E95B153003F6CBB /* ft_memchr.c */,
@@ -357,13 +363,16 @@
 				7A3515841E95B153003F6CBB /* ft_lstmap.c in Sources */,
 				7A3515B41E95B153003F6CBB /* Makefile in Sources */,
 				7A3515871E95B153003F6CBB /* ft_memccpy.c in Sources */,
+				7A35176F1EAEABCD003F6CBB /* ft_itoc.c in Sources */,
 				7A35158F1E95B153003F6CBB /* ft_putchar_fd.c in Sources */,
 				7A3515831E95B153003F6CBB /* ft_lstiter.c in Sources */,
 				7A35159F1E95B153003F6CBB /* ft_striteri.c in Sources */,
 				7A4A3F751E67A45400D8788B /* read_in.c in Sources */,
 				7A3515821E95B153003F6CBB /* ft_lstdelone.c in Sources */,
 				7A3515941E95B153003F6CBB /* ft_putstr.c in Sources */,
+				7A3517701EAEABCD003F6CBB /* ft_swap.c in Sources */,
 				7A35159E1E95B153003F6CBB /* ft_striter.c in Sources */,
+				7A35176E1EAEABCD003F6CBB /* ft_ctdigits.c in Sources */,
 				7A35159A1E95B153003F6CBB /* ft_strcpy.c in Sources */,
 				7A3515AD1E95B153003F6CBB /* ft_strstr.c in Sources */,
 				7A3515A81E95B153003F6CBB /* ft_strnequ.c in Sources */,
@@ -392,7 +401,6 @@
 				7A3515AE1E95B153003F6CBB /* ft_strsub.c in Sources */,
 				7A3515A71E95B153003F6CBB /* ft_strncpy.c in Sources */,
 				7A3515911E95B153003F6CBB /* ft_putendl_fd.c in Sources */,
-				AB2A591F1EA0361F0068A231 /* ft_isspace.c in Sources */,
 				7A6764A11E68F3F200B4B60F /* main.c in Sources */,
 				7A3515971E95B153003F6CBB /* ft_strchr.c in Sources */,
 				7A3515921E95B153003F6CBB /* ft_putnbr.c in Sources */,
