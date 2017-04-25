@@ -1,12 +1,11 @@
 #include "fillit.h"
 #include <stdio.h>
-int		is_big_enough(t_map *map, t_tet *tet, int lines);
 
 /*
 ** Check if the shape is one of the shapes that need extra dots
 */
 
-int	check_shape(t_type *type)
+int		check_shape(t_type *type)
 {
 	if (!ft_strcmp(type->name, "T2") || !ft_strcmp(type->name, "T3")
 		|| !ft_strcmp(type->name, "J1")
@@ -17,7 +16,7 @@ int	check_shape(t_type *type)
 	return (0);
 }
 
-int check_around(t_map *map, int x, int y)
+int		check_around(t_map *map, int x, int y)
 {
 	if (x + 1 < map->size)
 	{
@@ -101,9 +100,9 @@ int		fill_in(t_tet *tet, t_map *map, int lines, int x, int y, int count)
 
 int		is_big_enough(t_map *map, t_tet *tet, int lines)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = tet->x + tet->h;
 	y = tet->y + tet->w - lines;
 	if (x > map->size - 1 || y > map->size - 1)
@@ -140,7 +139,7 @@ int		is_empty_map(t_map *map)
 	return (1);
 }
 
-t_tet *set_tet(t_tet *tet, char fill, t_map *map, int x, int y)
+t_tet	*set_tet(t_tet *tet, char fill, t_map *map, int x, int y)
 {
 	int i;
 	int lines;
@@ -170,13 +169,13 @@ t_tet *set_tet(t_tet *tet, char fill, t_map *map, int x, int y)
 	return (tet->next);
 }
 
-void unset_tet(t_map *map, t_tet *tet)
+void	unset_tet(t_map *map, t_tet *tet)
 {
-	int i;
-	int lines;
-	int x;
-	int y;
-	
+	int	i;
+	int	lines;
+	int	x;
+	int	y;
+
 	i = 0;
 	x = tet->x;
 	y = tet->y;

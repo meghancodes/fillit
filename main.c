@@ -21,8 +21,8 @@ void	free_list(t_lst *list)
 
 char	*alloc_buf(void)
 {
-	char *buf;
-	
+	char	*buf;
+
 	if (!(buf = (char *)malloc(sizeof(char))))
 		return (0);
 	return (buf);
@@ -35,7 +35,8 @@ int		main(int argc, char **argv)
 	char	*buf;
 	int		size;
 	int		solved;
-	
+	int		fd;
+
 	solved = 0;
 	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
 		return (0);
@@ -45,15 +46,13 @@ int		main(int argc, char **argv)
 		return (0);
 	map = NULL;
 	if (argc == 2)
-    {
-        int fd;
-        
-        fd = open(argv[1], O_RDONLY);
+	{
+		fd = open(argv[1], O_RDONLY);
 		buf = alloc_buf();
 		if (!buf)
 			return (0);
-        if (fd > 0)
-            list = read_in(open(argv[1], O_RDONLY), 'A', list, buf);
+		if (fd > 0)
+			list = read_in(open(argv[1], O_RDONLY), 'A', list, buf);
 		if (!list->size)
 			error_message();
 		size = ceil_sqrt(list->size);
@@ -64,8 +63,8 @@ int		main(int argc, char **argv)
 			list->current = list->head;
 			map = new_map(size++);
 		}
-       print_map(map);
-    }
+		print_map(map);
+	}
 	free_map(map);
 	free_list(list);
 	return (0);

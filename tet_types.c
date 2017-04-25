@@ -1,14 +1,16 @@
 #include "fillit.h"
 
-static t_types *types;
-static char *shapes[19];
-static char *names[] = {"O1", "T1", "T2", "T3", "T4", "I1", "I2", "J1", "J2", "J3", "J4", "L1", "L2", "L3", "L4", "Z1", "Z2", "S1", "S2"};
+static t_types	*types;
+static char		*shapes[19];
+static char		*names[] = {"O1", "T1", "T2", "T3", "T4", "I1", "I2", "J1",
+	"J2", "J3", "J4", "L1", "L2", "L3", "L4", "Z1", "Z2", "S1", "S2"};
 
 /*
 ** Order is 01, T1, T2, T3, T4, I1, I2, J1, J2, J3, J4, L1, L2, L3, L3, Z1, Z2
 ** S1, S2
 */
-static void init_shapes(void)
+
+static void	init_shapes(void)
 {
 	shapes[0] = "##..##"; //O1
 	shapes[1] = "###..#"; //T1
@@ -31,8 +33,11 @@ static void init_shapes(void)
 	shapes[18] = "#...##...#"; //S2
 }
 
-// Creates a new type struct, just need to do this once
-t_type	*new_type(char *name, char *s)
+/*
+**  Creates a new type struct, just need to do this once
+*/
+
+t_type		*new_type(char *name, char *s)
 {
 	t_type	*new;
 	int		i;
@@ -53,8 +58,12 @@ t_type	*new_type(char *name, char *s)
 	return (new);
 }
 
-//Creates the linked list of types that we'll cycle through to identify tet types
-void	create_typelist(void)
+/*
+**  Creates the linked list of types that we'll cycle through
+**  to identify tet types
+*/
+
+void		create_typelist(void)
 {
 	int i;
 
@@ -74,11 +83,11 @@ void	create_typelist(void)
 	}
 }
 
-
 /*
 **  Compares the inputted string to each tetrimino type
 */
-t_type *tet_types(char *final_string)
+
+t_type		*tet_types(char *final_string)
 {
 	types->current = types->head;
 	while (types->current != NULL)
@@ -91,16 +100,16 @@ t_type *tet_types(char *final_string)
 }
 
 /*
- ** Sets the height and width of a tet
- */
+** Sets the height and width of a tet
+*/
 
 void		tet_size(t_tet *tet)
 {
-	int lines;
-	int max_x;
-	int max_y;
-	int i;
-	
+	int	lines;
+	int	max_x;
+	int	max_y;
+	int	i;
+
 	max_x = 0;
 	i = 0;
 	lines = check_shape(tet->type);
