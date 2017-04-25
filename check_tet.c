@@ -77,26 +77,3 @@ int check_tet3(char *tet)
 		return (1);
 	return (0);
 }
-
-/*
-**  Checks final_string to make sure there are no more than 3 dots between each hash
-*/
-
-int	check_tet4(char *final_string)
-{
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while (final_string[i] != '\0')
-	{
-		if (final_string[i] == '.')
-			count++;
-		if (count > 2)
-			return (0);
-		i++;
-		count = 0;
-	}
-	return (1);
-}

@@ -17,6 +17,11 @@ int		main(int argc, char **argv)
         fd = open(argv[1], O_RDONLY);
         if (fd > 0)
             list = read_in(open(argv[1], O_RDONLY));
+        else
+        {
+        	ft_putstr("error\n");
+        	return (0);
+        }
 		if (!list)
 			return (0);
 		size = ceil_sqrt(list->size);
