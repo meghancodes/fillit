@@ -71,8 +71,9 @@ int				check_shape(t_type *type);
 void			tet_size(t_tet *tet);
 void			zero_map(t_map *map);
 int				fill_in(t_tet *tet, t_map *map, int lines, int x, int y, int count);
-int				process_string(int fd, void *buf, t_lst *list, char order);
+int				process_string(void *buf, t_lst *list, char order);
 int 			first_check(char *buf);
-void			error_message(int fd);
+void			error_message(void);
+char			*alloc_buf(void);
 
 #endif

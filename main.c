@@ -1,9 +1,9 @@
 #include "fillit.h"
 
-void	error_message(int fd)
+void	error_message(void)
 {
 	ft_putstr("error\n");
-	exit(fd);
+	exit(1);
 }
 
 void	free_list(t_lst *list)
@@ -14,7 +14,18 @@ void	free_list(t_lst *list)
 		free(list->current);
 		list->current = list->current->next;
 	}
+	list->current = NULL;
 	free(list);
+	list = NULL;
+}
+
+char	*alloc_buf(void)
+{
+	char *buf;
+	
+	if (!(buf = (char *)malloc(sizeof(char))))
+		return (0);
+	return (buf);
 }
 
 int		main(int argc, char **argv)
@@ -32,21 +43,19 @@ int		main(int argc, char **argv)
 		return (0);
 	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
 		return (0);
-	if (!(buf = (char *)malloc(sizeof(char))))
-		return (0);
 	map = NULL;
 	if (argc == 2)
     {
         int fd;
         
         fd = open(argv[1], O_RDONLY);
+		buf = alloc_buf();
+		if (!buf)
+			return (0);
         if (fd > 0)
             list = read_in(open(argv[1], O_RDONLY), 'A', list, buf);
 		if (!list->size)
-		{
-			error_message(fd);
-			return (0);
-		}
+			error_message();
 		size = ceil_sqrt(list->size);
 		map = new_map(size);
 		list->current = list->head;

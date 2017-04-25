@@ -7,20 +7,27 @@
  */
 
 t_lst *read_in(int fd, char order, t_lst *list, char *buf)
-{	
+{
+	char *new_buf;
+	
+	new_buf = alloc_buf();
+	if (!new_buf)
+		error_message();
 	if (read(fd, (void *)buf, TET_SIZE) == 0)
 		return (list);
 	else
 	{
 		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf))
 			|| (!first_check(buf)))
-			error_message(fd);
-		if (process_string(fd, buf, list, order))
+			error_message();
+		if (process_string(buf, list, order))
 			order++;
 		else
 			return (0);
 	}
-	return (read_in(fd, order, list, buf));
+	free(buf);
+	buf = NULL;
+	return (read_in(fd, order, list, new_buf));
 }
 
 int first_check(char *buf)
@@ -41,18 +48,31 @@ int first_check(char *buf)
 	return (1);
 }
 
-int	process_string(int fd, void *buf, t_lst *list, char order)
-{	
+void free_vars(char *var1, char *var2)
+{
+	free(var1);
+	free(var2);
+	var1 = NULL;
+	var2 = NULL;
+}
+
+int	process_string(void *buf, t_lst *list, char order)
+{
+	char *type_string;
+	char *final_string;
 	t_type *save;
 
 	create_typelist();
-	if ((save = tet_types(remove_newlines(tet_string(buf)))) == NULL)
+	type_string = tet_string(buf);
+	final_string = remove_newlines(type_string);
+	if ((save = tet_types(final_string)) == NULL)
 	{
-		error_message(fd);
-		return (0);
+		free_vars(type_string, final_string);
+		error_message();
 	}
 	to_struct(list, save, order);
-	ft_bzero(buf, sizeof(char) * ft_strlen(buf));
+	ft_bzero(buf, sizeof(char) * TET_SIZE);
+	free_vars(type_string, final_string);
 	return (1);
 }
 
@@ -90,8 +110,8 @@ char *tet_string(char *buf)
 
 	index = 0;
 	index2 = 0;
-	if (!(type_string = (char *)malloc(sizeof(char) * ft_strlen(buf))))
-		return (NULL);
+	if (!(type_string = (char *)malloc(sizeof(char) * TET_SIZE)))
+		return (0);
 	hash_count = 4;
 	while (buf[index] != '\0')
 	{
@@ -107,12 +127,13 @@ char *tet_string(char *buf)
 		}
 		index++;
 	}
-	free(type_string);
+//	printf("buf %s\n", buf);
+//	printf("type string %s\n", type_string);
 	return (type_string);
 }
 
 /*
-**  Removes newlines from the trimmed string
+**  Removes '\n's from the trimmed string
 */
 
 char *remove_newlines(char *type_string)
@@ -134,6 +155,6 @@ char *remove_newlines(char *type_string)
 		index2++;
 	}
 	final_string[index2] = '\0';
-	free(final_string);
+	//printf("final string %s\n", final_string);
 	return (final_string);
 }
