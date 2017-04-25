@@ -4,17 +4,15 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "1B8192D67801FC792BB68A7E89EB16C543CF199A" : 0,
-    "7157896F4974B65FEB30B1EF3A7D19D47F2BBBCF" : 9223372036854775807,
+    "22C42192545E2B801A2F019919DAA218E88C4CBF" : 0,
     "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D" : 0,
-    "49B0F672D930341A7B4D1509EABF92A9B4F56BFA" : 9223372036854775807
+    "1B8192D67801FC792BB68A7E89EB16C543CF199A" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6DCB1AFB-B739-43D0-82C6-BE715D3AF6C2",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "1B8192D67801FC792BB68A7E89EB16C543CF199A" : "newfillit\/",
-    "7157896F4974B65FEB30B1EF3A7D19D47F2BBBCF" : "fillit_github\/libft\/",
+    "22C42192545E2B801A2F019919DAA218E88C4CBF" : "fillit\/fillit_checker\/",
     "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D" : "fillit\/libft\/",
-    "49B0F672D930341A7B4D1509EABF92A9B4F56BFA" : "libft\/"
+    "1B8192D67801FC792BB68A7E89EB16C543CF199A" : "fillit\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "fillit",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -26,19 +24,14 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1B8192D67801FC792BB68A7E89EB16C543CF199A"
     },
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/meghancodes\/libft.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/anisg\/fillit_checker.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "49B0F672D930341A7B4D1509EABF92A9B4F56BFA"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "22C42192545E2B801A2F019919DAA218E88C4CBF"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/minghorn\/libft.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "vgs.42.us.org:intra\/2016\/activities\/libft\/mhorn",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7157896F4974B65FEB30B1EF3A7D19D47F2BBBCF"
     }
   ]
 }

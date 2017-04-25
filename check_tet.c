@@ -1,4 +1,5 @@
 #include "fillit.h"
+#define T(tet, i) (tet[i - 5] == '#' || tet[i- 1] == '#' || tet[i + 1] == '#' || tet[i + 5] == '#')
 
 /*
 **  Ensures that every character is a '.' '#' or '\n'

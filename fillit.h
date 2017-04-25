@@ -6,8 +6,6 @@
 #include <stdio.h>
 # include "./libft/libft.h"
 #define TET_SIZE 21
-#define TET_VARS int i; char *tet
-#define T(tet, i) (tet[i - 5] == '#' || tet[i- 1] == '#' || tet[i + 1] == '#' || tet[i + 5] == '#')
 
 typedef struct	s_type
 {
@@ -65,7 +63,6 @@ int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);
 void			set_map_val(t_map *map, int x, int y);
-void			solver(t_lst *list);
 int				solve(t_tet *tet, t_map *map);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);

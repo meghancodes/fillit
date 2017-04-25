@@ -1,12 +1,5 @@
 #include "fillit.h"
 
-void	clear_stuff(char *buf, char *type_string, char *final_string)
-{
-	ft_bzero(buf, sizeof(char) * ft_strlen(buf));
-	ft_bzero(type_string, sizeof(char) * ft_strlen(type_string));
-	ft_bzero(final_string, sizeof(char) * ft_strlen(final_string));
-}
-
 /*
  **  Reads the tetrimino from the fd to the buffer,
  **  ensures that it's valid, determines the tetrimino type
@@ -50,24 +43,16 @@ int first_check(char *buf)
 
 int	process_string(int fd, void *buf, t_lst *list, char order)
 {	
-	char *type_string;
-	char *final_string;
 	t_type *save;
 
 	create_typelist();
-	if(!(final_string = (char *)malloc(sizeof(char))))
-		return (0);
-	if(!(type_string = (char *)malloc(sizeof(char))))
-		return (0);
-	type_string = tet_string(buf);
-	final_string = remove_newlines(type_string);
-	if ((save = tet_types(final_string)) == NULL)
+	if ((save = tet_types(remove_newlines(tet_string(buf)))) == NULL)
 	{
 		error_message(fd);
 		return (0);
 	}
 	to_struct(list, save, order);
-	clear_stuff(buf, type_string, final_string);
+	ft_bzero(buf, sizeof(char) * ft_strlen(buf));
 	return (1);
 }
 
@@ -122,6 +107,7 @@ char *tet_string(char *buf)
 		}
 		index++;
 	}
+	free(type_string);
 	return (type_string);
 }
 
@@ -148,5 +134,6 @@ char *remove_newlines(char *type_string)
 		index2++;
 	}
 	final_string[index2] = '\0';
+	free(final_string);
 	return (final_string);
 }

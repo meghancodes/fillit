@@ -6,6 +6,17 @@ void	error_message(int fd)
 	exit(fd);
 }
 
+void	free_list(t_lst *list)
+{
+	list->current = list->head;
+	while (list->current)
+	{
+		free(list->current);
+		list->current = list->current->next;
+	}
+	free(list);
+}
+
 int		main(int argc, char **argv)
 {
 	t_lst	*list;
@@ -47,5 +58,6 @@ int		main(int argc, char **argv)
        print_map(map);
     }
 	free_map(map);
+	free_list(list);
 	return (0);
 }
