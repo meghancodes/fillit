@@ -6,10 +6,10 @@
  **  and the order
  */
 
-t_lst *read_in(int fd, char order, t_lst *list, char *buf)
+t_lst	*read_in(int fd, char order, t_lst *list, char *buf)
 {
 	char *new_buf;
-	
+
 	new_buf = alloc_buf();
 	if (!new_buf)
 		error_message();
@@ -30,7 +30,7 @@ t_lst *read_in(int fd, char order, t_lst *list, char *buf)
 	return (read_in(fd, order, list, new_buf));
 }
 
-int first_check(char *buf)
+int		first_check(char *buf)
 {
 	int i;
 	int c;
@@ -48,7 +48,7 @@ int first_check(char *buf)
 	return (1);
 }
 
-void free_vars(char *var1, char *var2)
+void	free_vars(char *var1, char *var2)
 {
 	free(var1);
 	free(var2);
@@ -56,11 +56,11 @@ void free_vars(char *var1, char *var2)
 	var2 = NULL;
 }
 
-int	process_string(void *buf, t_lst *list, char order)
+int		process_string(void *buf, t_lst *list, char order)
 {
-	char *type_string;
-	char *final_string;
-	t_type *save;
+	char	*type_string;
+	char	*final_string;
+	t_type	*save;
 
 	create_typelist();
 	type_string = tet_string(buf);
@@ -80,7 +80,7 @@ int	process_string(void *buf, t_lst *list, char order)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_lst *list, t_type *type, char order)
+void	to_struct(t_lst *list, t_type *type, char order)
 {
 	if (order == 'A')
 	{
@@ -101,12 +101,12 @@ void to_struct(t_lst *list, t_type *type, char order)
 **  (trimmed and with '\n's)
 */
 
-char *tet_string(char *buf)
+char	*tet_string(char *buf)
 {
-	char *type_string;
-	int hash_count;
-	int index;
-	int index2;
+	char	*type_string;
+	int		hash_count;
+	int		index;
+	int		index2;
 
 	index = 0;
 	index2 = 0;
@@ -134,11 +134,11 @@ char *tet_string(char *buf)
 **  Removes '\n's from the trimmed string
 */
 
-char *remove_newlines(char *type_string)
+char	*remove_newlines(char *type_string)
 {
-	char *final_string;
-	int index;
-	int index2;
+	char	*final_string;
+	int		index;
+	int		index2;
 
 	index = 0;
 	index2 = 0;
