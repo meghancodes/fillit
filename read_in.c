@@ -127,8 +127,6 @@ char *tet_string(char *buf)
 		}
 		index++;
 	}
-//	printf("buf %s\n", buf);
-//	printf("type string %s\n", type_string);
 	return (type_string);
 }
 
@@ -155,6 +153,5 @@ char *remove_newlines(char *type_string)
 		index2++;
 	}
 	final_string[index2] = '\0';
-	//printf("final string %s\n", final_string);
 	return (final_string);
 }
