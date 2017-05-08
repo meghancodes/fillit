@@ -75,5 +75,6 @@ int				process_string(void *buf, t_lst *list, char order);
 int 			first_check(char *buf);
 void			error_message(void);
 char			*alloc_buf(void);
+int				check_doublen(char *buf);
 
 #endif

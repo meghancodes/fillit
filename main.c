@@ -23,7 +23,7 @@ char	*alloc_buf(void)
 {
 	char	*buf;
 
-	if (!(buf = (char *)malloc(sizeof(char))))
+	if (!(buf = (char *)malloc(sizeof(char) * TET_SIZE)))
 		return (0);
 	return (buf);
 }

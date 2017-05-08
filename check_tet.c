@@ -12,7 +12,7 @@ int	check_tet(char *tet)
 
 	index = 0;
 	count = 0;
-	while ((size_t)index < ft_strlen(tet))
+	while ((ssize_t)index < ft_strlen(tet))
 	{
 		if (tet[index] == '.')
 			count++;
@@ -56,27 +56,24 @@ int	check_tet2(char *tet)
 }
 
 /*
-**  Ensures that '\n's appear at the right places and that there are exactly 5
+**  Ensures that '\n's appear at the right places
 */
 
 int	check_tet3(char *tet)
 {
-	int index;
+	char **arr;
 	int	count;
 
-	index = 0;
 	count = 0;
-	while (tet[index] != '\0')
+	arr = ft_strsplit(tet, '\n');
+	while (*arr != '\0')
 	{
-		if (tet[index] == '\n')
-			count++;
-		if (tet[4] != '\n' || tet[9] != '\n' || tet[14] != '\n'
-				|| tet[19] != '\n')
+		if (ft_strlen(*arr++) != 4)
 			return (0);
-		index++;
+		count++;
 	}
 	if (count == 4 || count == 5)
-		return (1);
+		return (count);
 	return (0);
 }
 

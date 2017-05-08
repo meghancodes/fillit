@@ -6,28 +6,28 @@
  **  and the order
  */
 
-t_lst	*read_in(int fd, char order, t_lst *list, char *buf)
+t_lst	*read_in(int fd, char order, t_lst *list, char *old_buf)
 {
-	char *new_buf;
+	char *buf;
 
-	new_buf = alloc_buf();
-	if (!new_buf)
+	buf = ft_memalloc(TET_SIZE);
+	if (!buf)
 		error_message();
-	if (read(fd, (void *)buf, TET_SIZE) == 0)
+	ssize_t read_size = read(fd, (void *)buf, TET_SIZE);
+	if (read_size == 0 && check_doublen(old_buf))
 		return (list);
+	else if (read_size != 21 && read_size != 20)
+		error_message();
 	else
 	{
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf))
-			|| (!first_check(buf)))
+		free(old_buf);
+		old_buf = NULL;
+		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
 			error_message();
 		if (process_string(buf, list, order))
 			order++;
-		else
-			return (0);
 	}
-	free(buf);
-	buf = NULL;
-	return (read_in(fd, order, list, new_buf));
+	return (read_in(fd, order, list, buf));
 }
 
 int		first_check(char *buf)
@@ -45,6 +45,16 @@ int		first_check(char *buf)
 	}
 	if (c != 12)
 		return (0);
+	return (1);
+}
+
+int		check_doublen(char *buf)
+{
+	ssize_t end;
+	
+	end = ft_strlen(buf) - 1;
+	if (buf[end] == '\n' && buf[end - 1] == '\n')
+		error_message();
 	return (1);
 }
 
@@ -137,21 +147,12 @@ char	*tet_string(char *buf)
 char	*remove_newlines(char *type_string)
 {
 	char	*final_string;
-	int		index;
-	int		index2;
+	char	**arr;
 
-	index = 0;
-	index2 = 0;
+	arr = ft_strsplit(type_string, '\n');
 	if (!(final_string = (char *)malloc(sizeof(char) * ft_strlen(type_string))))
 		return (NULL);
-	while (type_string[index] != '\0')
-	{
-		if (type_string[index] == '\n')
-			index++;
-		final_string[index2] = type_string[index];
-		index++;
-		index2++;
-	}
-	final_string[index2] = '\0';
+	while (*arr != '\0')
+		ft_strcat(final_string, *arr++);
 	return (final_string);
 }
