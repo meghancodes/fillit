@@ -65,7 +65,9 @@ int	check_tet3(char *tet)
 	int	count;
 
 	count = 0;
-	arr = ft_strsplit(tet, '\n');
+	ft_strsplit2(tet, '\n', arr);
+	if (ft_strlen(tet) > 21)
+		return (0);
 	while (*arr != '\0')
 	{
 		if (ft_strlen(*arr++) != 4)

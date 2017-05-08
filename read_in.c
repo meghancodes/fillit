@@ -22,7 +22,7 @@ t_lst	*read_in(int fd, char order, t_lst *list, char *old_buf)
 	{
 		free(old_buf);
 		old_buf = NULL;
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)))
+		if (/*!(check_tet(buf)) || !(check_tet2(buf)) || */!(check_tet3(buf)))
 			error_message();
 		if (process_string(buf, list, order))
 			order++;
