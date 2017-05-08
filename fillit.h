@@ -76,5 +76,7 @@ int 			first_check(char *buf);
 void			error_message(void);
 char			*alloc_buf(void);
 int				check_doublen(char *buf);
+char			**ft_strsplit2(char const *s, char c);
+
 
 #endif
