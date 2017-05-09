@@ -10,10 +10,11 @@ t_lst	*read_in(int fd, char order, t_lst *list, char *old_buf)
 {
 	char *buf;
 
-	buf = ft_memalloc(TET_SIZE);
+	buf = ft_memalloc(TET_SIZE + 1);
 	if (!buf)
 		error_message();
 	ssize_t read_size = read(fd, (void *)buf, TET_SIZE);
+	buf[read_size] = '\0';
 	if (read_size == 0 && check_doublen(old_buf))
 		return (list);
 	else if (read_size != 21 && read_size != 20)
@@ -22,7 +23,7 @@ t_lst	*read_in(int fd, char order, t_lst *list, char *old_buf)
 	{
 		free(old_buf);
 		old_buf = NULL;
-		if (/*!(check_tet(buf)) || !(check_tet2(buf)) || */!(check_tet3(buf)))
+		if (!check_tet(buf) || !check_tet2(buf) || !check_tet3(buf))
 			error_message();
 		if (process_string(buf, list, order))
 			order++;
@@ -81,7 +82,6 @@ int		process_string(void *buf, t_lst *list, char order)
 		error_message();
 	}
 	to_struct(list, save, order);
-	ft_bzero(buf, sizeof(char) * TET_SIZE);
 	free_vars(type_string, final_string);
 	return (1);
 }

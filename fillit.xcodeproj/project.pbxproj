@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A0D70931EC127F0003F2950 /* ft_strsplit2.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D70921EC127F0003F2950 /* ft_strsplit2.c */; };
+		7A0D70951EC13F09003F2950 /* ft_strsplit2.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D70941EC13F09003F2950 /* ft_strsplit2.c */; };
 		7A3515761E95B153003F6CBB /* ft_atoi.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A3515351E95B153003F6CBB /* ft_atoi.c */; };
 		7A3515771E95B153003F6CBB /* ft_bzero.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A3515361E95B153003F6CBB /* ft_bzero.c */; };
 		7A3515791E95B153003F6CBB /* ft_isalnum.c in Sources */ = {isa = PBXBuildFile; fileRef = 7A3515381E95B153003F6CBB /* ft_isalnum.c */; };
@@ -93,7 +93,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7A0D70921EC127F0003F2950 /* ft_strsplit2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ft_strsplit2.c; path = ../libft/ft_strsplit2.c; sourceTree = "<group>"; };
+		7A0D70941EC13F09003F2950 /* ft_strsplit2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_strsplit2.c; sourceTree = "<group>"; };
 		7A29F35C1E70CD9B0098B803 /* small_test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = small_test.txt; sourceTree = "<group>"; };
 		7A3515341E95B153003F6CBB /* author */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = author; sourceTree = "<group>"; };
 		7A3515351E95B153003F6CBB /* ft_atoi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ft_atoi.c; sourceTree = "<group>"; };
@@ -438,7 +438,7 @@
 			children = (
 				7A3515321E95B153003F6CBB /* libft */,
 				7A4A3F291E67A45400D8788B /* Makefile */,
-				7A0D70921EC127F0003F2950 /* ft_strsplit2.c */,
+				7A0D70941EC13F09003F2950 /* ft_strsplit2.c */,
 				7A4A3F2B1E67A45400D8788B /* fillit.h */,
 				7A6764A01E68F3F200B4B60F /* main.c */,
 				7A4A3F2A1E67A45400D8788B /* solver.c */,
@@ -568,6 +568,7 @@
 				7A35157D1E95B153003F6CBB /* ft_isprint.c in Sources */,
 				7A3515B21E95B153003F6CBB /* ft_toupper.c in Sources */,
 				7A3515881E95B153003F6CBB /* ft_memchr.c in Sources */,
+				7A0D70951EC13F09003F2950 /* ft_strsplit2.c in Sources */,
 				7A35157A1E95B153003F6CBB /* ft_isalpha.c in Sources */,
 				7A3515931E95B153003F6CBB /* ft_putnbr_fd.c in Sources */,
 				7A35159B1E95B153003F6CBB /* ft_strdel.c in Sources */,
@@ -582,7 +583,6 @@
 				7A3515AE1E95B153003F6CBB /* ft_strsub.c in Sources */,
 				7A3515A71E95B153003F6CBB /* ft_strncpy.c in Sources */,
 				7A3515911E95B153003F6CBB /* ft_putendl_fd.c in Sources */,
-				7A0D70931EC127F0003F2950 /* ft_strsplit2.c in Sources */,
 				7A6764A11E68F3F200B4B60F /* main.c in Sources */,
 				7A3515971E95B153003F6CBB /* ft_strchr.c in Sources */,
 				7A3515921E95B153003F6CBB /* ft_putnbr.c in Sources */,

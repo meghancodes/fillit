@@ -15,8 +15,7 @@ NAME	= fillit
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -I "fillit.h" -L./libft -lft
 OFLAGS = -Wall -Wextra -Werror -I "fillit.h"
-FILES	= main.c check_tet.c new_tet.c set_tet.c map.c read_in.c tet_types.c /
-		solver.c ft_strsplit2.c
+FILES	= main.c check_tet.c new_tet.c set_tet.c map.c read_in.c tet_types.c solver.c ft_strsplit2.c
 LIBFT_DIR = ./libft
 OBJS = $(addprefix src/, $(FILES:.c=.o))
 

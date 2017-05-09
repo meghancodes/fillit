@@ -12,7 +12,7 @@ int	check_tet(char *tet)
 
 	index = 0;
 	count = 0;
-	while ((ssize_t)index < ft_strlen(tet))
+	while ((size_t)index < ft_strlen(tet))
 	{
 		if (tet[index] == '.')
 			count++;
@@ -66,16 +66,14 @@ int	check_tet3(char *tet)
 
 	count = 0;
 	arr = ft_strsplit2(tet, '\n');
-	if (ft_strlen(tet) > 21)
-		return (0);
 	while (*arr != '\0')
 	{
-		if (ft_strlen(*arr++) < 5 && count < 2)
+		if (ft_strlen(*arr++) != 5 && count <= 3)
 			return (0);
 		count++;
 	}
 	if (count == 4 || count == 5)
-		return (count);
+		return (1);
 	return (0);
 }
 
