@@ -1,12 +1,16 @@
 #include "fillit.h"
 
-//Zero out map array
+/*
+**  Zero out map array
+*/
+
 void	zero_map(t_map *map)
 {
-	int i;
-	int j = 0;
-	
+	int	i;
+	int	j;
+
 	i = 0;
+	j = 0;
 	while (i < map->size)
 	{
 		j = 0;
@@ -19,12 +23,12 @@ void	zero_map(t_map *map)
 	}
 }
 
-int solve(t_tet *tet, t_map *map)
+int		solve(t_tet *tet, t_map *map)
 {
 	int		row;
 	int		col;
 	t_tet	*save;
-	
+
 	row = 0;
 	save = tet;
 	// Base case for recursion, when it reaches the end of the list of tets

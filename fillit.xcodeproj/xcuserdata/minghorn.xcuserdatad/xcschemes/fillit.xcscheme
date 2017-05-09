@@ -64,7 +64,15 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "$PROJECT_DIR/small_test.txt"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "$PROJECT_DIR/fillit_checker/correct_file/valid_6"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "$PROJECT_DIR/fillit_checker/error_file/error_23"
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
