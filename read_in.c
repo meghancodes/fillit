@@ -53,6 +53,8 @@ int		check_doublen(char *buf)
 {
 	ssize_t end;
 	
+	if (!buf)
+		return (0);
 	end = ft_strlen(buf) - 1;
 	if (buf[end] == '\n' && buf[end - 1] == '\n')
 		error_message();
