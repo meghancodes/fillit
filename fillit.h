@@ -3,11 +3,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+#include <stdio.h>
 # include "./libft/libft.h"
 #define TET_SIZE 21
-#define TET_VARS int i; char *tet
-#define READ_VARS char *buf; char order
-#define T(tet, i) (tet[i - 5] == '#' || tet[i- 1] == '#' || tet[i + 1] == '#' || tet[i + 5] == '#')
 
 typedef struct	s_type
 {
@@ -52,7 +50,7 @@ t_tet			*set_tet(t_tet *tet, char fill, t_map *map, int x, int y);
 void			unset_tet(t_map *map, t_tet *tet);
 int				valid_set(t_tet *node, t_map *map, int x, int y);
 int				is_empty_map(t_map *map);
-t_lst			*read_in(int fd);
+t_lst			*read_in(int fd, char order, t_lst *list, char *buf);
 int				check_tet(char *tet);
 int				check_tet2(char *tet);
 int				check_tet3(char *tet);
@@ -65,7 +63,6 @@ int				ceil_sqrt(int tet_num);
 t_map			*new_map(int size);
 void			free_map(t_map *map);
 void			set_map_val(t_map *map, int x, int y);
-void			solver(t_lst *list);
 int				solve(t_tet *tet, t_map *map);
 void			print_map(t_map *map);
 void			print_tets(t_lst *tets);
@@ -74,7 +71,12 @@ int				check_shape(t_type *type);
 void			tet_size(t_tet *tet);
 void			zero_map(t_map *map);
 int				fill_in(t_tet *tet, t_map *map, int lines, int x, int y, int count);
-int				process_string(int fd, void *buf, t_lst *list, char order);
+int				process_string(void *buf, t_lst *list, char order);
 int 			first_check(char *buf);
+void			error_message(void);
+char			*alloc_buf(void);
+int				check_doublen(char *buf);
+char			**ft_strsplit2(char const *s, char c);
+
 
 #endif

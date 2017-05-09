@@ -1,6 +1,9 @@
 #include "fillit.h"
 
-//Use to find the smallest map possible to start with
+/*
+**  Use to find the smallest map possible to start with
+*/
+
 int		ceil_sqrt(int tet_num)
 {
 	int	size;
@@ -30,7 +33,8 @@ void	print_map(t_map *map)
 
 t_map	*new_map(int size)
 {
-	t_map *new;
+	t_map	*new;
+	int		i;
 
 	new = (t_map *)malloc(sizeof(t_map));
 	if (!new)
@@ -39,7 +43,6 @@ t_map	*new_map(int size)
 	new->arr = (char **)malloc(sizeof(char*) * size + 5);
 	if (new->arr)
 	{
-		int i;
 		i = 0;
 		while (i < size)
 			new->arr[i++] = (char *)malloc(sizeof(char) * size + 5);

@@ -1,48 +1,37 @@
 #include "fillit.h"
 
-void	clear_stuff(char *buf, char *type_string, char *final_string)
-{
-	ft_bzero(buf, sizeof(char) * ft_strlen(buf));
-	ft_bzero(type_string, sizeof(char) * ft_strlen(type_string));
-	ft_bzero(final_string, sizeof(char) * ft_strlen(final_string));
-}
-
 /*
  **  Reads the tetrimino from the fd to the buffer,
  **  ensures that it's valid, determines the tetrimino type
  **  and the order
  */
 
-t_lst *read_in(int fd)
+t_lst	*read_in(int fd, char order, t_lst *list, char *old_buf)
 {
-	READ_VARS;
-	t_lst *list;
+	char *buf;
 
-	order = 'A';
-	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
-		return (0);
-	if (!(list->current = (t_tet *)malloc(sizeof(t_tet))))
-		return (0);
-	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
-		return (0);
-	if (!(buf = (char *)malloc(sizeof(char))))
-		return (0);
-	while (read(fd, (void *)buf, TET_SIZE) > 0)
+	buf = ft_memalloc(TET_SIZE + 1);
+	if (!buf)
+		error_message();
+	ssize_t read_size = read(fd, (void *)buf, TET_SIZE);
+	buf[read_size] = '\0';
+	if (read_size == 0 && check_doublen(old_buf))
+		return (list);
+	else if (read_size != 21 && read_size != 20)
+		error_message();
+	else
 	{
-		if (!(check_tet(buf)) || !(check_tet2(buf)) || !(check_tet3(buf)) || (!first_check(buf)))
-		{
-			ft_putstr("error\n");
-			exit (fd);
-		}
-		if (process_string(fd, buf, list, order))
+		free(old_buf);
+		old_buf = NULL;
+		if (!check_tet(buf) || !check_tet2(buf) || !check_tet3(buf))
+			error_message();
+		if (process_string(buf, list, order))
 			order++;
-		else
-			return (0);
 	}
-	return (list);
+	return (read_in(fd, order, list, buf));
 }
 
-int first_check(char *buf)
+int		first_check(char *buf)
 {
 	int i;
 	int c;
@@ -60,27 +49,40 @@ int first_check(char *buf)
 	return (1);
 }
 
-int	process_string(int fd, void *buf, t_lst *list, char order)
-{	
-	char *type_string;
-	char *final_string;
-	t_type *save;
+int		check_doublen(char *buf)
+{
+	ssize_t end;
+	
+	end = ft_strlen(buf) - 1;
+	if (buf[end] == '\n' && buf[end - 1] == '\n')
+		error_message();
+	return (1);
+}
+
+void	free_vars(char *var1, char *var2)
+{
+	free(var1);
+	free(var2);
+	var1 = NULL;
+	var2 = NULL;
+}
+
+int		process_string(void *buf, t_lst *list, char order)
+{
+	char	*type_string;
+	char	*final_string;
+	t_type	*save;
 
 	create_typelist();
-	if(!(final_string = (char *)malloc(sizeof(char))))
-		return (0);
-	if(!(type_string = (char *)malloc(sizeof(char))))
-		return (0);
 	type_string = tet_string(buf);
 	final_string = remove_newlines(type_string);
 	if ((save = tet_types(final_string)) == NULL)
 	{
-		ft_putstr("error\n");
-		exit (fd);
+		free_vars(type_string, final_string);
+		error_message();
 	}
 	to_struct(list, save, order);
-	clear_stuff(buf, type_string, final_string);
-	free(buf);
+	free_vars(type_string, final_string);
 	return (1);
 }
 
@@ -88,7 +90,7 @@ int	process_string(int fd, void *buf, t_lst *list, char order)
 **  Puts type and order into a struct
 */
 
-void to_struct(t_lst *list, t_type *type, char order)
+void	to_struct(t_lst *list, t_type *type, char order)
 {
 	if (order == 'A')
 	{
@@ -109,17 +111,17 @@ void to_struct(t_lst *list, t_type *type, char order)
 **  (trimmed and with '\n's)
 */
 
-char *tet_string(char *buf)
+char	*tet_string(char *buf)
 {
-	char *type_string;
-	int hash_count;
-	int index;
-	int index2;
+	char	*type_string;
+	int		hash_count;
+	int		index;
+	int		index2;
 
 	index = 0;
 	index2 = 0;
-	if (!(type_string = (char *)malloc(sizeof(char) * ft_strlen(buf))))
-		return (NULL);
+	if (!(type_string = (char *)malloc(sizeof(char) * TET_SIZE)))
+		return (0);
 	hash_count = 4;
 	while (buf[index] != '\0')
 	{
@@ -139,27 +141,18 @@ char *tet_string(char *buf)
 }
 
 /*
-**  Removes newlines from the trimmed string
+**  Removes '\n's from the trimmed string
 */
 
-char *remove_newlines(char *type_string)
+char	*remove_newlines(char *type_string)
 {
-	char *final_string;
-	int index;
-	int index2;
+	char	*final_string;
+	char	**arr;
 
-	index = 0;
-	index2 = 0;
+	arr = ft_strsplit(type_string, '\n');
 	if (!(final_string = (char *)malloc(sizeof(char) * ft_strlen(type_string))))
 		return (NULL);
-	while (type_string[index] != '\0')
-	{
-		if (type_string[index] == '\n')
-			index++;
-		final_string[index2] = type_string[index];
-		index++;
-		index2++;
-	}
-	final_string[index2] = '\0';
+	while (*arr != '\0')
+		ft_strcat(final_string, *arr++);
 	return (final_string);
 }
