@@ -2,6 +2,7 @@
 
 /*
 **  Use to find the smallest map possible to start with
+** tet_num is the list length * 4 = min area of square
 */
 
 int		ceil_sqrt(int tet_num)
@@ -27,6 +28,29 @@ void	print_map(t_map *map)
 			ft_putchar(map->arr[i][j++]);
 		map->arr[i][j] = '\0';
 		ft_putchar('\n');
+		i++;
+	}
+}
+
+/*
+ **  Zero out map array
+ */
+
+void	zero_map(t_map *map)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	while (i < map->size)
+	{
+		j = 0;
+		while (j < map->size)
+		{
+			map->arr[i][j] = '.';
+			j++;
+		}
 		i++;
 	}
 }

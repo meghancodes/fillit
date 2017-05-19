@@ -11,7 +11,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6DCB1AFB-B739-43D0-82C6-BE715D3AF6C2",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "22C42192545E2B801A2F019919DAA218E88C4CBF" : "fillit\/fillit_checker\/",
-    "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D" : "fillit\/libft\/",
+    "64C440D8E4648BC113CED08BEF1D8A9662D2BB4D" : "libft\/",
     "1B8192D67801FC792BB68A7E89EB16C543CF199A" : "fillit\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "fillit",

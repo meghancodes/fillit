@@ -19,6 +19,17 @@ void	free_list(t_lst *list)
 	list = NULL;
 }
 
+int		alloc_list(t_lst **list)
+{
+	if (!(*list = (t_lst *)malloc(sizeof(t_lst))))
+		return (0);
+	if (!((*list)->current = (t_tet *)malloc(sizeof(t_tet))))
+		return (0);
+	if (!((*list)->head = (t_tet *)malloc(sizeof(t_tet))))
+		return (0);
+	return (1);
+}
+
 int		main(int argc, char **argv)
 {
 	t_lst	*list;
@@ -28,12 +39,8 @@ int		main(int argc, char **argv)
 	int		fd;
 
 	solved = 0;
-	if (!(list = (t_lst *)malloc(sizeof(t_lst))))
-		return (0);
-	if (!(list->current = (t_tet *)malloc(sizeof(t_tet))))
-		return (0);
-	if (!(list->head = (t_tet *)malloc(sizeof(t_tet))))
-		return (0);
+	list = NULL;
+	alloc_list(&list);
 	map = NULL;
 	if (argc == 2)
 	{
@@ -42,7 +49,7 @@ int		main(int argc, char **argv)
 			list = read_in(fd, 'A', list, NULL);
 		if (!list->size)
 			error_message();
-		size = ceil_sqrt(list->size);
+		size = ceil_sqrt(list->size * 4);
 		map = new_map(size);
 		list->current = list->head;
 		while (!solve(list->head, map) && list->current != NULL)
