@@ -34,10 +34,10 @@ int		solve(t_tet *tet, t_map *map)
 	// Base case for recursion, when it reaches the end of the list of tets
 	if (!save)
 		return (1);
-	while (row < map->size - save->h)
+	while (row < map->size - save->h + 1)
 	{
 		col = 0;
-		while (col < map->size - save->w)
+		while (col < map->size - save->w + 1)
 		{
 			if (valid_set(save, map, row, col))
 			{
